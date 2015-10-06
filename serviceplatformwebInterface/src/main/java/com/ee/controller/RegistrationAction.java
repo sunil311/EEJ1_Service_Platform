@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sp.register.Register;
-import com.sp.register.RegisterProcess;
+import com.sp.entities.UserInfo;
+import com.sp.process.user.RegisterProcess;
 /**
  * 
  * @author rakesh.singhania
@@ -23,7 +23,7 @@ public class RegistrationAction
   public @ResponseBody String get() throws Exception
   {
     System.out.println("Enter dragon");
-    Register registerBean=new Register();
+    UserInfo registerBean=new UserInfo();
     registerBean.setEmail("rakesh@aa.com");
     registerProcess.registerUser(registerBean);
     return "done";

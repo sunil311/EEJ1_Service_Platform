@@ -15,7 +15,7 @@
 	
 	<!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
 	
-	<bean id="registrationProcess" class="com.sp.register.RegisterProcess">
+	<bean id="registrationProcess" class="com.sp.process.user.RegisterProcess">
   	 </bean>
   	 <bean id="registrationDao" class="com.sp.dao.RegistrationDao">
   	 </bean>

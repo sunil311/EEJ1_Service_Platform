@@ -8,7 +8,7 @@ app.controller('registerAppController', function($scope, $http) {
         $http.get("spring/RegisterUser").success(function(response) {
             alert(response);
         }).error(function(response) {
-            alert(response);
+            alert("Errro"+response);
         });
     };
 });

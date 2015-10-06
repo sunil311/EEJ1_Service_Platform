@@ -1,35 +1,26 @@
 package com.sp.dao;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 
-import com.sp.register.Register;
-import com.sp.utility.TransSpringHibernateUtilFactory;
+import com.sp.entities.UserInfo;
+import com.sp.utility.SessionHandler;
 
 @Service
 public class RegistrationDao
 {
- 
-  private SessionFactory sessionFactory;
 
-  public void save(Register registerBean) throws Exception
+  public void save(UserInfo registerBean) throws Exception
   {
-    Session session = TransSpringHibernateUtilFactory.getSession();
-    Transaction t = session.beginTransaction();
+    // Start transaction
+    Session session = SessionHandler.stratTransaction();
+    
+    // do DB inteactions
     session.save(registerBean);
-    t.commit();
+    
+    // end transaction
+    SessionHandler.endTransaction(session);
   }
-
-  public SessionFactory getSessionFactory()
-  {
-    return sessionFactory;
-  }
-  //@Autowired
-  public void setSessionFactory(SessionFactory sessionFactory)
-  {
-    this.sessionFactory = sessionFactory;
-  }
+  
 
 }

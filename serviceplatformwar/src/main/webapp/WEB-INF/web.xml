@@ -19,4 +19,11 @@
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/spring/*</url-pattern>
 	</servlet-mapping>
+	
+	<listener>
+    <listener-class>
+	  com.sp.utility.HibernateListener
+    </listener-class>
+  </listener>
+	
 </web-app>
