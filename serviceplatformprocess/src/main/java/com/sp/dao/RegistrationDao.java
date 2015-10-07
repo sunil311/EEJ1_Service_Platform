@@ -9,18 +9,15 @@ import com.sp.utility.SessionHandler;
 @Service
 public class RegistrationDao
 {
-
   public void save(UserInfo registerBean) throws Exception
   {
     // Start transaction
     Session session = SessionHandler.stratTransaction();
     
-    // do DB inteactions
+    // do DB interactions
     session.save(registerBean);
     
     // end transaction
     SessionHandler.endTransaction(session);
   }
-  
-
 }
