@@ -9,20 +9,21 @@ Background:
    Given Service Aggregator is on Registration Page
 
 Scenario: Successful Service Aggregator Registration with valid data
-          Given Servie Aggregator enters valid FirstName,LastName,Password,EmailID,MobileNumber
+          Given Servie Aggregator enters valid FirstName,LastName,Password,Email,MobileNumber
           When I clicked on Submit Button
           Then Message displayed Registration successful
 
 Scenario Outline: Check Service Aggregator’s login credentials
-          Given I filled <firstname><lastname> <email> and <password>
+          Given I filled <firstname><lastname><password><email><mobileno>
           When I clicked on Login
           Then I should see <success or failure> message 
 
           Examples: Valid login
-          |firstname||lastname |email           |password |success or failure|
-          |Andy     |abc       |andy@gmail.com  |abcd1234 |success |
-          |Mike     |xyz       |mike@gmail.com  |abcd1234 |success |
+          |firstname   |lastname |password |email            |mobileno   |success or failure|
+          |Andy        |abc      |abcd1234 | andy@gmail.com  |9988776655 |success |
+          |Mike        |xyz      |abcd1234 | mike@gmail.com  |8877665544 |success |
+
 
           Examples: InValid login
-          |firstname |lastname |email         |password |success or failure |
-          |Andy      |abc      |andy@gmail.com|         |failure |
+           |firstname   |lastname |password |email            |mobileno   |success or failure|
+           |Andy        |abc      |         | andy@gmail.com  |9988776655 |success |
