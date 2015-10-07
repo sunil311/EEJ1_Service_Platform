@@ -21,4 +21,4 @@ Scenario Outline: Check ServiceAggregator’s login credentials
 
           Examples: InValid login
           |firstname |lastname|email         |password |success or failure |
-          |Andy     |abc      |andy@gmail.com|         |failure |
+          |Andy      |abc      |andy@gmail.com|         |failure |
