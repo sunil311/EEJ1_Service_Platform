@@ -1,5 +1,9 @@
-Feature : Service Aggregator Registration Feature
-Description: This feature will test service aggregator registration functionality
+Story: ServiceAggregator Registration
+
+Feature: 
+  As a new User 
+  I want to create a new user as ServiceAggregator Registration to the site
+  So that I can share my profile with other ServiceAggregator's
 
 Background: 
    Given ServiceAggregator is on Registration Page
