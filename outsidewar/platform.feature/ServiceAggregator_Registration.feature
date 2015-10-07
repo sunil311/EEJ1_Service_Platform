@@ -2,14 +2,14 @@ Story: ServiceAggregator Registration
 
 Feature: 
   As a new User 
-  I want to create a new user as ServiceAggregator Registration to the site
+  I want to create a new user type as ServiceAggregator to the site
   So that I can share my profile with other ServiceAggregator's
 
 Background: 
    Given ServiceAggregator is on Registration Page
 
 Scenario: Successful Service Aggregator Registration with valid data
-          Given Servie Aggregator enters valid FirstName,LastName,Password,EmailID,MobileNumber
+          Given Service Aggregator enters valid FirstName,LastName,Password,EmailID,MobileNumber
           When I clicked on Submit Button
           Then Message displayed Registration successful
 
