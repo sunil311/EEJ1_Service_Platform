@@ -3,9 +3,11 @@ app.controller('registerAppController', [ '$scope', '$http',
 		function($scope, $http) {
 			$scope.result = "Ready..";
 			$scope.submit = function() {
-				var formData = {
-					"email" : "sadsada",
-				};
+				  var formData = {
+	                        "firstName" : $scope.firstName,
+	                        "email" : $scope.email,
+	                };
+				
 				var response = $http.post('spring/RegisterUser', formData);
 				response.success(function(data, status, headers, config) {
 					$scope.result = "success";

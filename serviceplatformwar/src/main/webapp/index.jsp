@@ -24,12 +24,12 @@
 				<div class="form-group">
 					<label for="email">Email:</label> <input type="email"
 						class="form-control" id="email" placeholder="Enter email"
-						data-ng-model="pageData.email" name="email" required="required">
+						data-ng-model=email name="email" required="required">
 				</div>
 				<div class="form-group">
 					<label for="firstname">FirstName:</label> <input type="text"
 						class="form-control" id="firstname" placeholder="Enter First Name"
-						data-ng-model="pageData.firstname" name="firstname"
+						data-ng-model="firstName" name="firstname"
 						required="required">
 				</div>
 				<button type="submit" class="btn btn-primary">Submit</button>

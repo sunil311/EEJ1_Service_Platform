@@ -11,34 +11,38 @@ import com.sp.entities.UserInfo;
 import com.sp.process.user.RegisterProcess;
 
 @Controller
-public class RegistrationAction {
+public class RegistrationAction
+{
 
-	@Autowired
-	private RegisterProcess registerProcess;
+  @Autowired
+  private RegisterProcess registerProcess;
 
-	@RequestMapping(value = "/RegisterUser", method = RequestMethod.POST)
-	public @ResponseBody
-	String postService(@RequestBody UserInfo person) {
-		System.out.println("Enter dragon");
+  @RequestMapping(value = "/RegisterUser", method = RequestMethod.POST)
+  public @ResponseBody
+  String postService(@RequestBody
+  UserInfo person)
+  {
+    UserInfo registerBean = new UserInfo();
+    try
+    {
+      registerProcess.registerUser(registerBean);
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
 
-		UserInfo registerBean = new UserInfo();
-		registerBean.setEmail("rakesh@aa.com");
-		try {
-			registerProcess.registerUser(registerBean);
-		} catch (Exception e) {
-			// TODO Add Logger here
-			e.printStackTrace();
-		}
+    return "done";
+  }
 
-		return "done";
-	}
+  public RegisterProcess getRegisterProcess()
+  {
+    return registerProcess;
+  }
 
-	public RegisterProcess getRegisterProcess() {
-		return registerProcess;
-	}
-
-	public void setRegisterProcess(RegisterProcess registerProcess) {
-		this.registerProcess = registerProcess;
-	}
+  public void setRegisterProcess(RegisterProcess registerProcess)
+  {
+    this.registerProcess = registerProcess;
+  }
 
 }

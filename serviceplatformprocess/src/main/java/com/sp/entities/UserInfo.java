@@ -15,6 +15,8 @@ public class UserInfo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private Long user;
+	
+	private String firstName;
 
 	@Column(name = "email")
 	private String email;
@@ -34,4 +36,14 @@ public class UserInfo {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+  public String getFirstName()
+  {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName)
+  {
+    this.firstName = firstName;
+  }
 }
