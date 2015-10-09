@@ -7,42 +7,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sp.entities.UserInfo;
+import com.sp.entities.SecUser;
 import com.sp.process.user.RegisterProcess;
 
 @Controller
-public class RegistrationAction
-{
+public class RegistrationAction {
 
-  @Autowired
-  private RegisterProcess registerProcess;
+	@Autowired
+	private RegisterProcess registerProcess;
 
-  @RequestMapping(value = "/RegisterUser", method = RequestMethod.POST)
-  public @ResponseBody
-  String postService(@RequestBody
-  UserInfo person)
-  {
-    UserInfo registerBean = new UserInfo();
-    try
-    {
-      registerProcess.registerUser(registerBean);
-    }
-    catch (Exception e)
-    {
-      e.printStackTrace();
-    }
+	@RequestMapping(value = "/RegisterUser", method = RequestMethod.POST)
+	public @ResponseBody
+	String postService(@RequestBody SecUser person) {
+		System.out.println("Enter dragon");
 
-    return "done";
-  }
+		SecUser registerBean = new SecUser();
+		registerBean.setEmail("rakesh@aa.com");
+		try {
+			// TODO : To be updated
+			// registerProcess.registerUser(registerBean);
+		} catch (Exception e) {
+			// TODO Add Logger here
+			e.printStackTrace();
+		}
+		return "done";
+	}
 
-  public RegisterProcess getRegisterProcess()
-  {
-    return registerProcess;
-  }
+	public RegisterProcess getRegisterProcess() {
+		return registerProcess;
+	}
 
-  public void setRegisterProcess(RegisterProcess registerProcess)
-  {
-    this.registerProcess = registerProcess;
-  }
+	public void setRegisterProcess(RegisterProcess registerProcess) {
+		this.registerProcess = registerProcess;
+	}
 
 }
