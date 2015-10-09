@@ -1,23 +1,17 @@
 var app = angular.module('registerApp', []);
-
-app.controller('registerAppController', function($scope, $http) {
-    
-    $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-    var pageData = '';
-    $scope.submit = function() {
-
-        $http({
-            method : 'POST',
-            url : 'spring/RegisterUser',
-        }).success(function(data, status, headers, config) {
-            alert("test");
-        }).error(function(data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-            alert("Rakesh");
-        });
-
-    };
-
-});
-
+app.controller('registerAppController', [ '$scope', '$http',
+		function($scope, $http) {
+			$scope.result = "Ready..";
+			$scope.submit = function() {
+				var formData = {
+					"email" : "sadsada",
+				};
+				var response = $http.post('/spring/RegisterUser', formData);
+				response.success(function(data, status, headers, config) {
+					$scope.result = "success";
+				});
+				response.error(function(data, status, headers, config) {
+					$scope.result = "failed";
+				});
+			};
+		} ]);

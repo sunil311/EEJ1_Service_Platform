@@ -8,35 +8,30 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user_detail", catalog="Practice", schema="dbo")
-public class UserInfo
-{
+@Table(name = "user_detail", catalog = "service_source")
+public class UserInfo {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "user_id")
-  private Long user;
-  
-  public Long getUser()
-  {
-    return user;
-  }
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
+	private Long user;
 
-  public void setUser(Long user)
-  {
-    this.user = user;
-  }
+	@Column(name = "email")
+	private String email;
 
-  @Column(name = "email")
-  private String email;
+	public Long getUser() {
+		return user;
+	}
 
-  public String getEmail()
-  {
-    return email;
-  }
+	public void setUser(Long user) {
+		this.user = user;
+	}
 
-  public void setEmail(String email)
-  {
-    this.email = email;
-  }
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }
