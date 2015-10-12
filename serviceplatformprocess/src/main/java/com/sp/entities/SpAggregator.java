@@ -17,7 +17,11 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "sp_aggregator", catalog = "Service_Source", uniqueConstraints = @UniqueConstraint(columnNames = "ADDRESS_ID"))
 public class SpAggregator implements java.io.Serializable {
 
-	private Integer aggregatorId;
+	/**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
+  private Integer aggregatorId;
 	private String businessPhoneNum;
 	private String businessPhoneNumExt;
 	private String businessEmailAddress;

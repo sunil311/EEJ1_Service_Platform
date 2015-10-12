@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sp.entities.SecUser;
+import com.sp.infos.UserData;
 import com.sp.process.user.RegisterProcess;
 
 @Controller
@@ -18,16 +18,10 @@ public class RegistrationAction {
 
 	@RequestMapping(value = "/RegisterUser", method = RequestMethod.POST)
 	public @ResponseBody
-	String postService(@RequestBody SecUser person) {
-		System.out.println("Enter dragon");
-
-		SecUser registerBean = new SecUser();
-		registerBean.setEmail("rakesh@aa.com");
+	String postService(@RequestBody UserData userData) {
 		try {
-			// TODO : To be updated
-			// registerProcess.registerUser(registerBean);
+			registerProcess.registerUser(userData);
 		} catch (Exception e) {
-			// TODO Add Logger here
 			e.printStackTrace();
 		}
 		return "done";

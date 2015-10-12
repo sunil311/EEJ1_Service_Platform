@@ -6,6 +6,8 @@ app.controller('registerAppController', [ '$scope', '$http',
 				  var formData = {
 	                        "firstName" : $scope.firstName,
 	                        "email" : $scope.email,
+	                        "lastName" : $scope.lastName,
+	                        "password" : $scope.password,
 	                };
 				
 				var response = $http.post('spring/RegisterUser', formData);

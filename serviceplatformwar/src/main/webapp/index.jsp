@@ -21,20 +21,37 @@
 		<div data-ng-app="registerApp">
 			<form data-ng-submit="submit()" name="registerForm" data-role="form"
 				id="registerForm" data-ng-controller="registerAppController">
+
+				<div class="form-group">
+					<label for="firstname">First Name:</label> <input type="text"
+						class="form-control" id="firstname" placeholder="First Name"
+						data-ng-model="firstName" name="firstname" required="required">
+				</div>
+
+				<div class="form-group">
+					<label for="firstname">Last Name:</label> <input type="text"
+						class="form-control" id="lastName" placeholder="Last Name"
+						data-ng-model="lastName" name="lastName" required="required">
+				</div>
+
 				<div class="form-group">
 					<label for="email">Email:</label> <input type="email"
-						class="form-control" id="email" placeholder="Enter email"
+						class="form-control" id="email" placeholder="Email"
 						data-ng-model=email name="email" required="required">
 				</div>
+
 				<div class="form-group">
-					<label for="firstname">FirstName:</label> <input type="text"
-						class="form-control" id="firstname" placeholder="Enter First Name"
-						data-ng-model="firstName" name="firstname"
-						required="required">
+					<label for="firstname">Password:</label> <input type="password"
+						class="form-control" id="password" placeholder="Password"
+						data-ng-model="password" name="password" required="required">
 				</div>
+				
 				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</div>
 	</div>
+
+	<a href="hello.html">Say Hello</a>
+
 </body>
 </html>
