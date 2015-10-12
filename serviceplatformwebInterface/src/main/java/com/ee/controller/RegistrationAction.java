@@ -24,7 +24,7 @@ public class RegistrationAction {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "done";
+		return "success";
 	}
 
 	public RegisterProcess getRegisterProcess() {

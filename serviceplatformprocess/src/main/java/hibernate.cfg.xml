@@ -7,7 +7,7 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.driver_class">net.sourceforge.jtds.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:jtds:sqlserver://192.168.219.51:1433;databaseName=Service_Source</property>
+		<property name="hibernate.connection.url">jdbc:jtds:sqlserver://192.168.219.51:1433;databaseName=ServicePlatform</property>
 		<property name="hibernate.connection.username">sp</property>
 		<property name="hibernate.connection.password">impetus@123</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
