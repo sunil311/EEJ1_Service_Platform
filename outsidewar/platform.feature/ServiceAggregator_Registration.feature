@@ -6,7 +6,7 @@ Feature:
   So that I can share my profile with other Service Aggregator's
 
 Background: 
-   Given Service Aggregator is on Registration Page
+   Given User is on Registration Page
 
 Scenario: Successful Service Aggregator Registration with valid data
           Given Servie Aggregator enters valid FirstName,LastName,Password,Email,MobileNumber
