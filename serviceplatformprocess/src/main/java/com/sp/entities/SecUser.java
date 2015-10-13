@@ -29,7 +29,7 @@ public class SecUser implements java.io.Serializable {
    */
   private static final long serialVersionUID = 1L;
   private Integer userId;
-	private byte enabled;
+	//private byte enabled;
 	//private String externalCode;
 	//private Integer failedLoginAttempts;
 	//private Integer failedPsswdRecoveryAttempts;
@@ -63,7 +63,7 @@ public class SecUser implements java.io.Serializable {
 			String password, Date softLockExpires, byte[] temporaryPassword,
 			String username, String firstName, String lastName, String email,
 			int roleId, int userTypeId, Integer aggregatorId) {
-		this.enabled = 1;
+		//this.enabled = 1;
 		//this.externalCode = externalCode;
 		//this.failedLoginAttempts = failedLoginAttempts;
 		//this.failedPsswdRecoveryAttempts = failedPsswdRecoveryAttempts;
@@ -92,14 +92,14 @@ public class SecUser implements java.io.Serializable {
 		this.userId = userId;
 	}
 
-	@Column(name = "ENABLED")
+/*	@Column(name = "ENABLED")
 	public byte getEnabled() {
 		return this.enabled;
 	}
 
 	public void setEnabled(byte enabled) {
 		this.enabled = enabled;
-	}
+	}*/
 
 	/*@Column(name = "EXTERNAL_CODE")
 	public String getExternalCode() {

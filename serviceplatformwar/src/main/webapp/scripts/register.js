@@ -13,11 +13,14 @@ app.controller('registerAppController', [ '$scope', '$http',
 				var response = $http.post('spring/RegisterUser', formData);
 				response.success(function(data, status, headers, config) {
 					// $scope.result = "success";
-					window.location.href = 'views/success.html';
+					if (data.status != "SUCCESS") {
+						alert(data.status);
+					} else {
+						window.location.href = 'views/success.html';
+					}
 				});
 				response.error(function(data, status, headers, config) {
 					$scope.result = "failed";
-					alert(data);
 				});
 			};
 		} ]);

@@ -1,6 +1,5 @@
 package com.ee.controller;
 
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -24,15 +23,13 @@ public class RegistrationAction {
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody
 	String postService(@RequestBody UserData userData) {
-		JSONObject jsonObject = new JSONObject();
 		try {
 			status = registerProcess.registerUser(userData);
-			jsonObject.put("status", status);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return status;
+		return "{\"status\":\"" + status + "\"}";
 	}
 
 	public RegisterProcess getRegisterProcess() {
