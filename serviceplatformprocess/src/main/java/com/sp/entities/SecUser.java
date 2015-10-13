@@ -30,18 +30,18 @@ public class SecUser implements java.io.Serializable {
   private static final long serialVersionUID = 1L;
   private Integer userId;
 	private byte enabled;
-	private String externalCode;
-	private Integer failedLoginAttempts;
-	private Integer failedPsswdRecoveryAttempts;
+	//private String externalCode;
+	//private Integer failedLoginAttempts;
+	//private Integer failedPsswdRecoveryAttempts;
 	private String password;
-	private Date softLockExpires;
-	private byte[] temporaryPassword;
+	//private Date softLockExpires;
+	//private byte[] temporaryPassword;
 	private String username;
 	private String firstName;
 	private String lastName;
 	private String email;
-	private int roleId;
-	private int userTypeId;
+	//private int roleId;
+	//private int userTypeId;
 	//private Integer aggregatorId;
 
 	public SecUser() {
@@ -54,8 +54,8 @@ public class SecUser implements java.io.Serializable {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.roleId = roleId;
-		this.userTypeId = userTypeId;
+		//this.roleId = roleId;
+		//this.userTypeId = userTypeId;
 	}
 
 	public SecUser(byte enabled, String externalCode,
@@ -64,19 +64,19 @@ public class SecUser implements java.io.Serializable {
 			String username, String firstName, String lastName, String email,
 			int roleId, int userTypeId, Integer aggregatorId) {
 		this.enabled = 1;
-		this.externalCode = externalCode;
-		this.failedLoginAttempts = failedLoginAttempts;
-		this.failedPsswdRecoveryAttempts = failedPsswdRecoveryAttempts;
+		//this.externalCode = externalCode;
+		//this.failedLoginAttempts = failedLoginAttempts;
+		//this.failedPsswdRecoveryAttempts = failedPsswdRecoveryAttempts;
 		this.password = password;
-		this.softLockExpires = softLockExpires;
-		this.temporaryPassword = temporaryPassword;
+		//this.softLockExpires = softLockExpires;
+		//this.temporaryPassword = temporaryPassword;
 		//TODO:setting email as username for now
 		this.username = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.roleId = roleId;
-		this.userTypeId = userTypeId;
+		//this.roleId = roleId;
+		//this.userTypeId = userTypeId;
 	//	this.aggregatorId = aggregatorId;
 	}
 
@@ -101,7 +101,7 @@ public class SecUser implements java.io.Serializable {
 		this.enabled = enabled;
 	}
 
-	@Column(name = "EXTERNAL_CODE")
+	/*@Column(name = "EXTERNAL_CODE")
 	public String getExternalCode() {
 		return this.externalCode;
 	}
@@ -127,7 +127,7 @@ public class SecUser implements java.io.Serializable {
 	public void setFailedPsswdRecoveryAttempts(
 			Integer failedPsswdRecoveryAttempts) {
 		this.failedPsswdRecoveryAttempts = failedPsswdRecoveryAttempts;
-	}
+	}*/
 
 	@Column(name = "PASSWORD", nullable = false)
 	public String getPassword() {
@@ -138,7 +138,7 @@ public class SecUser implements java.io.Serializable {
 		this.password = password;
 	}
 
-	@Temporal(TemporalType.TIME)
+	/*@Temporal(TemporalType.TIME)
 	@Column(name = "SOFT_LOCK_EXPIRES", length = 8)
 	public Date getSoftLockExpires() {
 		return this.softLockExpires;
@@ -156,7 +156,7 @@ public class SecUser implements java.io.Serializable {
 	public void setTemporaryPassword(byte[] temporaryPassword) {
 		this.temporaryPassword = temporaryPassword;
 	}
-
+*/
 	@Column(name = "USERNAME")
 	public String getUsername() {
 		return this.username;
@@ -193,7 +193,7 @@ public class SecUser implements java.io.Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "ROLE_ID", unique = true/*, nullable = false*/)
+	/*@Column(name = "ROLE_ID", unique = true, nullable = false)
 	public int getRoleId() {
 		return this.roleId;
 	}
@@ -202,12 +202,12 @@ public class SecUser implements java.io.Serializable {
 		this.roleId = roleId;
 	}
 
-	@Column(name = "USER_TYPE_ID", unique = true/*, nullable = false*/)
+	@Column(name = "USER_TYPE_ID", unique = true, nullable = false)
 	public int getUserTypeId() {
 		return this.userTypeId;
 	}
 
 	public void setUserTypeId(int userTypeId) {
 		this.userTypeId = userTypeId;
-	}
+	}*/
 }

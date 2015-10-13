@@ -24,7 +24,7 @@ public class RegisterProcess {
 		secUser.setPassword(userData.getPassword());
 		secUser.setUsername(userData.getEmail());
 		try {
-			if (userDao.findUserByEmail(userData.getEmail()) == null) {
+			if (!userDao.userExists(userData.getEmail())) {
 				userDao.save(secUser);
 			} else {
 				return "EMAIL ALREADY IN USE";

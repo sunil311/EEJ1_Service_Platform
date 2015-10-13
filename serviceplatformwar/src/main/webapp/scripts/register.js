@@ -17,6 +17,7 @@ app.controller('registerAppController', [ '$scope', '$http',
 				});
 				response.error(function(data, status, headers, config) {
 					$scope.result = "failed";
+					alert(data);
 				});
 			};
 		} ]);

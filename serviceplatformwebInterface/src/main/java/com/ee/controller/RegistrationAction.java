@@ -1,5 +1,6 @@
 package com.ee.controller;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -18,30 +19,20 @@ public class RegistrationAction {
 	@Autowired
 	private RegisterProcess registerProcess;
 	private String status;
+
 	@RequestMapping(value = "/RegisterUser", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody
-	UserData postService(@RequestBody UserData userData) {
+	String postService(@RequestBody UserData userData) {
+		JSONObject jsonObject = new JSONObject();
 		try {
 			status = registerProcess.registerUser(userData);
+			jsonObject.put("status", status);
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*if(status.equals("SUCCESS"))
-			
-		return HttpStatus.OK;
-		else
-			return HttpStatus.;*/
-		
-		/* JSONObject obj = new JSONObject();
-
-	      obj.put("name", "foo");
-	      obj.put("num", new Integer(100));
-	      obj.put("balance", new Double(1000.21));
-	      obj.put("is_vip", new Boolean(true));
-
-	      System.out.print(obj);*/
-	      return userData;
+		return status;
 	}
 
 	public RegisterProcess getRegisterProcess() {

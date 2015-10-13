@@ -26,23 +26,29 @@ public class UserDao {
 		}
 		return secUser;
 	}
-	
-	public SecUser findUserByEmail(String email) throws Exception {
-		SecUser secUser = null;
+
+	public boolean userExists(String email) throws Exception {
+		boolean result = false;
 		// transaction
 		Session session = SessionHandler.stratTransaction();
 
 		// do DB interactions
 		try {
-			Query query = session.createQuery("from SecUser where email =:email");
-			secUser = (SecUser) query.uniqueResult();
+			Query query = session
+					.createQuery("from SecUser where email =:email");
+			query.setParameter("email", email);
+			SecUser secUser = (SecUser) query.uniqueResult();
 			// end transaction
 			SessionHandler.endTransaction(session);
+			if(secUser!=null)
+			{
+				result = true;
+			}
 		} catch (Exception e) {
 			SessionHandler.revertTransaction(session);
 			e.printStackTrace();
-			return null;
+			result = true;
 		}
-		return secUser;
+		return result;
 	}
 }
