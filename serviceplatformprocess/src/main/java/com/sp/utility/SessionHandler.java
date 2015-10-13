@@ -27,4 +27,9 @@ public class SessionHandler {
         session.getTransaction().commit();
         session.close();
     }
+    
+    public static void revertTransaction(Session session) {
+        session.getTransaction().rollback();
+        session.close();
+    }
 }
