@@ -15,7 +15,7 @@ Scenario: Successful Service Aggregator Registration with valid data
 
 Scenario Outline: Check Service Aggregator’s login credentials
           Given I filled <firstname><lastname><password><email><mobileno>
-          When I clicked on Login
+          When I clicked on Submit Button
           Then I should see <success or failure> message 
 
           Examples: Valid login
@@ -27,3 +27,29 @@ Scenario Outline: Check Service Aggregator’s login credentials
           Examples: InValid login
            |firstname   |lastname |password |email            |mobileno   |success or failure|
            |Andy        |abc      |         | andy@gmail.com  |9988776655 |success |
+
+Scenario: Mandatory field First Name verfication in registration page
+		  Given User is not filled First Name 
+		  When User clicked on Submit button
+		  Then User should see First Name is mandatory to create account message
+		  
+Scenario: Mandatory field Last Name verfication in registration page
+		  Given User is not filled Last Name 
+		  When User clicked on Submit button
+		  Then User should see Last Name is mandatory to create account message		
+		  
+Scenario: Mandatory field password verfication in registration page
+		  Given User is not filled password
+		  When User clicked on Submit button
+		  Then User should see password is mandatory to create account message
+		 	
+Scenario: Mandatory field email verfication in registration page
+		  Given User is not filled email
+		  When User clicked on Submit button
+		  Then User should see email is mandatory to create account message	 
+		  
+Scenario: Mandatory field mobileno verfication in registration page
+		  Given User is not filled mobileno
+		  When User clicked on Submit button
+		  Then User should see mobileno is mandatory to create account message
+ 
