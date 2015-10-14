@@ -1,10 +1,12 @@
-package com.sp.process.user;
+package com.impetus.process;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.sp.dao.UserDao;
-import com.sp.entities.SecUser;
-import com.sp.infos.UserData;
+import com.impetus.process.dao.UserDao;
+import com.impetus.process.dto.UserData;
+import com.impetus.process.entities.SecUser;
 
 /**
  * 
@@ -15,7 +17,7 @@ public class RegisterProcess {
 
 	@Autowired
 	private UserDao userDao;
-
+	Logger logger = LoggerFactory.getLogger(getClass());
 	public String registerUser(UserData userData) {
 		SecUser secUser = new SecUser();
 		secUser.setEmail(userData.getEmail());
@@ -30,7 +32,7 @@ public class RegisterProcess {
 				return "EMAIL ALREADY IN USE";
 			}
 		} catch (Exception e) {
-			System.out.println("Not success");
+			logger.info("Not success");
 			e.printStackTrace();
 			return "FAILED";
 		}

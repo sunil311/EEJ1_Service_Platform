@@ -1,53 +1,46 @@
-package com.sp.dao;
+package com.impetus.process.dao;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sp.entities.SecUser;
-import com.sp.utility.SessionHandler;
+import com.impetus.process.entities.SecUser;
 
 @Service
 public class UserDao {
 
-	public SecUser save(SecUser secUser) throws Exception {
-		// transaction
-		Session session = SessionHandler.stratTransaction();
+	@Autowired
+	private SessionFactory sessionFactory;
 
+	public SecUser save(SecUser secUser) throws Exception {
+		Session session = sessionFactory.getCurrentSession();
 		// do DB interactions
 		try {
 			session.save(secUser);
-			// end transaction
-			SessionHandler.endTransaction(session);
 		} catch (Exception e) {
-			SessionHandler.revertTransaction(session);
+			session.getTransaction().rollback();
 			e.printStackTrace();
-			return null;
 		}
 		return secUser;
 	}
 
 	public boolean userExists(String email) throws Exception {
 		boolean result = false;
-		// transaction
-		Session session = SessionHandler.stratTransaction();
-
+		Session session = sessionFactory.getCurrentSession();
 		// do DB interactions
 		try {
 			Query query = session
 					.createQuery("from SecUser where email =:email");
 			query.setParameter("email", email);
 			SecUser secUser = (SecUser) query.uniqueResult();
-			// end transaction
-			SessionHandler.endTransaction(session);
-			if(secUser!=null)
-			{
+			if (secUser != null) {
 				result = true;
 			}
 		} catch (Exception e) {
-			SessionHandler.revertTransaction(session);
+			session.getTransaction().rollback();
 			e.printStackTrace();
-			result = true;
 		}
 		return result;
 	}

@@ -1,4 +1,4 @@
-package com.ee.controller;
+package com.impetus.serviceplatform.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.sp.infos.UserData;
-import com.sp.process.user.RegisterProcess;
+import com.impetus.process.RegisterProcess;
+import com.impetus.process.dto.UserData;
 
 @Controller
 public class RegistrationAction {
@@ -31,13 +31,4 @@ public class RegistrationAction {
 		}
 		return "{\"status\":\"" + status + "\"}";
 	}
-
-	public RegisterProcess getRegisterProcess() {
-		return registerProcess;
-	}
-
-	public void setRegisterProcess(RegisterProcess registerProcess) {
-		this.registerProcess = registerProcess;
-	}
-
 }

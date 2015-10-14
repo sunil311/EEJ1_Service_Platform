@@ -1,4 +1,4 @@
-package com.sp.infos;
+package com.impetus.process.dto;
 
 public class LoginData {
 

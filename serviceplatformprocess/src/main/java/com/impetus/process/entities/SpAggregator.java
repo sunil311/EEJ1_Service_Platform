@@ -1,11 +1,12 @@
-package com.sp.entities;
+package com.impetus.process.entities;
 
 // Generated Oct 9, 2015 4:20:36 PM by Hibernate Tools 4.0.0
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -20,8 +21,8 @@ public class SpAggregator implements java.io.Serializable {
 	/**
    * 
    */
-  private static final long serialVersionUID = 1L;
-  private Integer aggregatorId;
+	private static final long serialVersionUID = 1L;
+	private Integer aggregatorId;
 	private String businessPhoneNum;
 	private String businessPhoneNumExt;
 	private String businessEmailAddress;
