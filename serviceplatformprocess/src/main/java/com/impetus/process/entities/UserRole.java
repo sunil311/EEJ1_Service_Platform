@@ -1,7 +1,5 @@
 package com.impetus.process.entities;
 
-// Generated Oct 9, 2015 4:20:36 PM by Hibernate Tools 4.0.0
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

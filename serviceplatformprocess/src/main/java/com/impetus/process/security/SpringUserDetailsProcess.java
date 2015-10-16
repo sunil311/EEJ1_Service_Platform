@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.impetus.process.security;
 
 import java.util.List;
@@ -20,10 +17,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import com.impetus.process.entities.SecUser;
 import com.impetus.process.entities.UserRole;
 
-/**
- * @author kuldeep.singh
- * 
- */
 public class SpringUserDetailsProcess implements UserDetailsService {
 	SessionFactory sessionFactory;
 

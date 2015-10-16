@@ -1,12 +1,5 @@
-/**
- * 
- */
 package com.impetus.process.enums;
 
-/**
- * @author kuldeep.singh
- * 
- */
 public enum Role {
 	USER(1, "USER"), ADMIN(2, "ADMIN");
 	private int id;
