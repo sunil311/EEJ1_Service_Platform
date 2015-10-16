@@ -10,7 +10,7 @@ app.controller('registerAppController', [ '$scope', '$http',
 					"password" : $scope.password,
 				};
 
-				var response = $http.post('spring/RegisterUser', formData);
+				var response = $http.post('RegisterUser', formData);
 				response.success(function(data, status, headers, config) {
 					// $scope.result = "success";
 					if (data.status != "SUCCESS") {

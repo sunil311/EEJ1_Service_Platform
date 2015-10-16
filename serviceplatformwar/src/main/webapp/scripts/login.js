@@ -6,7 +6,7 @@ app.controller('loginAppController', [ '$scope', '$http',
 				var formData = {
 						"email" : "sadsada",
 					};
-				var response = $http.post('../spring/login', $scope.formData);
+				var response = $http.post('../login', $scope.formData);
 				response.success(function(data, status, headers, config) {
 					$scope.result = "success";
 				});

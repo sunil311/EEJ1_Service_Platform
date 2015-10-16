@@ -1,5 +1,7 @@
 package com.impetus.process.dto;
 
+import com.impetus.process.entities.UserRole;
+
 public class UserData
 {
 

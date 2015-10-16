@@ -3,7 +3,6 @@ package com.impetus.serviceplatform.web.interceptor;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,17 +27,15 @@ public class GateKeeper implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest paramHttpServletRequest,
 			HttpServletResponse paramHttpServletResponse, Object paramObject,
 			ModelAndView paramModelAndView) throws Exception {
-		Session session = sessionFactory.getCurrentSession();
-		session.getTransaction().commit();
+		sessionFactory.getCurrentSession().getTransaction().commit();
 		logger.info("Gate Keeper, after request handling........");
-
 	}
 
 	@Override
 	public boolean preHandle(HttpServletRequest paramHttpServletRequest,
 			HttpServletResponse paramHttpServletResponse, Object paramObject)
 			throws Exception {
-		sessionFactory.getCurrentSession().beginTransaction();
+		sessionFactory.getCurrentSession().getTransaction().begin();
 		logger.info("Gate Keeper, before request handling........");
 		return true;
 	}
