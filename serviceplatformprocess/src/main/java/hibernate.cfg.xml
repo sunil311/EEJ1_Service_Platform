@@ -14,6 +14,15 @@
 		<mapping class="com.impetus.process.entities.UserRole" />
 		<mapping class="com.impetus.process.entities.UserType" />
 	</session-factory>
+	
+	<!-- <property name="hibernate.multiTenancy">DATABASE</property>
+	<property name="hibernate.multi_tenant_connection_provider">
+	com.some.MyMultiTenantConnectionProvider
+	</property>
+	<property name="hibernate.tenant_identifier_resolver">
+	com.some.MyCurrentTenantIdentifierResolver
+	</property>
+	 -->
 </hibernate-configuration>
 
 
