@@ -16,8 +16,11 @@ public class UserDao {
 	private SessionFactory sessionFactory;
 
 	public SecUser save(SecUser secUser) {
+	  //TODO: FOr multi tenancy
+	  //Session session = sessionFactory.withOptions().tenantIdentifier("rks").openSession();
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(secUser);
+		
 		return secUser;
 	}
 

@@ -1,7 +1,6 @@
 package com.impetus.process.security;
 
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
