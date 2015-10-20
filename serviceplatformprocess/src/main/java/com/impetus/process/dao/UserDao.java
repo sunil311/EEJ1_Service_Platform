@@ -36,6 +36,16 @@ public class UserDao {
 		return result;
 	}
 
+	public SecUser findUser(String email, String password) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session
+				.createQuery("from SecUser where email =:email and password =:password");
+		query.setParameter("email", email);
+		query.setParameter("password", password);
+		SecUser secUser = (SecUser) query.uniqueResult();
+		return secUser;
+	}
+
 	public UserRole getRoleById(int id) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.load(UserRole.class, id);

@@ -30,6 +30,8 @@
 
 	<bean id="registrationProcess" class="com.impetus.process.RegisterProcess">
 	</bean>
+	<bean id="loginProcess" class="com.impetus.process.LoginProcess">
+	</bean>
 	<bean id="userDao" class="com.impetus.process.dao.UserDao">
 	</bean>
 </beans>
