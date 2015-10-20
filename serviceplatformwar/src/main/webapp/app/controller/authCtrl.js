@@ -1,6 +1,7 @@
-app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data) {
+app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location, $http, Data, $injector) {
     //initially set those objects to null to avoid undefined error
     $scope.login = {};
+     var $validationProvider = $injector.get('$validation');
     $scope.signup = {};
     $scope.alert=true;
     $scope.doLogin = function (customer) {
@@ -24,23 +25,33 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
     $scope.hideAlertMessage = function () {
              console.log(1);
             $scope.alert=true;
-    };
-    $scope.signup = {email:'',password:'',name:'',phone:'',address:''};
-    $scope.signUp = function (customer) {
-      /*  Data.post('signUp', {
-            customer: customer
+    }
+    $scope.signup = {email:'',password:'',firstName:'',lastName:''};
+
+    $scope.form = {
+                requiredCallback: 'required',
+                checkValid: $validationProvider.checkValid,
+                submit: function () {
+                    // angular validation 1.2 can reduce this procedure, just focus on your action
+                    // $validationProvider.validate(form);
+                },
+                reset: function () {
+                    // angular validation 1.2 can reduce this procedure, just focus on your action
+                    // $validationProvider.reset(form);
+                }
+            };
+    $scope.signUp = function (user) {
+   Data.post('signUp', {
+             user
         }).then(function (results) {
           results.status="success";
             if (results.status == "success") {
                   Data.toast(results);
                 $location.path('dashboard');
             }
-        });*/
+        });
 
-        if (customer.email == "admin"&&customer.password == "admin") {
-                  Data.toast(results);
-                $location.path('dashboard');
-            }
+      
          
     };
     $scope.logout = function () {
@@ -48,5 +59,5 @@ app.controller('authCtrl', function ($scope, $rootScope, $routeParams, $location
             Data.toast(results);
             $location.path('login');
         });
-    };
+    }
 });
