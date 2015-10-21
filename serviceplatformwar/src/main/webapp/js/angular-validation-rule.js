@@ -15,6 +15,17 @@
                     },
                     maxlength: function(value, scope, element, attrs, param) {
                         return value.length <= param;
+                    },
+                    match : function(value,scope,element,attrs,param){
+                    	var ele = document.getElementsByName(param);
+                    	if(ele!= undefined && ele.length>0)
+                    	{
+                    	return ele[0].value == value;
+                    	}
+                    	else
+                    		{
+                    		return true;
+                    		}
                     }
                 };
 
@@ -42,6 +53,10 @@
                     maxlength: {
                         error: 'This should be shorter',
                         success: 'Short enough!'
+                    },
+                    match: {
+                    	   error: 'Password and Confirm Password is not matching !',
+                           success: 'Password and Confirm Password matched !'
                     }
                 };
 

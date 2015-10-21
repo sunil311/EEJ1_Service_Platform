@@ -42,7 +42,17 @@
                                 <label class="col-sm-12 control-label no-padding-right" for="password">Password</label>
                                 <div class="col-sm-12">
                                     <span class="block input-icon input-icon-right">
-                                <input type="password" class="form-control" name = "password" placeholder="Password" ng-model="signup.password" validator="required"/>
+                                <input type="password" class="form-control" name = "password" placeholder="Password" ng-model="signup.password" validator="required" />
+                                
+                            </span>
+                                </div>
+                            </div>
+                            
+                             <div class="form-group">
+                                <label class="col-sm-12 control-label no-padding-right" for="password">Confirm Password</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="password" class="form-control" name = "confirmPassword" placeholder="Confirm Password" ng-model="signup.confirmPassword" validator="match=password" />
                                 
                             </span>
                                 </div>
