@@ -2,9 +2,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngAnimate','ngResource', 'toaster
 
 app.config(['$routeProvider','$validationProvider',
   function ($routeProvider,$validationProvider) {
-                var defaultMsg,
-                expression;
-
+                var defaultMsg, expression;
             /**
              * Setup a default message for Url
              */
@@ -14,10 +12,7 @@ app.config(['$routeProvider','$validationProvider',
                     success: 'It\'s Url'
                 }
             };
-
             $validationProvider.setDefaultMsg(defaultMsg);
-
-
             /**
              * Setup a new Expression and default message
              * In this example, we setup a IP address Expression and default Message
@@ -25,21 +20,17 @@ app.config(['$routeProvider','$validationProvider',
             expression = {
                 ip: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
             };
-
             defaultMsg = {
                 ip: {
                     error: 'This isn\'t ip address',
                     success: 'It\'s ip'
                 }
             };
-
             $validationProvider.setExpression(expression)
                                .setDefaultMsg(defaultMsg);
-
             // or we can just setup directly
             $validationProvider.setDefaultMsg({ ip: { error: 'This no ip', success: 'this ip'}})
                                .setExpression({ ip: /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/ });
-
             /**
              * Additions validation
              */
@@ -55,7 +46,6 @@ app.config(['$routeProvider','$validationProvider',
                         success: 'Thanks!'
                     }
                 });
-
             /**
              * Range Validation
              */
@@ -74,11 +64,11 @@ app.config(['$routeProvider','$validationProvider',
                     }
                 });
         $routeProvider.
-        when('/login', {
-            title: 'Login',
-            templateUrl: 'partials/login.html',
-            controller: 'authCtrl'
-        })
+	        when('/login', {
+	            title: 'Login',
+	            templateUrl: 'partials/login.html',
+	            controller: 'authCtrl'
+	        })
             .when('/logout', {
                 title: 'Logout',
                 templateUrl: 'partials/login.html',

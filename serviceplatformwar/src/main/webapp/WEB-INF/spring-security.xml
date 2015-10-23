@@ -17,8 +17,6 @@ http://www.springframework.org/schema/security/spring-security.xsd">
 		<security:form-login login-page="/customLoginPage"
 			default-target-url="/home" />
 		<security:logout />
-
-
 		<security:intercept-url pattern="/resources/**"
 			access="permitAll" />
 		<security:intercept-url pattern="/css/**"
@@ -33,8 +31,6 @@ http://www.springframework.org/schema/security/spring-security.xsd">
 			access="permitAll" />
 		<security:intercept-url pattern="/scripts/**"
 			access="permitAll" />
-
-
 		<security:intercept-url pattern="/*" access="permitAll" />
 		<security:intercept-url pattern="/customLoginPage*"
 			access="permitAll" />
@@ -43,23 +39,17 @@ http://www.springframework.org/schema/security/spring-security.xsd">
 		<security:intercept-url pattern="/RegisterUser*"
 			access="permitAll" />
 		<security:intercept-url pattern="/home*" access="permitAll" />
-
-
-
 		<security:intercept-url pattern="/**"
 			access="isAuthenticated()" />
 	</security:http>
-
 	<bean id="userDetailsService" class="com.impetus.process.security.SpringUserDetailsProcess">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
 	<security:authentication-manager>
 		<security:authentication-provider
 			user-service-ref="userDetailsService">
 		</security:authentication-provider>
 	</security:authentication-manager>
-
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">

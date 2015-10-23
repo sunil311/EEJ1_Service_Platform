@@ -1,81 +1,85 @@
 
 <div class="page-content" ng-controller="authCtrl">
 
-<div class="row">
-<div class="space-6"></div>
-<div class="container login-box ">
-     <div class="alert alert-danger fade in panel-shadow" ng-hide="alert">
-         <a href="#/login" ng-click="hideAlertMessage()" class="close" data-dismiss="alert">&times;</a> 
-        <strong>Error!</strong> Invalid Username or Password.
-    </div>
-     <div class="login-heading">
-        <div class=" ">
-            <h1 class="panel-title">Login</h1>
-        </div>
-        <div >
-            <div id="login-box" class=" visible widget-box no-border">
-        <div class="widget-body">
-            <div class="widget-main">
-                
+	<div class="row">
+		<div class="space-6"></div>
+		<div class="container login-box ">
+			<div class="alert alert-danger fade in panel-shadow"
+				data-ng-hide="alert">
+				<a href="#/login" data-ng-click="hideAlertMessage()" class="close"
+					data-dismiss="alert">&times;</a> <strong>Error!</strong> Invalid
+				Username or Password.
+			</div>
+			<div class="login-heading">
+				<div class=" ">
+					<h1 class="panel-title">Login</h1>
+				</div>
+				<div>
+					<div id="login-box" class=" visible widget-box no-border">
+						<div class="widget-body">
+							<div class="widget-main">
+								<div class="space-16"></div>
+								<form name="loginForm" id="loginForm" class=" loginForm"
+									role="form">
+									<div class="form-group">
+										<label class="col-sm-12 control-label no-padding-right"
+											for="email"> Email</label>
+										<div class="col-sm-12">
+											<span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control"
+												placeholder="Email / Username" name="email"
+												ng-model="login.email" validator="email" focus /> <i
+												class="ace-icon fa fa-user"></i>
+											</span>
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-12 control-label no-padding-right"
+											for="password"> Password </label>
+										<div class="col-sm-12">
+											<span class="block input-icon input-icon-right"> <input
+												type="password" class="form-control" placeholder="Password"
+												ng-model="login.password" validator="required" /> <i
+												class="ace-icon fa fa-lock"></i>
 
-                <div class="space-16"></div>
+											</span>
+										</div>
+										<div class="col-sm-7">
+											<a href="#/signup"><i class="ace-icon fa fa-lock"></i>Forgot
+												your password</a>
+										</div>
+									</div>
+									<div class="form-group btn-group">
+										<div class="col-md-12">
+											<div class="col-sm-8 col-sm-offset-2 ">
+												<button type="submit"
+													class="width-35 pull-right btn btn-sm custom-button"
+													ng-click="doLogin(login)"
+													data-ng-disabled="loginForm.$invalid" angular-ripple>
+													<i class="ace-icon fa fa-key"></i> Login
+												</button>
+											</div>
+										</div>
+									</div>
+									<div class="form-group ">
+										<div class="col-md-12 signup-link">
+											Don't have an account? <a href="#/signup">Signup</a>
+										</div>
+									</div>
+								</form>
+							</div>
+							<!-- /widget-main -->
+						</div>
+						<!-- /widget-body -->
+					</div>
 
-                <form name="loginForm" id="loginForm" class=" loginForm" role="form">
-                    <div class="form-group">
-                        <label class="col-sm-12 control-label no-padding-right" for="email"> Email</label>
-                        <div class="col-sm-12">
-                           <span class="block input-icon input-icon-right">
-                                <input type="text" class="form-control" placeholder="Email / Username" name="email" ng-model="login.email" validator="email" focus/>
-                                <i class="ace-icon fa fa-user"></i>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-12 control-label no-padding-right" for="password"> Password </label>
-                        <div class="col-sm-12">
-                           <span class="block input-icon input-icon-right">
-                                <input type="password" class="form-control" placeholder="Password" ng-model="login.password" validator="required"/>
-                                <i class="ace-icon fa fa-lock"></i>
-
-                            </span>
-                        </div>
-                          <div class="col-sm-7"><a href="#/signup"><i class="ace-icon fa fa-lock"></i>Forgot your password</a></div>
-                    </div>
-
-                   
-                    <div class="form-group btn-group">
-                     <div class="col-md-12">
-                          <div class="col-sm-8 col-sm-offset-2 ">
-                            <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="doLogin(login)" data-ng-disabled="loginForm.$invalid" angular-ripple>
-                                <i class="ace-icon fa fa-key"></i>
-                                Login
-                            </button>
-                          </div>
-                     </div>
-                    </div>   
-                   <div class="form-group ">
-                     <div class="col-md-12 signup-link">
-                          Don't have an account? <a href="#/signup">Signup</a>
-                     </div>
-                    </div>
-                  
-                </form>
-                    
-
-                
-                
-            </div><!-- /widget-main -->
-        </div><!-- /widget-body -->
-    </div>
-
-        </div>
-        <div class=" clearfix ">
-       
-            </div>
-        </div>
-    </div>
-    <!-- /login-box -->
-
-</div><!-- /position-relative -->
+				</div>
+				<div class=" clearfix "></div>
+			</div>
+		</div>
+		<!-- /login-box -->
+	</div>
+	<!-- /position-relative -->
 </div>
-</div><!-- /.page-content -->
+</div>
+<!-- /.page-content -->

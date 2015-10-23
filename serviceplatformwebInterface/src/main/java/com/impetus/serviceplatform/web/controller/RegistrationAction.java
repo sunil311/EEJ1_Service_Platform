@@ -22,7 +22,7 @@ public class RegistrationAction {
 	private RegisterProcess registerProcess;
 	private String status;
 
-	@RequestMapping(value = "/RegisterUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/RegisterUser/signUp", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody
 	String postService(@RequestBody UserData userData)
