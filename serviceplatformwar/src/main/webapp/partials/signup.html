@@ -1,6 +1,6 @@
 
 <div>
-    <div class="row">
+    <div class="row" ng-controller="signUpController as signUpController">
         
         <div class="container login-box ">
      <div>
@@ -17,7 +17,7 @@
                             <label class="col-sm-12 control-label no-padding-right" for="name">First Name</label>
                                 <div class="col-sm-12">
                                     <span class="block input-icon input-icon-right">
-                                     <input type="text" class="form-control" placeholder="Name" ng-model="signup.firstName" validator="required"/>
+                                     <input type="text" class="form-control" placeholder="Name" ng-model="signUpController.signup.firstName" focus validator="required"/>
                                     </span>
                                 </div>
                             </div>
@@ -25,7 +25,7 @@
                             <label class="col-sm-12 control-label no-padding-right" for="name">Last Name</label>
                                 <div class="col-sm-12">
                                     <span class="block input-icon input-icon-right">
-                                     <input type="text" class="form-control" placeholder="Name" ng-model="signup.lastName" validator="required" />
+                                     <input type="text" class="form-control" placeholder="Name" ng-model="signUpController.signup.lastName" validator="required" />
                                     </span>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                 <label class="col-sm-12 control-label no-padding-right" for="email">Email</label>
                                 <div class="col-sm-12">
                                     <span class="block input-icon input-icon-right">
-                                        <input type="text" class="form-control" placeholder="Email" name="email" ng-model="signup.email" focus validator="email"/>
+                                        <input type="text" class="form-control" placeholder="Email" name="email" ng-model="signUpController.signup.email"  validator="email"/>
                                         
                                     </span>
                                 </div>
@@ -42,7 +42,7 @@
                                 <label class="col-sm-12 control-label no-padding-right" for="password">Password</label>
                                 <div class="col-sm-12">
                                     <span class="block input-icon input-icon-right">
-                                <input type="password" class="form-control" name = "password" placeholder="Password" ng-model="signup.password" validator="required" />
+                                <input type="password" class="form-control" name = "password" placeholder="Password" ng-model="signUpController.signup.password" validator="required" />
                                 
                             </span>
                                 </div>
@@ -52,7 +52,7 @@
                                 <label class="col-sm-12 control-label no-padding-right" for="password">Confirm Password</label>
                                 <div class="col-sm-12">
                                     <span class="block input-icon input-icon-right">
-                                <input type="password" class="form-control" name = "confirmPassword" placeholder="Confirm Password" ng-model="signup.confirmPassword" validator="match=password" />
+                                <input type="password" class="form-control" name = "confirmPassword" placeholder="Confirm Password" ng-model="signUpController.signup.confirmPassword" validator="match=password" />
                                 
                             </span>
                                 </div>
@@ -61,7 +61,7 @@
                             <div class="form-group">
                             <div class="col-md-12">
                             <div class="col-sm-8 col-sm-offset-2">
-                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUp(signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
+                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
                                         Sign Up
                                     </button>
                                 </div>
