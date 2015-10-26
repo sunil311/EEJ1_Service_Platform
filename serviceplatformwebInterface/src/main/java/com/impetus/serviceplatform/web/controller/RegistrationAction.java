@@ -16,24 +16,28 @@ import com.impetus.process.dto.UserData;
 import com.impetus.process.exception.ServicePlatformDBException;
 
 @Controller
-public class RegistrationAction {
+public class RegistrationAction
+{
 
-	@Autowired
-	private RegisterProcess registerProcess;
-	private String status;
+  @Autowired
+  private RegisterProcess registerProcess;
+  private String status;
 
-	@RequestMapping(value = "/RegisterUser/signUp", method = RequestMethod.POST)
-	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody
-	String postService(@RequestBody UserData userData)
-			throws ServicePlatformDBException {
-		try {
-			status = registerProcess.registerUser(userData);
-		} catch (Exception e) {
-			if (e instanceof SQLException)
-				throw new ServicePlatformDBException("SQL exception occured: "
-						+ e.getMessage());
-		}
-		return "{\"status\":\"" + status + "\"}";
-	}
+  @RequestMapping(value = "/RegisterUser/signUp", method = RequestMethod.POST)
+  @ResponseStatus(HttpStatus.OK)
+  public @ResponseBody
+  String postService(@RequestBody
+  UserData userData) throws ServicePlatformDBException
+  {
+    try
+    {
+      status = registerProcess.registerUser(userData);
+    }
+    catch (Exception e)
+    {
+      if (e instanceof SQLException)
+        throw new ServicePlatformDBException("SQL exception occured: " + e.getMessage());
+    }
+    return "{\"status\":\"" + status + "\"}";
+  }
 }
