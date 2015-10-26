@@ -1,4 +1,4 @@
-var app = angular.module('registerApp', []);
+/*var app = angular.module('registerApp', []);
 app.controller('registerAppController', [ '$scope', '$http',
 		function($scope, $http) {
 			$scope.result = "Ready..";
@@ -23,4 +23,4 @@ app.controller('registerAppController', [ '$scope', '$http',
 					$scope.result = "failed";
 				});
 			};
-		} ]);
+		} ]);*/

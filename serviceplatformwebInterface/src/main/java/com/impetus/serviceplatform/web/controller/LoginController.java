@@ -14,13 +14,16 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.impetus.process.LoginProcess;
 import com.impetus.process.dto.LoginData;
 import com.impetus.process.exception.ServicePlatformDBException;
 
 @Controller
+@SessionAttributes("LoggedInUser")
 public class LoginController {
 	Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired
@@ -45,8 +48,8 @@ public class LoginController {
 		return "views/loginPage";
 	}
 
-	@RequestMapping(value = "/loginUser", method = RequestMethod.POST)
-	public String loginUser(@RequestBody LoginData loginData)
+	@RequestMapping(value = "/RegisterUser/doLogin", method = RequestMethod.POST)
+	public @ResponseBody String loginUser(@RequestBody LoginData loginData)
 			throws ServicePlatformDBException {
 		try {
 			status = loginProcess.loginUser(loginData);
