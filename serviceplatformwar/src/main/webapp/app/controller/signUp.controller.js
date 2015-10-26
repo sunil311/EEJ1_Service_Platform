@@ -11,9 +11,9 @@
     			   Data.post('signUp',
     			             user
     			        ).then(function (results) {
-    			          results.status="success";
-    			            if (results.status == "success") {
-    			                  Data.toast(results);
+    			          
+    			            if (results.status == "SUCCESS") {
+    			                  //Data.toast(results);
     			                $location.path('dashboard');
     			            }else if (results.status == "EMAIL ALREADY IN USE") {
     							alert("Email is already in use, try Login button.");
