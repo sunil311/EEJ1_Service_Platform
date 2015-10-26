@@ -8,9 +8,9 @@
     		var vm = this;	
     		vm.signup = {email:'',password:'',firstName:'',lastName:''};
     		 vm.signUp = function (user) {
-    			   Data.post('signUp', {
+    			   Data.post('signUp',
     			             user
-    			        }).then(function (results) {
+    			        ).then(function (results) {
     			          results.status="success";
     			            if (results.status == "success") {
     			                  Data.toast(results);

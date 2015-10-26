@@ -1,26 +1,13 @@
-app.controller('authCtrl', function($scope, $rootScope, $routeParams,
-		$location, $http, Data, $injector) {
 app.controller('authCtrl', function($scope, $rootScope, $routeParams, $location, $http, Data, $injector) {
-
-
     // initially set those objects to null to avoid undefined error
     $scope.login = {};
     var $validationProvider = $injector.get('$validation');
     $scope.signup = {};
     $scope.alert = true;
-	$scope.doLogin = function(customer) {
-		console.log(customer);
 
     $scope.doLogin = function(user) {
         console.log(user);
         $scope.alert = true;
-		/*
-		 * Data.post('login', { customer: customer }).then(function (results) {
-		 * 
-		 * if (results.status == "success") { Data.toast(results);
-		 * $location.path('dashboard'); } });
-		 */
-		if (customer.email == "admin" && customer.password == "admin") {
         Data.post('doLogin', user).then(function(results) {
             if (results.status == "SUCCESS") {
                 Data.toast(results);
@@ -28,7 +15,6 @@ app.controller('authCtrl', function($scope, $rootScope, $routeParams, $location,
             } else if (results.status == "USER DO NOT EXISTS") {
                 alert("Invalid Credentials please try again..!!");
             } else {
-			$scope.alert = false;
                 alert("Some thing went wrong!");
             }
         });
