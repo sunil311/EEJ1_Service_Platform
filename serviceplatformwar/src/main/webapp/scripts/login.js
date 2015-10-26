@@ -1,4 +1,4 @@
-var app = angular.module('loginApp', []);
+/*var app = angular.module('loginApp', []);
 app.controller('loginAppController', [ '$scope', '$http',
 		function($scope, $http) {
 			$scope.submit = function() {
@@ -14,4 +14,4 @@ app.controller('loginAppController', [ '$scope', '$http',
 					$scope.result = "failed";
 				});
 			};
-		} ]);
+		} ]);*/
