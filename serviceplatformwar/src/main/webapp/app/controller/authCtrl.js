@@ -4,21 +4,6 @@ app.controller('authCtrl', function($scope, $rootScope, $routeParams, $location,
     var $validationProvider = $injector.get('$validation');
     $scope.signup = {};
     $scope.alert = true;
-
-    $scope.doLogin = function(user) {
-        console.log(user);
-        $scope.alert = true;
-        Data.post('doLogin', user).then(function(results) {
-            if (results.status == "SUCCESS") {
-                Data.toast(results);
-                $location.path('dashboard');
-            } else if (results.status == "USER DO NOT EXISTS") {
-                alert("Invalid Credentials please try again..!!");
-            } else {
-                alert("Some thing went wrong!");
-            }
-        });
-    };
     $scope.hideAlertMessage = function() {
         console.log(1);
         $scope.alert = true;
