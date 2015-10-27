@@ -14,13 +14,16 @@
                     Data.toast(results);
                     $location.path('dashboard');
                 } else if (results.status == "USER DO NOT EXISTS") {
-                    alert("Invalid Credentials please try again..!!");
+                    vm.alert=false;
                 } else {
-                    alert("Some thing went wrong!");
+                    vm.alert=false;
                 }
             });
 
         };
+        vm.hideAlertMessage = function () {
+            vm.alert=true;
+        }
     }
 
 })();
