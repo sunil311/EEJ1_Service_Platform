@@ -66,4 +66,10 @@ public class RegisterProcess
     }
     return result;
   }
+
+  public boolean checkEmailExists(UserData userData)
+  {
+    return userDao.userExists(userData.getEmail());
+    
+  }
 }

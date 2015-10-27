@@ -40,4 +40,20 @@ public class RegistrationAction
     }
     return "{\"status\":\"" + status + "\"}";
   }
+  
+  @RequestMapping(value = "/RegisterUser/checkEmail", method = RequestMethod.POST)
+  @ResponseStatus(HttpStatus.OK)
+  public @ResponseBody
+  String getService(@RequestBody
+  UserData userData) throws ServicePlatformDBException
+  {
+    boolean isUserExists = false;
+    isUserExists = registerProcess.checkEmailExists(userData);
+    if (!isUserExists)
+      return "{\"status\":\"" + "SUCCESS" + "\"}";
+    else
+      return "{\"status\":\"" + "EMAIL ALREADY IN USE" + "\"}";
+  }
+  
+  
 }

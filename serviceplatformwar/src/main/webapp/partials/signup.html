@@ -42,10 +42,21 @@
 											<span class="block input-icon input-icon-right"> <input
 												type="text" class="form-control" placeholder="Email"
 												name="email" ng-model="signUpController.signup.email"
-												validator="email" />
+												validator="email" ng-blur="signUpController.checkEmail(signUpController.signup)" />
 
 											</span>
+											
+											 <div class="alert alert-danger fade in panel-shadow" ng-hide="signUpController.alert">
+								                <a ng-click="loginController.hideAlertMessage()" class="close" data-dismiss="alert">&times;</a>
+								                <strong>Error! </strong> Email Already in use
+								            </div>
+								           
+											
+											
 										</div>
+										
+										
+										
 									</div>
 									<div class="form-group">
 										<label class="col-sm-12 control-label no-padding-right"
@@ -56,7 +67,6 @@
 												placeholder="Password"
 												ng-model="signUpController.signup.password"
 												validator="required" />
-
 											</span>
 										</div>
 									</div>
