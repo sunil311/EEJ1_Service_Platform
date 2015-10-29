@@ -10,59 +10,66 @@ import com.impetus.process.entities.SecUser;
 import com.impetus.process.entities.UserRole;
 
 @Service
-public class UserDao {
+public class UserDao
+{
 
-	@Autowired
-	private SessionFactory sessionFactory;
+  @Autowired
+  private SessionFactory sessionFactory;
 
-	public SecUser save(SecUser secUser) {
-	  //TODO: FOr multi tenancy
-	  //Session session = sessionFactory.withOptions().tenantIdentifier("rks").openSession();
-		Session session = sessionFactory.getCurrentSession();
-		session.saveOrUpdate(secUser);
-		
-		return secUser;
-	}
+  public SecUser save(SecUser secUser)
+  {
+    // TODO: FOr multi tenancy
+    // Session session =
+    // sessionFactory.withOptions().tenantIdentifier("rks").openSession();
+    Session session = sessionFactory.getCurrentSession();
+    session.saveOrUpdate(secUser);
 
-	public boolean userExists(String email) {
-		boolean result = false;
-		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from SecUser where email =:email");
-		query.setParameter("email", email);
-		SecUser secUser = (SecUser) query.uniqueResult();
-		if (secUser != null) {
-			result = true;
-		}
-		return result;
-	}
+    return secUser;
+  }
 
-	public SecUser findUser(String email, String password) {
-		Session session = sessionFactory.getCurrentSession();
-		Query query = session
-				.createQuery("from SecUser where email =:email and password =:password");
-		query.setParameter("email", email);
-		query.setParameter("password", password);
-		SecUser secUser = (SecUser) query.uniqueResult();
-		return secUser;
-	}
+  public boolean userExists(String email)
+  {
+    boolean result = false;
+    Session session = sessionFactory.getCurrentSession();
+    Query query = session.createQuery("from SecUser where email =:email");
+    query.setParameter("email", email);
+    SecUser secUser = (SecUser) query.uniqueResult();
+    if (secUser != null)
+    {
+      result = true;
+    }
+    return result;
+  }
 
-	public UserRole getRoleById(int id) {
-		Session session = sessionFactory.getCurrentSession();
-		return session.load(UserRole.class, id);
-	}
+  public SecUser findUser(String email, String password)
+  {
+    Session session = sessionFactory.getCurrentSession();
+    Query query = session.createQuery("from SecUser where email =:email and password =:password");
+    query.setParameter("email", email);
+    query.setParameter("password", password);
+    SecUser secUser = (SecUser) query.uniqueResult();
+    return secUser;
+  }
 
-	/**
-	 * @return the sessionFactory
-	 */
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
+  public UserRole getRoleById(int id)
+  {
+    Session session = sessionFactory.getCurrentSession();
+    return session.load(UserRole.class, id);
+  }
 
-	/**
-	 * @param sessionFactory
-	 *            the sessionFactory to set
-	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+  /**
+   * @return the sessionFactory
+   */
+  public SessionFactory getSessionFactory()
+  {
+    return sessionFactory;
+  }
+
+  /**
+   * @param sessionFactory the sessionFactory to set
+   */
+  public void setSessionFactory(SessionFactory sessionFactory)
+  {
+    this.sessionFactory = sessionFactory;
+  }
 }

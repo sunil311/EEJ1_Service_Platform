@@ -20,7 +20,11 @@ import org.hibernate.annotations.Parameter;
 		@Parameter(name = "optimizer", value = "pooled") })
 public class Address implements java.io.Serializable {
 
-	@Id
+	/**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
+  @Id
 	@GeneratedValue(generator = "Address")
 	@Column(name = "ADDRESS_ID")
 	private Integer addressId;
