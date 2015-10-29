@@ -88,25 +88,29 @@ app.config(['$routeProvider','$stateProvider', '$urlRouterProvider','$validation
 	              })
 	                .state('main.login', {
                     url: '/login',
-                    	templateUrl: 'partials/login.html',
+                    	templateUrl: 'app/components/login/login.html',
                         controller: 'loginController'	
                 })
                 
                 .state('main.dashboard', {
                     url: '/dashboard',
-                    	templateUrl: 'partials/dashboard.html',
+                    	templateUrl: 'app/components/dashboard/dashboard.html',
                         controller: 'dashboardController'	
                 })
-                
+                .state('main.dashboard.profile', {
+                    url: '/profile',
+                    	templateUrl: 'app/components/dashboard/profile-module/profile.html',
+                        controller: 'profileController'	
+                })
                 .state('main.signUp', {
                     url: '/signup',
-                    	templateUrl: 'partials/signup.html',
+                    	templateUrl: 'app/components/signup/signup.html',
                         controller: 'signUpController'	
                 })
               
                 .state('main.home', {
                     url: '/home',
-                    templateUrl: 'partials/home-template.html',
+                    templateUrl: 'app/components/homepage/home-template.html',
                     controller: ''
                     
                 });

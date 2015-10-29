@@ -1,0 +1,376 @@
+<div class=" profile-template container" >
+
+<div class="col-md-12 col-xl-12 card ">
+	<ul class="nav nav-tabs">
+        <li  class="active"><a data-target="#sectionA" role="tab" data-toggle="tab" angular-ripple >General Detail</a></li>
+        <li><a data-target="#sectionB" role="tab" data-toggle="tab">Address Detail</a></li>
+        <li><a data-target="#sectionC" role="tab" data-toggle="tab">Bank Detail</a></li>
+        <li><a data-target="#sectionD" role="tab" data-toggle="tab">URL</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="sectionA" class="tab-pane fade in active">
+           	<div class="widget-main">
+                        <form  class="" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right edit-label" for="name">Display Name</label>
+                                <div class="col-sm-12">
+                                      <p>DamSAm</p>
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right edit-label" for="name">First Name</label>
+                                <div class="col-sm-12">
+                                    <p>Dam</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right edit-label" for="name">Last Name</label>
+                                <div class="col-sm-12">
+                                    <p>Samd</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label no-padding-right edit-label" for="email">Email</label>
+                                <div class="col-sm-12">
+                                    <p>a@a.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right edit-label" for="name">Contact Number</label>
+                                <div class="col-sm-12">
+                                    <p>1234567890</p>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="col-sm-12 control-label no-padding-right edit-label" for="password">Confirm Password</label>
+                                <div class="col-sm-12">
+                                   <p>asZxzcxvc45456454</p>
+                                </div>
+                            </div>
+                          
+                            <div class="form-group">
+                            <div class="col-md-12">
+                           
+                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
+                                        Edit
+                                    </button>
+                                
+                            </div>
+                            </div>
+                            
+            
+                                  </form>
+                            
+                            </fieldset>
+                            
+                           
+                      
+                    </div>
+            <div class="widget-main" ng-show="hide" style="display:none">
+                        <form  class="" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">Display Name</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Name" ng-model="signUpController.signup.firstName" focus validator="required"/>
+                                    </span>
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">First Name</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Name" ng-model="signUpController.signup.firstName" focus validator="required"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">Last Name</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Name" ng-model="signUpController.signup.lastName" validator="required" />
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label no-padding-right" for="email">Email</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="text" class="form-control" placeholder="Email" name="email" ng-model="signUpController.signup.email"  validator="email"/>
+                                        
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">Contact Number</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Name" ng-model="signUpController.signup.firstName" focus validator="required"/>
+                                    </span>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="col-sm-12 control-label no-padding-right" for="password">Confirm Password</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="password" class="form-control" name = "confirmPassword" placeholder="Confirm Password" ng-model="signUpController.signup.confirmPassword" validator="match=password" />
+                                
+                            </span>
+                                </div>
+                            </div>
+                          
+                            <div class="form-group">
+                            <div class="col-md-6">
+                           
+                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
+                                        Sign Up
+                                    </button>
+                                
+                            </div>
+                            <div class="col-md-6">
+                           
+                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
+                                       Cancel
+                                    </button>
+                                
+                            </div>
+                            </div>
+                            
+            
+                                  </form>
+                            
+                            </fieldset>
+                            
+                           
+                      
+                    </div>
+        </div>
+        <div id="sectionB" class="tab-pane fade">
+           <div class="widget-main">
+                        <form  class="" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">Company name</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Name" ng-model="signUpController.signup.firstName" focus validator="required"/>
+                                    </span>
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">House/Street No</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="House/Street No" ng-model="signUpController.signup.firstName" focus validator="required"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">Locality/Area</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Locality/Area" ng-model="signUpController.signup.lastName" validator="required" />
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label no-padding-right" for="email">State</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="text" class="form-control" placeholder="State" name="email" ng-model="signUpController.signup.email"  validator="email"/>
+                                        
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">Post Code</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Post Code" ng-model="signUpController.signup.firstName" focus validator="required"/>
+                                    </span>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="col-sm-12 control-label no-padding-right" for="password">Confirm Password</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="password" class="form-control" name = "confirmPassword" placeholder="Confirm Password" ng-model="signUpController.signup.confirmPassword" validator="match=password" />
+                                
+                            </span>
+                                </div>
+                            </div>
+                          
+                             <div class="form-group">
+                            <div class="col-md-6">
+                           
+                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
+                                        Sign Up
+                                    </button>
+                                
+                            </div>
+                            <div class="col-md-6">
+                           
+                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
+                                       Cancel
+                                    </button>
+                                
+                            </div>
+                            </div>
+                            
+            
+                                  </form>
+                            
+                            </fieldset>
+                            
+                           
+                      
+                    </div> 
+           
+        </div>
+        <div id="sectionC" class="tab-pane fade">
+            <div class="widget-main">
+                        <form  class="" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">Bank Account holder name</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Bank Account holder name" ng-model="signUpController.signup.firstName" focus validator="required"/>
+                                    </span>
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">Bank name</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Bank name" ng-model="signUpController.signup.firstName" focus validator="required"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">Branch Address</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Branch Address" ng-model="signUpController.signup.lastName" validator="required" />
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label no-padding-right" for="email">Account number</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="text" class="form-control" placeholder="Account number" name="email" ng-model="signUpController.signup.email"  validator="email"/>
+                                        
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">IFSC Code</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="IFSC Code" ng-model="signUpController.signup.firstName" focus validator="required"/>
+                                    </span>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="col-sm-12 control-label no-padding-right" for="password">Plan </label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                <input type="password" class="form-control" name = "confirmPassword" placeholder="Plan " ng-model="signUpController.signup.confirmPassword" validator="match=password" />
+                                
+                            </span>
+                                </div>
+                            </div>
+                          
+                             <div class="form-group">
+                            <div class="col-md-6">
+                           
+                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
+                                        Sign Up
+                                    </button>
+                                
+                            </div>
+                            <div class="col-md-6">
+                           
+                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
+                                       Cancel
+                                    </button>
+                                
+                            </div>
+                            </div>
+                            
+            
+                                  </form>
+                            
+                            </fieldset>
+                            
+                           
+                      
+                    </div>
+           
+        </div>
+        <div id="sectionD" class="tab-pane fade">
+            <div class="widget-main">
+                        <form  class="" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">facebook url</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="facebook url" ng-model="signUpController.signup.firstName" focus validator="required"/>
+                                    </span>
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">twitter </label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="twitter " ng-model="signUpController.signup.firstName" focus validator="required"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <label class="col-sm-12 control-label no-padding-right" for="name">Domain Name</label>
+                                <div class="col-sm-12">
+                                    <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Domain Name" ng-model="signUpController.signup.lastName" validator="required" />
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            
+                          
+                           
+                          
+                            <div class="form-group">
+                            <div class="col-md-6">
+                           
+                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
+                                        Sign Up
+                                    </button>
+                                
+                            </div>
+                            <div class="col-md-6">
+                           
+                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
+                                       Cancel
+                                    </button>
+                                
+                            </div>
+                            </div>
+                            
+            
+                                  </form>
+                            
+                            </fieldset>
+                            
+                           
+                      
+                    </div>
+            
+        </div>
+    </div>
+</div>
+</div>
+
