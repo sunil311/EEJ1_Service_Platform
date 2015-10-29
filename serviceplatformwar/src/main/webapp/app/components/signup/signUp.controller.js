@@ -1,4 +1,4 @@
-function() {
+(function() {
     "use strict";
     angular.module('EE.signUp').controller('signUpController', signUpController);
     signUpController.$inject = [ '$scope', '$rootScope', '$routeParams', '$location', '$http', 'Data', '$injector' ];
