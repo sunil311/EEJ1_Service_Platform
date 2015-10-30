@@ -23,7 +23,7 @@
         };
         vm.hideAlertMessage = function () {
             vm.alert=true;
-        }
+        };
     }
 
 })();
