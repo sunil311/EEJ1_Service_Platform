@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,8 +25,8 @@ public class DownloadController {
 	@Autowired
 	private Environment env;
 
-	@RequestMapping(value = "/DownloadTemplate/download", method = RequestMethod.GET)
-	public void loginUser(@RequestBody String tenantId,
+	@RequestMapping(value = "/DownloadTemplate/download/{tenantId}", method = RequestMethod.GET)
+	public void loginUser(@PathVariable String tenantId,
 			HttpServletResponse response) throws Exception {
 
 		String filestore = env.getProperty("sp.filestore.path");

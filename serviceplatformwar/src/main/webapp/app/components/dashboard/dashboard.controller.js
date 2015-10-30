@@ -14,27 +14,14 @@
 			refererId : 'tenantId',
 			payload : 'tenantId'
 		};
-
+		//TODO: get this value from session
+		$scope.tenantId = 'sada23322swsqs1';
 		vm.headerEnabled = function() {
 			return $state.includes('dashboard');
 		};
 
 		vm.download = function() {
-			$http.post('DownloadTemplate/download', vm.data, {
-				responseType : 'arraybuffer'
-			}).then(function(results) {
-				var file = new Blob([result.data], {type: 'application/octet-stream'});
-                var fileURL = window.URL.createObjectURL(file);
-                a.href = fileURL;
-                a.download = fileName;
-                a.click();
-			});
-			/*
-			 * downloadFactory.post('download', vm.data).then(function(results) {
-			 * var blob = new Blob([ results ], { type : "octet/stream" });
-			 * saveAs(blob, "lol"); });
-			 */
+			// TODO: will add logic later
 		};
 	}
-
 })();
