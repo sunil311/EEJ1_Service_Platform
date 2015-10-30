@@ -1,0 +1,80 @@
+<div class="page-content" ng-controller="loginController as loginController">
+
+    <div class="row">
+        <div class="space-6"></div>
+        <div class="container login-box ">
+            <div class="alert alert-danger fade in panel-shadow" ng-hide="loginController.alert">
+                <a ng-click="loginController.hideAlertMessage()" class="close" data-dismiss="alert">&times;</a>
+                <strong>Error! </strong> Invalid Username or Password.
+            </div>
+            <div class="login-heading">
+                <div class=" ">
+                    <h1 class="panel-title">Login</h1>
+                </div>
+                <div>
+                    <div id="login-box" class=" visible widget-box no-border">
+                        <div class="widget-body">
+                            <div class="widget-main">
+
+                                <div class="space-16"></div>
+
+                                <form name="loginForm" id="loginForm" class=" loginForm" role="form">
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label no-padding-right" for="email"> Email</label>
+                                        <div class="col-sm-12">
+                                            <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control" placeholder="Email / Username" name="email" ng-model="loginController.login.email" validator="email" focus/>
+                                
+                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-12 control-label no-padding-right" for="password"> Password </label>
+                                        <div class="col-sm-12">
+                                            <span class="block input-icon input-icon-right">
+                                <input type="password" class="form-control" placeholder="Password" ng-model="loginController.login.password" validator="required"/>
+                                
+
+                            </span>
+                                        </div>
+                                        <div class="col-sm-7"><a href="#/signup">Forgot your password</a></div>
+                                    </div>
+
+
+                                    <div class="form-group btn-group">
+                                        <div class="col-md-12">
+                                            <div class="col-sm-8 col-sm-offset-2 ">
+                                                <button angular-ripple type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="loginController.doLogin(loginController.login)" data-ng-disabled="loginForm.$invalid">
+
+                                                    Login
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="col-md-12 signup-link">
+                                            Don't have an account? <a href="#/signup">Signup</a>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                            <!-- /widget-main -->
+                        </div>
+                        <!-- /widget-body -->
+                    </div>
+
+                </div>
+                <div class=" clearfix ">
+
+                </div>
+            </div>
+        </div>
+        <!-- /login-box -->
+
+    </div>
+    <!-- /position-relative -->
+</div>
+</div>
+<!-- /.page-content -->

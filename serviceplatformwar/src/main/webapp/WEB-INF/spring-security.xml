@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd 
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security.xsd">
+	<security:http use-expressions="true">
+		<security:form-login login-page="/customLoginPage"
+			default-target-url="/home" />
+		<security:logout />
+		<security:intercept-url pattern="/resources/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/css/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/images/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/js/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/partials/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/app/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/scripts/**"
+			access="permitAll" />
+		<security:intercept-url pattern="/*" access="permitAll" />
+		<security:intercept-url pattern="/customLoginPage*"
+			access="permitAll" />
+		<security:intercept-url pattern="/signup*"
+			access="permitAll" />
+		<security:intercept-url pattern="/RegisterUser*"
+			access="permitAll" />
+		<security:intercept-url pattern="/home*" access="permitAll" />
+		<security:intercept-url pattern="/**"
+			access="isAuthenticated()" />
+	</security:http>
+	<bean id="userDetailsService" class="com.impetus.process.security.SpringUserDetailsProcess">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<security:authentication-manager>
+		<security:authentication-provider
+			user-service-ref="userDetailsService">
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:jtds:sqlserver://192.168.219.51:1433;databaseName=ServicePlatform" />
+		<property name="username" value="sp" />
+		<property name="password" value="impetus@123" />
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.multiTenancy">SCHEMA</prop>
+           		<prop key="hibernate.multi_tenant_connection_provider">com.impetus.serviceplatform.web.multiTenancy.MultiTenantConnectionProviderImpl</prop>
+            	<prop key="hibernate.tenant_identifier_resolver">com.impetus.serviceplatform.web.multiTenancy.CurrentTenantIdentifierResolver</prop>
+    
+			</props>
+		</property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+</beans>
