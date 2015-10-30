@@ -16,7 +16,7 @@ import com.impetus.process.dto.UserData;
 import com.impetus.process.exception.ServicePlatformDBException;
 
 @Controller
-public class RegistrationAction
+public class RegistrationController
 {
 
   @Autowired
