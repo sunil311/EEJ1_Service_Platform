@@ -2,7 +2,7 @@ Feature: Service Aggregator Template Download feature
 
   In order to download the service aggregator template as service aggregator
   I want to have a download functionality on dashboard page
-  So that we perform tasks like download zip tempalte and unzip downloaded template
+  So that we perform tasks like download zip template and unzip downloaded template
 
 #This feature file includes options of downloading the service aggergator template
 
