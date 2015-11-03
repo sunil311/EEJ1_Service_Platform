@@ -33,6 +33,9 @@ public class SecUser implements java.io.Serializable
   @GeneratedValue(generator = "SecUser", strategy = GenerationType.IDENTITY)
   @Column(name = "USER_ID")
   private Integer userId;
+  
+  @Column(name = "tenantId")
+  private String tenantId;
   // private byte enabled;
   // private String externalCode;
   // private Integer failedLoginAttempts;
@@ -160,6 +163,14 @@ public class SecUser implements java.io.Serializable
   {
     this.userId = userId;
   }
+
+	public String getTenantId() {
+		return tenantId;
+	}
+
+	public void setTenantId(String tenantId) {
+		this.tenantId = tenantId;
+	}
 
   /*
    * @Column(name = "ENABLED") public byte getEnabled() { return this.enabled; }

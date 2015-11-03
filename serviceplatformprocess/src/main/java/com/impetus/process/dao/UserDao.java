@@ -1,8 +1,12 @@
 package com.impetus.process.dao;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,6 +59,15 @@ public class UserDao
   {
     Session session = sessionFactory.getCurrentSession();
     return session.load(UserRole.class, id);
+  }
+  
+  public List<String> getAllTenantIds()
+  {
+    Session session = sessionFactory.getCurrentSession();
+    Criteria cr = session.createCriteria(SecUser.class)
+    	    .setProjection(Projections.projectionList()
+    	      .add(Projections.property("tenantId"), "tenantId"));
+    	  return cr.list();
   }
 
   /**

@@ -3,6 +3,7 @@ package com.impetus.process;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,6 +52,7 @@ public class RegisterProcess
     secUser.setFacebookURL(userData.getFacebookURL());
     secUser.setTwitterURL(userData.getTwitterURL());
     secUser.setDomainName(userData.getDomainName());
+    secUser.setTenantId(generateTenantId());
 
     List<UserRole> roles = new ArrayList<UserRole>();
     roles.add(userDao.getRoleById(Role.USER.getId()));
@@ -71,5 +73,29 @@ public class RegisterProcess
   {
     return userDao.userExists(userData.getEmail());
     
+  }
+
+  /**
+   * @return tenant Id
+   */
+  private String generateTenantId()
+  {
+    String generatedTenantId = null;
+    List<String> existingTenantIds = userDao.getAllTenantIds();
+    while (doesTenanteIdExists(existingTenantIds, generatedTenantId))
+    {
+      generatedTenantId = UUID.randomUUID().toString();
+    }
+    return generatedTenantId;
+  }
+
+  /**
+   * @param existingTenantIds
+   * @param generatedTenantId
+   * @return
+   */
+  private boolean doesTenanteIdExists(List<String> existingTenantIds, String generatedTenantId)
+  {
+    return generatedTenantId == null ? true : existingTenantIds.contains(generatedTenantId);
   }
 }
