@@ -6,7 +6,6 @@ Feature: Service Aggregator Template Download feature
 
 #This feature file includes options of downloading the service aggergator template
 
-
  Scenario: Validate Zipped Download Template Functionality
     Given I am logged in as Admin User
     And  I view Dashboard Page
