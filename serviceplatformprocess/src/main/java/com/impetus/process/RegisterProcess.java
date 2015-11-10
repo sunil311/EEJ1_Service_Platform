@@ -70,7 +70,7 @@ public class RegisterProcess {
 			return "Email is mandatory";
 		}
 		
-		if(StringIsEmpty(secUser.getEmail())){
+		if(StringIsEmpty(secUser.getMobile())){
 			return "Mobile Number is mandatory";
 		}
 
