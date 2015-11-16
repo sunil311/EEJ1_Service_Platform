@@ -25,7 +25,9 @@ public class LoginProcess {
 		logger.info("Cheking user........");
 		List<UserRole> roles = new ArrayList<UserRole>();
 		roles.add(userDao.getRoleById(Role.USER.getId()));
-		if (userDao.findUser(loginData.getEmail(), loginData.getPassword())!=null) {
+    if (userDao.findUser(loginData.getEmail(), loginData.getPassword()) != null
+      && roles.contains(Role.ADMIN))
+    {
 			updateUserSessionData();
 		} else {
 			logger.info("Login user........USER DO NOT EXISTS");
