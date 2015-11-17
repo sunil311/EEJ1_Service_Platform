@@ -80,6 +80,18 @@ public class UserDao
 	    session.getTransaction().commit();    
     	  return list;
   }
+  
+  public List<String> getAllUserToActivate()
+  {
+      Session session = sessionFactory.getCurrentSession();
+      session.beginTransaction();
+      Criteria cr = session.createCriteria(SecUser.class)
+            .setProjection(Projections.projectionList()
+              .add(Projections.property("tenantId"), "tenantId"));
+      List<String> list = cr.list();
+      session.getTransaction().commit();    
+        return list;
+  }
 
   /**
    * @return the sessionFactory

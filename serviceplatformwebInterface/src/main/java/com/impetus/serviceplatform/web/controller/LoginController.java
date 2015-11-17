@@ -4,6 +4,8 @@
 package com.impetus.serviceplatform.web.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,10 +30,11 @@ public class LoginController
   private LoginProcess loginProcess;
   private String status;
 
-  @RequestMapping(value = "/signup", method = RequestMethod.GET)
-  public String postService()
+  @RequestMapping(value = "activateAggrigator", method = RequestMethod.POST)
+  public List<String> postService()
   {
-    return "signup";
+    List<String> result = loginProcess.getAllUsersToBeActivated();
+    return result;
   }
 
   @RequestMapping(value = "/RegisterUser/doLogin", method = RequestMethod.POST)
@@ -50,5 +53,8 @@ public class LoginController
     }
     return "{\"status\":\"" + status + "\"}";
   }
+  
+  
+  
 
 }

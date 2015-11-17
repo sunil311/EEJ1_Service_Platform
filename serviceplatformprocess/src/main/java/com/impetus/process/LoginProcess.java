@@ -1,6 +1,7 @@
 package com.impetus.process;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +49,11 @@ public class LoginProcess
       result = "USER DO NOT EXISTS";
     }
     return result;
+  }
+  
+  public List<String> getAllUsersToBeActivated()
+  {
+    return userDao.getAllUserToActivate();
   }
 
   private void updateUserSessionData()
