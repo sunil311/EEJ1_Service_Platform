@@ -1,5 +1,4 @@
 Feature: Admin Portal features
-
   As a sysadmin User
   I want to have an admin portal in which drop down list of deactivate service aggregator should be present
   So that I can activate service aggregator from drop down list
