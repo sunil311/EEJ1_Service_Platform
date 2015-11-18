@@ -29,3 +29,22 @@ app.directive('passwordMatch', [ function() {
 		}
 	};
 } ]);
+
+app.directive('abc', function() {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                
+                element.bind('click', function(event) {
+                	console.log('heheh');
+                	$("#wrapper").toggleClass("toggled");
+                   
+                    return false;
+                });
+            }
+        };
+
+    });
+
+
+

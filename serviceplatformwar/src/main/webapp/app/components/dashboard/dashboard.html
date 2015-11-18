@@ -10,7 +10,7 @@
 		<div id="accordian">
 			<ul>
 				<li class="sidebar-brand"><a href="#"> LOGO </a></li>
-				<li class="second-li">
+				<li class="second-li" ui-sref="main.dashboard">
 					<h3 angular-ripple>
 						<span class="icon-dashboard"><i class="fa fa-tachometer"></i></span>Dashboard
 					</h3>
@@ -19,21 +19,20 @@
 				<!-- we will keep this LI open by default -->
 				<li class="active">
 					<h3 angular-ripple>
-						<span class="icon-tasks"><a
-							ui-sref="main.dashboard.profile"><i class="fa fa-tasks"></i></span>Profile</a>
+						<span class="icon-tasks"><i class="fa fa-tasks"></i></span>Service Provider
 					</h3>
 
 				</li>
 				<li>
 					<h3 angular-ripple>
 						<span class="icon-calendar"><i
-							class="fa fa-calendar-check-o"></i></span>Calendar
+							class="fa fa-calendar-check-o"></i></span>Bills
 					</h3>
 
 				</li>
 				<li>
 					<h3 angular-ripple>
-						<span class="icon-heart"><i class="fa fa-star"></i></span>Favourites
+						<span class="icon-heart"><i class="fa fa-star"></i></span>Customer
 					</h3> <!--  <ul>
                 <li><a href="#">Global favs</a></li>
                 <li><a href="#">My favs</a></li>
@@ -50,151 +49,14 @@
 
 	<!-- Page Content -->
 	<div id="page-content-wrapper">
-		<div class="container-fluid">
+		<div class="container-fluid dashboard">
 			<div class="row">
-				<div>
-					<h4>Please download your documents</h4>
-				</div>
-				<div>
-					<span><a href="DownloadTemplate/download/{{tenantId}}"
-						target="_blank" class="btn">Download Zip</a></span>
-				</div>
-				<div data-ui-view></div>
-			</div>
-			<div class="row">
-				<div>
-					<h2>Activate Aggrigator :</h2>
-				</div>
-				<div data-ui-view></div>
-			</div>
-			<div class="row">
-				<div>
-					<h4><span></span></h4>
-				</div>
-				<div>
+								<div>
 					<span></span>
 				</div>
 				<div data-ui-view></div>
 			</div>
-			<form name="dbprofileForm" id="dbprofileForm"
-									 method="post" class=" dbprofileForm" role="form" ng-controller="activateAggrigatorController">
-									<div class="form-group">
-
-										<label class="col-sm-2 control-label no-padding-right"
-											for="aggrigatorId"> Select Aggrigator</label>
-										<div class="col-sm-3">
-											<span class="block input-icon input-icon-right"> <select
-												class="form-control" placeholder="Select one" name="aggrigatorId"
-												ng-model="activateAggrigatorController.dbprofile.aggrigatorId"
-												validator="required" focus>
-													<option ng:repeat="test in getData()" value="{{test}}">{{test}}</option>
-											</select>
-											</span>
-										</div>
-									</div>
-									
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right"
-											for="dbName"> DataBase Name</label>
-										<div class="col-sm-3">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control"
-												placeholder="Please enter Database Name" name="dbName"
-												ng-model="activateAggrigatorController.dbprofile.dbName"
-												validator="required" focus />
-
-											</span>
-										</div>
-									</div>
-
-
-									<div class="form-group">
-
-										<label class="col-sm-2 control-label no-padding-right"
-											for="dbType"> Select DataBase type</label>
-										<div class="col-sm-3">
-											<span class="block input-icon input-icon-right"> <select
-												class="form-control" placeholder="Select one" name="dbType"
-												ng-model="activateAggrigatorController.dbprofile.dbType"
-												validator="required" focus>
-													<option value="mysql">My SQL</option>
-											</select>
-											</span>
-										</div>
-									</div>
-									
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right"
-											for="dbURL"> DataBase URL</label>
-										<div class="col-sm-3">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control"
-												placeholder="Please enter URL where DB is hosted" name="dbURL"
-												ng-model="activateAggrigatorController.dbprofile.dbURL"
-												validator="required" focus />
-
-											</span>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right"
-											for="dbPortNumber"> DataBase Port Number</label>
-										<div class="col-sm-3">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control"
-												placeholder="Please enter Database Port Number" name="dbPortNumber"
-												ng-model="activateAggrigatorController.dbprofile.dbPortNumber"
-												validator="required" focus />
-
-											</span>
-										</div>
-
-									</div>
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right"
-											for="dbUserName"> DataBase User Name</label>
-										<div class="col-sm-3">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control"
-												placeholder="Please enter Database User Name" name="dbUserName"
-												ng-model="activateAggrigatorController.dbprofile.dbUserName"
-												validator="required" focus />
-
-											</span>
-										</div>
-
-									</div>
-									<div class="form-group">
-										<label class="col-sm-2 control-label no-padding-right"
-											for="dbPassword"> DataBase Password</label>
-										<div class="col-sm-3">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control"
-												placeholder="Please enter Database Password" name="dbPassword"
-												ng-model="activateAggrigatorController.dbprofile.dbPassword"
-												validator="required" focus />
-
-											</span>
-										</div>
-
-									</div>
-								
-
-									<div class="form-group btn-group">
-										<div class="col-md-3">
-											<div class="col-sm-8 col-sm-offset-2 ">
-												<button angular-ripple type="submit"
-													class="width-35 pull-right btn btn-sm custom-button"
-													ng-click="activateAggrigatorController.activate()"
-													data-ng-disabled="dbprofileForm.$invalid">
-
-													Activate</button>
-											</div>
-										</div>
-									</div>
-
-								</form>
+			
 		</div>
 	</div>
 	<!-- /#page-content-wrapper -->
@@ -205,10 +67,7 @@
 
 <!-- Menu Toggle Script -->
 <script>
-	$("#menu-toggle").click(function(e) {
-		e.preventDefault();
-		$("#wrapper").toggleClass("toggled");
-	});
+
 	$(document).ready(function() {
 		$("#accordian h3").click(function() {
 			//slide up all the link lists

@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute','ui.router', 'ngAnimate','ngResource', 'toaster','validation', 'validation.rule','EE.login','EE.signUp','EE.dashboard.module','angularRipple']);
+var app = angular.module('myApp', ['ngRoute','ui.router', 'ngAnimate','ngResource','ui.grid', 'toaster','validation', 'validation.rule','EE.login','EE.signUp','EE.dashboard.module','angularRipple']);
 
 app.config(['$routeProvider','$stateProvider', '$urlRouterProvider','$validationProvider',
   function ($routeProvider,$stateProvider, $urlRouterProvider,$validationProvider) {
@@ -101,6 +101,11 @@ app.config(['$routeProvider','$stateProvider', '$urlRouterProvider','$validation
                     url: '/profile',
                     	templateUrl: 'app/components/dashboard/profile-module/profile.html',
                         controller: 'profileController'	
+                })
+                .state('main.dashboard.serviceProvider', {
+                    url: '/service-provider',
+                    	templateUrl: 'app/components/dashboard/serviceProvider/service-provider.html',
+                        controller: 'activateAggrigatorController'	
                 })
                 .state('main.signUp', {
                     url: '/signup',

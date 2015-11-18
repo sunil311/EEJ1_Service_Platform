@@ -1,15 +1,16 @@
-<div class=" profile-template container" >
-
-<div class="col-md-12 col-xl-12 card ">
+<div class=" profile-template container" ng-controller="profileController as profileController">
+<div  ><h1 class="dashboard-heading ">User Profile</</h1></div>
+<div class="col-md-12 col-xl-12 card profile-container ">
 	<ul class="nav nav-tabs">
-        <li  class="active"><a data-target="#sectionA" role="tab" data-toggle="tab" angular-ripple >General Detail</a></li>
-        <li><a data-target="#sectionB" role="tab" data-toggle="tab">Address Detail</a></li>
-        <li><a data-target="#sectionC" role="tab" data-toggle="tab">Bank Detail</a></li>
-        <li><a data-target="#sectionD" role="tab" data-toggle="tab">URL</a></li>
+        <li  class="active"><a data-target="#sectionA" role="tab" data-toggle="tab" angular-ripple >General </a></li>
+        <li><a data-target="#sectionB" role="tab" data-toggle="tab" angular-ripple>Address </a></li>
+        <li><a data-target="#sectionC" role="tab" data-toggle="tab" angular-ripple>Bank </a></li>
+        <li><a data-target="#sectionD" role="tab" data-toggle="tab" angular-ripple>URL</a></li>
     </ul>
     <div class="tab-content">
         <div id="sectionA" class="tab-pane fade in active">
-           	<div class="widget-main">
+           	<div class="widget-main hide" ng-class="{active: profileController.activeTab != 'editprofile'}">
+           	
                         <form  class="" role="form">
                         <div class="form-group">
                             <label class="col-sm-12 control-label no-padding-right edit-label" for="name">Display Name</label>
@@ -52,7 +53,7 @@
                             <div class="form-group">
                             <div class="col-md-12">
                            
-                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
+                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" angular-ripple ng-click="profileController.editForm('editprofile')" data-ng-disabled="signupForm.$invalid" angular-ripple>
                                         Edit
                                     </button>
                                 
@@ -67,7 +68,7 @@
                            
                       
                     </div>
-            <div class="widget-main" ng-show="hide" style="display:none">
+            <div class="widget-main hide" ng-class="{'active': profileController.activeTab == 'editprofile'}">
                         <form  class="" role="form">
                         <div class="form-group">
                             <label class="col-sm-12 control-label no-padding-right" for="name">Display Name</label>
@@ -125,13 +126,13 @@
                             <div class="col-md-6">
                            
                                     <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
-                                        Sign Up
+                                        Save
                                     </button>
                                 
                             </div>
                             <div class="col-md-6">
                            
-                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
+                                    <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="profileController.editForm('display')" data-ng-disabled="signupForm.$invalid" angular-ripple>
                                        Cancel
                                     </button>
                                 
@@ -206,7 +207,7 @@
                             <div class="col-md-6">
                            
                                     <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
-                                        Sign Up
+                                        Save
                                     </button>
                                 
                             </div>
@@ -288,7 +289,7 @@
                             <div class="col-md-6">
                            
                                     <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
-                                        Sign Up
+                                       Save
                                     </button>
                                 
                             </div>
@@ -347,7 +348,7 @@
                             <div class="col-md-6">
                            
                                     <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="signupForm.$invalid" angular-ripple>
-                                        Sign Up
+                                        Save
                                     </button>
                                 
                             </div>

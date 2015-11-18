@@ -23,5 +23,11 @@
 		vm.download = function() {
 			// TODO: will add logic later
 		};
+		
+		  
+
+
+		
+		
 	}
 })();

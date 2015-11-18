@@ -2,13 +2,20 @@
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="col-md-12">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu-toggle" >
+                <button type="button" class="navbar-toggle menu-toggle " abc >
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button> 
-                <!-- <a class="navbar-brand" href="#">LOGO</a> -->
+         	 <!-- <a class="navbar-brand dashboard-heading" href="#">LOGO</a>  -->
+         	 <div style="    margin-top: 17px;" class="download">
+					<h4>Please download your documents</h4>
+				</div>
+				<div class="download">
+					<span><a href="DownloadTemplate/download/{{tenantId}}"
+						target="_blank" class="btn">Download Zip</a></span>
+				</div>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -19,8 +26,8 @@
                     <li class="dropdown">
                         <a  data-toggle="dropdown" class="dropdown-toggle"><i class="fa fa-cog"></i> <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
+                        
+                            <li><a ui-sref="main.dashboard.profile">User Profile</a></li>
                             <li class="divider"></li>
                             <li><a href="#">Logout</a></li>
                         </ul>

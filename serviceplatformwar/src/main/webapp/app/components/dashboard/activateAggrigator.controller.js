@@ -15,16 +15,24 @@
 			if (!dirty) {
 				dirty = true;
 
-	           /* Data.post('../activateAgg').then(function(results) {
+	            Data.post('activateAgg').then(function(results) {
 	                vm.alert = true;
+	            
 	                    Data.toast(results);
-	            });*/
+	            });
 	        
 				//result = [ "1", "2", "3" ];
 				
 			}
 			return result;
 		}
+		
+		$scope.myData = [{name: "Moroni", age: 50},
+	                     {name: "Tiancum", age: 43},
+	                     {name: "Jacob", age: 27},
+	                     {name: "Nephi", age: 29},
+	                     {name: "Enos", age: 34}];
+		$scope.gridOptions = { data: 'myData' };
 	}
 
 })();

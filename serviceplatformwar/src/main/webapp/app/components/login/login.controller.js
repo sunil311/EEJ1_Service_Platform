@@ -12,7 +12,7 @@
             Data.post('doLogin', user).then(function(results) {
                 if (results.status == "SUCCESS") {
                     Data.toast(results);
-                    $location.path('dashboard');
+                    $location.path('dashboard/service-provider');
                 } else if (results.status == "USER DO NOT EXISTS") {
                     vm.alert=false;
                 } else {
