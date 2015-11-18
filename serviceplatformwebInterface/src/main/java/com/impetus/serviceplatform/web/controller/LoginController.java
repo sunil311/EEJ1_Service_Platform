@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.impetus.process.LoginProcess;
+import com.impetus.process.SysadminProcess;
 import com.impetus.process.dto.LoginData;
 import com.impetus.process.exception.ServicePlatformDBException;
 
@@ -26,13 +27,9 @@ public class LoginController
   Logger logger = LoggerFactory.getLogger(getClass());
   @Autowired
   private LoginProcess loginProcess;
+  @Autowired
+  private SysadminProcess sysadminProcess;
   private String status;
-
-  @RequestMapping(value = "/signup", method = RequestMethod.GET)
-  public String postService()
-  {
-    return "signup";
-  }
 
   @RequestMapping(value = "/RegisterUser/doLogin", method = RequestMethod.POST)
   public @ResponseBody
@@ -50,5 +47,8 @@ public class LoginController
     }
     return "{\"status\":\"" + status + "\"}";
   }
+  
+  
+  
 
 }

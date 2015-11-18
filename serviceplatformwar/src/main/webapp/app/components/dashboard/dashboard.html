@@ -61,6 +61,140 @@
 				</div>
 				<div data-ui-view></div>
 			</div>
+			<div class="row">
+				<div>
+					<h2>Activate Aggrigator :</h2>
+				</div>
+				<div data-ui-view></div>
+			</div>
+			<div class="row">
+				<div>
+					<h4><span></span></h4>
+				</div>
+				<div>
+					<span></span>
+				</div>
+				<div data-ui-view></div>
+			</div>
+			<form name="dbprofileForm" id="dbprofileForm"
+									 method="post" class=" dbprofileForm" role="form" ng-controller="activateAggrigatorController">
+									<div class="form-group">
+
+										<label class="col-sm-2 control-label no-padding-right"
+											for="aggrigatorId"> Select Aggrigator</label>
+										<div class="col-sm-3">
+											<span class="block input-icon input-icon-right"> <select
+												class="form-control" placeholder="Select one" name="aggrigatorId"
+												ng-model="activateAggrigatorController.dbprofile.aggrigatorId"
+												validator="required" focus>
+													<option ng:repeat="test in getData()" value="{{test}}">{{test}}</option>
+											</select>
+											</span>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right"
+											for="dbName"> DataBase Name</label>
+										<div class="col-sm-3">
+											<span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control"
+												placeholder="Please enter Database Name" name="dbName"
+												ng-model="activateAggrigatorController.dbprofile.dbName"
+												validator="required" focus />
+
+											</span>
+										</div>
+									</div>
+
+
+									<div class="form-group">
+
+										<label class="col-sm-2 control-label no-padding-right"
+											for="dbType"> Select DataBase type</label>
+										<div class="col-sm-3">
+											<span class="block input-icon input-icon-right"> <select
+												class="form-control" placeholder="Select one" name="dbType"
+												ng-model="activateAggrigatorController.dbprofile.dbType"
+												validator="required" focus>
+													<option value="mysql">My SQL</option>
+											</select>
+											</span>
+										</div>
+									</div>
+									
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right"
+											for="dbURL"> DataBase URL</label>
+										<div class="col-sm-3">
+											<span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control"
+												placeholder="Please enter URL where DB is hosted" name="dbURL"
+												ng-model="activateAggrigatorController.dbprofile.dbURL"
+												validator="required" focus />
+
+											</span>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right"
+											for="dbPortNumber"> DataBase Port Number</label>
+										<div class="col-sm-3">
+											<span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control"
+												placeholder="Please enter Database Port Number" name="dbPortNumber"
+												ng-model="activateAggrigatorController.dbprofile.dbPortNumber"
+												validator="required" focus />
+
+											</span>
+										</div>
+
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right"
+											for="dbUserName"> DataBase User Name</label>
+										<div class="col-sm-3">
+											<span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control"
+												placeholder="Please enter Database User Name" name="dbUserName"
+												ng-model="activateAggrigatorController.dbprofile.dbUserName"
+												validator="required" focus />
+
+											</span>
+										</div>
+
+									</div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label no-padding-right"
+											for="dbPassword"> DataBase Password</label>
+										<div class="col-sm-3">
+											<span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control"
+												placeholder="Please enter Database Password" name="dbPassword"
+												ng-model="activateAggrigatorController.dbprofile.dbPassword"
+												validator="required" focus />
+
+											</span>
+										</div>
+
+									</div>
+								
+
+									<div class="form-group btn-group">
+										<div class="col-md-3">
+											<div class="col-sm-8 col-sm-offset-2 ">
+												<button angular-ripple type="submit"
+													class="width-35 pull-right btn btn-sm custom-button"
+													ng-click="activateAggrigatorController.activate()"
+													data-ng-disabled="dbprofileForm.$invalid">
+
+													Activate</button>
+											</div>
+										</div>
+									</div>
+
+								</form>
 		</div>
 	</div>
 	<!-- /#page-content-wrapper -->
