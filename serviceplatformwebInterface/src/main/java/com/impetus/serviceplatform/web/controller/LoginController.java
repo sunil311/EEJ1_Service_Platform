@@ -4,8 +4,6 @@
 package com.impetus.serviceplatform.web.controller;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.impetus.process.LoginProcess;
+import com.impetus.process.SysadminProcess;
 import com.impetus.process.dto.LoginData;
 import com.impetus.process.exception.ServicePlatformDBException;
 
@@ -28,14 +27,9 @@ public class LoginController
   Logger logger = LoggerFactory.getLogger(getClass());
   @Autowired
   private LoginProcess loginProcess;
+  @Autowired
+  private SysadminProcess sysadminProcess;
   private String status;
-
-  @RequestMapping(value = "activateAggrigator", method = RequestMethod.POST)
-  public List<String> postService()
-  {
-    List<String> result = loginProcess.getAllUsersToBeActivated();
-    return result;
-  }
 
   @RequestMapping(value = "/RegisterUser/doLogin", method = RequestMethod.POST)
   public @ResponseBody

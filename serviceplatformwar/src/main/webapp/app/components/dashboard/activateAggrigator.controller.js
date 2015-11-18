@@ -15,10 +15,10 @@
 			if (!dirty) {
 				dirty = true;
 
-	            Data.post('../activateAgg').then(function(results) {
+	           /* Data.post('../activateAgg').then(function(results) {
 	                vm.alert = true;
 	                    Data.toast(results);
-	            });
+	            });*/
 	        
 				//result = [ "1", "2", "3" ];
 				

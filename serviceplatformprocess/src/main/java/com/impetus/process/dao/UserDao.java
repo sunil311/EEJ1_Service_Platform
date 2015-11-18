@@ -59,6 +59,15 @@ public class UserDao
     session.getTransaction().commit();  
     return secUser;
   }
+  public SecUser findUserByUserId(int userId)
+  {
+    Session session = sessionFactory.getCurrentSession();
+    session.beginTransaction();
+    Query query = session.createQuery("from SecUser where userId =:userId");
+    query.setParameter("userId", userId);
+    SecUser secUser = (SecUser) query.uniqueResult();
+    return secUser;
+  }
 
   public UserRole getRoleById(int id)
   {
@@ -81,17 +90,25 @@ public class UserDao
     	  return list;
   }
   
-  public List<String> getAllUserToActivate()
+
+  public List<SecUser> getAllInactiveUsers()
   {
-      Session session = sessionFactory.getCurrentSession();
-      session.beginTransaction();
-      Criteria cr = session.createCriteria(SecUser.class)
-            .setProjection(Projections.projectionList()
-              .add(Projections.property("tenantId"), "tenantId"));
-      List<String> list = cr.list();
-      session.getTransaction().commit();    
-        return list;
+    Session session = sessionFactory.getCurrentSession();
+    session.beginTransaction();
+    Query query = session.createQuery("from SecUser where activated =:activated");
+    query.setParameter("activated", false);
+    return query.list();
   }
+  
+  public List<SecUser> updateAggrigator()
+  {
+    Session session = sessionFactory.getCurrentSession();
+    session.beginTransaction();
+    Query query = session.createQuery("from SecUser where activated =:activated");
+    query.setParameter("activated", false);
+    return query.list();
+  }
+  
 
   /**
    * @return the sessionFactory

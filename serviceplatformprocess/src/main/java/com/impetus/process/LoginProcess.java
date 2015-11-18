@@ -1,11 +1,13 @@
 package com.impetus.process;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 
 import com.impetus.process.dao.UserDao;
 import com.impetus.process.dto.LoginData;
@@ -13,8 +15,13 @@ import com.impetus.process.entities.SecUser;
 import com.impetus.process.entities.UserRole;
 import com.impetus.process.enums.Role;
 
+@Configuration
+@PropertySource("classpath:com/impetus/process/package.properties")
 public class LoginProcess
 {
+  @Autowired
+  Environment env;
+
   @Autowired
   private UserDao userDao;
 
@@ -23,7 +30,7 @@ public class LoginProcess
   public String loginUser(LoginData loginData) throws SQLException
   {
 
-    String result = "SUCCESS";
+    String result = env.getProperty("result.success");
     logger.info("Cheking user........");
     SecUser user = userDao.findUser(loginData.getEmail(), loginData.getPassword());
     boolean hasAdminRole = false;
@@ -46,14 +53,9 @@ public class LoginProcess
     else
     {
       logger.info("Login user........USER DO NOT EXISTS");
-      result = "USER DO NOT EXISTS";
+      result = env.getProperty("login.user.not.exist");
     }
     return result;
-  }
-  
-  public List<String> getAllUsersToBeActivated()
-  {
-    return userDao.getAllUserToActivate();
   }
 
   private void updateUserSessionData()
