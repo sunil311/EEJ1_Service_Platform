@@ -4,6 +4,7 @@ public class DbProfileData
 {
   private int userId;
   private String dbName;
+  private String dbType;  
   private String hostName;
   private String portNumber;
   private String userName;
@@ -78,6 +79,16 @@ public class DbProfileData
   public void setEmail(String email)
   {
     this.email = email;
+  }
+
+  public String getDbType()
+  {
+    return dbType;
+  }
+
+  public void setDbType(String dbType)
+  {
+    this.dbType = dbType;
   }
 
 }

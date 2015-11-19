@@ -8,22 +8,18 @@
 			$location, $http, AggrigatorData, $injector) {
 		var vm = this;
 		vm.dbprofile = {};
-		vm.options = [ "1", "2", "3" ];
 		var dirty = false;
 		var result = [];
 			
-			
 		AggrigatorData.get('findInactiveAggrigator ').then(function (results) {
-			console.log(results);
-			vm.dbprofile.aggregatorsList=results;
-       
+			vm.aggregatorsList=results;
     });
-		vm.active = function(user) {
+		vm.activate = function(user) {
             console.log(user);
             $scope.alert = true;
-            AggrigatorData.post('doLogin', user).then(function(results) {
-                if (results.status == "SUCCESS") {
-                    
+            AggrigatorData.post('updateAggrigator', user).then(function(results) {
+                if (results == "SUCCESS") {
+                    alert("USER is now activated and email has been sent.")
                     $location.path('dashboard');
                 } else if (results.status == "USER DO NOT EXISTS") {
                     vm.alert=false;

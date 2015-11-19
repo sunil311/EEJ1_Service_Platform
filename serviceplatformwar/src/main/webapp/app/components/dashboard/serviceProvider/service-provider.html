@@ -9,10 +9,10 @@
 											for="aggrigatorId"> Select Aggrigator</label>
 										<div>
 											<span class="block input-icon input-icon-right"> <select
-												class="form-control" placeholder="Select one" name="aggrigatorId"
-												ng-model="activateAggrigatorController.dbprofile.aggrigatorId"
+												class="form-control" placeholder="Select one" name="email"
+												ng-model="activateAggrigatorController.dbprofile.email"
 												validator="required" focus>
-													<option ng:repeat="test in activateAggrigatorController.dbprofile.aggrigatorList" value="{{test}}">{{test}}</option>
+													<option ng-repeat="test in activateAggrigatorController.aggregatorsList" value="{{test.email}}">{{test.email}}</option>
 											</select>
 											</span>
 										</div>
@@ -50,12 +50,12 @@
 									
 									<div class="form-group">
 										<label class="control-label no-padding-right"
-											for="dbURL"> DataBase URL</label>
+											for="dbURL"> DataBase Host Name</label>
 										<div>
 											<span class="block input-icon input-icon-right"> <input
 												type="text" class="form-control"
-												placeholder="Please enter URL where DB is hosted" name="dbURL"
-												ng-model="activateAggrigatorController.dbprofile.dbURL"
+												placeholder="Please enter URL where DB is hosted" name="hostName"
+												ng-model="activateAggrigatorController.dbprofile.hostName"
 												validator="required" focus />
 
 											</span>
@@ -68,8 +68,8 @@
 										<div >
 											<span class="block input-icon input-icon-right"> <input
 												type="text" class="form-control"
-												placeholder="Please enter Database Port Number" name="dbPortNumber"
-												ng-model="activateAggrigatorController.dbprofile.dbPortNumber"
+												placeholder="Please enter Database Port Number" name="portNumber"
+												ng-model="activateAggrigatorController.dbprofile.portNumber"
 												validator="number" focus  />
 
 											</span>
@@ -82,8 +82,8 @@
 										<div>
 											<span class="block input-icon input-icon-right"> <input
 												type="text" class="form-control"
-												placeholder="Please enter Database User Name" name="dbUserName"
-												ng-model="activateAggrigatorController.dbprofile.dbUserName"
+												placeholder="Please enter Database User Name" name="userName"
+												ng-model="activateAggrigatorController.dbprofile.userName"
 												validator="required" focus />
 
 											</span>
@@ -96,8 +96,8 @@
 										<div >
 											<span class="block input-icon input-icon-right"> <input
 												type="text" class="form-control"
-												placeholder="Please enter Database Password" name="dbPassword"
-												ng-model="activateAggrigatorController.dbprofile.dbPassword"
+												placeholder="Please enter Database Password" name="password"
+												ng-model="activateAggrigatorController.dbprofile.password"
 												validator="required" focus />
 
 											</span>
