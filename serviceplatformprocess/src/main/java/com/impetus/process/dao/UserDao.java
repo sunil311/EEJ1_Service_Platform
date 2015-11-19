@@ -68,6 +68,16 @@ public class UserDao
     SecUser secUser = (SecUser) query.uniqueResult();
     return secUser;
   }
+  
+  public SecUser findUserByEmailId(String email)
+  {
+    Session session = sessionFactory.getCurrentSession();
+    session.beginTransaction();
+    Query query = session.createQuery("from SecUser where email =:email");
+    query.setParameter("email", email);
+    SecUser secUser = (SecUser) query.uniqueResult();
+    return secUser;
+  }
 
   public UserRole getRoleById(int id)
   {

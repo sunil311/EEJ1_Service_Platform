@@ -8,6 +8,7 @@ public class DbProfileData
   private String portNumber;
   private String userName;
   private String password;
+  private String email;
 
   public String getDbName()
   {
@@ -67,6 +68,16 @@ public class DbProfileData
   public void setUserId(int userId)
   {
     this.userId = userId;
+  }
+
+  public String getEmail()
+  {
+    return email;
+  }
+
+  public void setEmail(String email)
+  {
+    this.email = email;
   }
 
 }

@@ -30,7 +30,7 @@ public class LoginProcess
   public String loginUser(LoginData loginData) throws SQLException
   {
 
-    String result = env.getProperty("result.success");
+    String result = env.getProperty("process.result.success");
     logger.info("Cheking user........");
     SecUser user = userDao.findUser(loginData.getEmail(), loginData.getPassword());
     boolean hasAdminRole = false;
@@ -53,7 +53,7 @@ public class LoginProcess
     else
     {
       logger.info("Login user........USER DO NOT EXISTS");
-      result = env.getProperty("login.user.not.exist");
+      result = env.getProperty("process.login.user.not.exist");
     }
     return result;
   }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.impetus.process.SysadminProcess;
 import com.impetus.process.dto.DbProfileData;
-import com.impetus.process.entities.SecUser;
+import com.impetus.process.dto.UserData;
 
 @Controller
 public class SysadminController
@@ -23,9 +23,10 @@ public class SysadminController
   private SysadminProcess sysadminProcess;
 
   @RequestMapping(value = "/admin/findInactiveAggrigator", method = RequestMethod.GET)
-  public List<SecUser> preService()
+  @ResponseBody
+  public List<UserData> preService()
   {
-    List<SecUser> result = sysadminProcess.getAllInactiveUsers();
+    List<UserData> result = sysadminProcess.getAllInactiveUsers();
     return result;
   }
 

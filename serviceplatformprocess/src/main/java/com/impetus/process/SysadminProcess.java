@@ -1,6 +1,7 @@
 package com.impetus.process;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -25,6 +26,7 @@ import org.springframework.core.env.Environment;
 
 import com.impetus.process.dao.UserDao;
 import com.impetus.process.dto.DbProfileData;
+import com.impetus.process.dto.UserData;
 import com.impetus.process.entities.SecUser;
 
 @Configuration
@@ -38,15 +40,50 @@ public class SysadminProcess
   private UserDao userDao;
   Logger logger = LoggerFactory.getLogger(getClass());
 
-  public List<SecUser> getAllInactiveUsers()
+  public List<UserData> getAllInactiveUsers()
   {
-    return userDao.getAllInactiveUsers();
+    List<SecUser> secUsers = userDao.getAllInactiveUsers();
+    List<UserData> userData = new ArrayList<>();
+    if (!secUsers.isEmpty())
+    {
+      for (SecUser secUser : secUsers)
+      {
+        userData.add(transformSecToUserData(secUser));
+      }
+    }
+    return userData;
+  }
+
+  public UserData transformSecToUserData(SecUser secUser)
+  {
+    UserData userData = new UserData();
+    userData.setAccountNumber(secUser.getAccountNumber());
+    userData.setBankAccountHolder(secUser.getBankAccountHolder());
+    userData.setBankName(secUser.getBankName());
+    userData.setBranchAddress(secUser.getBranchAddress());
+    userData.setBranchAddress(secUser.getBranchAddress());
+    userData.setCompanyName(secUser.getCompanyName());
+    userData.setDisplayName(secUser.getDisplayName());
+    userData.setDomainName(secUser.getDomainName());
+    userData.setEmail(secUser.getEmail());
+    userData.setFacebookURL(secUser.getFacebookURL());
+    userData.setFirstName(secUser.getFirstName());
+    userData.setHouseNo(secUser.getHouseNo());
+    userData.setIfscCode(secUser.getIfscCode());
+    userData.setLastName(secUser.getLastName());
+    userData.setLocality(secUser.getLocality());
+    userData.setMobile(secUser.getMobile());
+    userData.setPostCode(secUser.getPostCode());
+    userData.setState(secUser.getState());
+    userData.setTwitterURL(secUser.getTwitterURL());
+    return userData;
+
   }
 
   public String updateAggrigator(DbProfileData dbProfileData)
   {
     String status = null;
-    SecUser secUser = userDao.findUserByUserId(dbProfileData.getUserId());
+    SecUser secUser = userDao.findUserByEmailId(dbProfileData.getEmail());
     status = createDataBase(secUser);
 
     secUser.setActivated(true);
@@ -66,12 +103,12 @@ public class SysadminProcess
   public void sendEmail(SecUser secUser)
   {
     String to = secUser.getEmail();
-    String from = "serviceplatform@gmail.com";
-    String host = "localhost";// or IP address
+    String from = env.getProperty("process.email.from");
+    String host = env.getProperty("process.email.host");// or IP address
 
     // Get the session object
     Properties properties = System.getProperties();
-    properties.setProperty("mail.smtp.host", host);
+    properties.setProperty(env.getProperty("process.email.smtp"), host);
     Session session = Session.getDefaultInstance(properties);
 
     // compose the message
@@ -80,10 +117,10 @@ public class SysadminProcess
       MimeMessage message = new MimeMessage(session);
       message.setFrom(new InternetAddress(from));
       message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-      message.setSubject(env.getProperty("email.subject"));
+      message.setSubject(env.getProperty("process.email.subject"));
 
-      String htmlBody = env.getProperty("email.hello") + secUser.getLastName()
-        + env.getProperty("emial.content");
+      String htmlBody = env.getProperty("process.email.hello") + secUser.getLastName()
+        + env.getProperty("process.emial.content");
       Multipart mp = new MimeMultipart();
 
       MimeBodyPart htmlPart = new MimeBodyPart();
@@ -92,8 +129,9 @@ public class SysadminProcess
 
       MimeBodyPart attachment = new MimeBodyPart();
 
-      String fileName = env.getProperty("email.attachment.name");
-      DataSource source = new FileDataSource(new File(env.getProperty("email.zip.location")));
+      String fileName = env.getProperty("process.email.attachment.name");
+      DataSource source = new FileDataSource(
+        new File(env.getProperty("process.email.zip.location")));
       attachment.setDataHandler(new DataHandler(source));
       attachment.setFileName(fileName);
       mp.addBodyPart(attachment);
