@@ -53,6 +53,7 @@ public class RegisterProcess {
 		secUser.setTwitterURL(userData.getTwitterURL());
 		secUser.setDomainName(userData.getDomainName());
 		secUser.setTenantId(generateTenantId());
+		secUser.setActivated(false);
 		
 		if(StringIsEmpty(secUser.getFirstName())){
 			return "First Name is mandatory";
