@@ -15,8 +15,8 @@
             Data.post('signUp', user).then(function(results) {
                 if (results.status == "success" || results.status == "SUCCESS") {
                     Data.toast(results);
-                    alert("Thanks for registring. Your signup is completed however you will be able to login in to your porstal once our representative will verify the details.");
-                    $location.path('signup');
+                    //alert("Thanks for registring. Your signup is completed however you will be able to login in to your porstal once our representative will verify the details.");
+                    $location.path('confirmation');
                 } else if (results.status == "EMAIL ALREADY IN USE") {
                     alert("Email is already in use, try Login button.");
                 } else {

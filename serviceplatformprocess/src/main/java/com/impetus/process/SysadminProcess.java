@@ -1,6 +1,7 @@
 package com.impetus.process;
 
 import java.io.File;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -23,9 +24,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.RestTemplate;
 
 import com.impetus.process.dao.UserDao;
+import com.impetus.process.dto.DBResponse;
 import com.impetus.process.dto.DbProfileData;
+import com.impetus.process.dto.InputData;
 import com.impetus.process.dto.UserData;
 import com.impetus.process.entities.SecUser;
 
@@ -33,6 +38,9 @@ import com.impetus.process.entities.SecUser;
 @PropertySource("classpath:com/impetus/process/package.properties")
 public class SysadminProcess
 {
+  public static final String SUCCESS ="SUCCESS";
+  public static final String INPUT ="INPUT";
+  public static final String DATABASE_SUCCESS="Database created successfully";
   @Autowired
   Environment env;
 
@@ -82,25 +90,41 @@ public class SysadminProcess
 
   public String updateAggrigator(DbProfileData dbProfileData)
   {
-    String status = null;
     SecUser secUser = userDao.findUserByEmailId(dbProfileData.getEmail());
-    status = createDataBase(secUser);
-
-    secUser.setActivated(true);
-    userDao.save(secUser);
-    return status;
-
-  }
-
-  public String createDataBase(SecUser secUser)
-  {
+    String dbResponse = createDataBase(dbProfileData);
     // TODO include zip functionality here
-    // TODO write code to trigger script to create database at runtime here
-    sendEmail(secUser);
-    return "SUCCESS";
+    if(DATABASE_SUCCESS.equalsIgnoreCase(dbResponse))
+    {
+      if (sendEmail(secUser))
+      {
+        secUser.setActivated(true);
+        userDao.save(secUser);
+      }
+      
+    }
+    return dbResponse;
   }
 
-  public void sendEmail(SecUser secUser)
+  public String createDataBase(DbProfileData dbProfileData)
+  {
+    RestTemplate rt = new RestTemplate();
+    rt.getMessageConverters().add(new StringHttpMessageConverter());
+    String uri = new String(env.getProperty("process.create.db.uri"));
+
+    InputData input = new InputData();
+    input.setDbURL(env.getProperty("process.db.sqlserver.url") + dbProfileData.getHostName()
+      +":"+ dbProfileData.getPortNumber());
+    input.setDbName(dbProfileData.getDbName());
+    input.setDbUserName(dbProfileData.getUserName());
+    input.setDbPassword(dbProfileData.getPassword());
+
+    DBResponse response = rt.postForObject(uri, input, DBResponse.class);
+
+    return response.getResult();
+
+  }
+
+  public boolean sendEmail(SecUser secUser)
   {
     String to = secUser.getEmail();
     String from = env.getProperty("process.email.from");
@@ -146,6 +170,7 @@ public class SysadminProcess
     {
       logger.debug(e.getMessage());
     }
+    return true;
   }
 
 }

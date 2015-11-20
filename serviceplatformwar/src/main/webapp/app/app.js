@@ -112,7 +112,11 @@ app.config(['$routeProvider','$stateProvider', '$urlRouterProvider','$validation
                     	templateUrl: 'app/components/signup/signup.html',
                         controller: 'signUpController'	
                 })
-              
+                 .state('main.confirmation', {
+                    url: '/confirmation',
+                    	templateUrl: 'app/components/dashboard/submission-confirmation.html',
+                        controller: ''	
+                })
                 .state('main.home', {
                     url: '/home',
                     templateUrl: 'app/components/homepage/home-template.html',

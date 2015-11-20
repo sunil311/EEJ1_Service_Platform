@@ -18,12 +18,11 @@
             console.log(user);
             $scope.alert = true;
             AggrigatorData.post('updateAggrigator', user).then(function(results) {
-                if (results == "SUCCESS") {
-                    alert("USER is now activated and email has been sent.")
+                if (results == "Database created successfully") {
+                    alert(results+". USER is now activated and email has been sent.")
                     $location.path('dashboard');
-                } else if (results.status == "USER DO NOT EXISTS") {
-                    vm.alert=false;
                 } else {
+                	alert(results+" Please try again.")
                     vm.alert=false;
                 }
             });

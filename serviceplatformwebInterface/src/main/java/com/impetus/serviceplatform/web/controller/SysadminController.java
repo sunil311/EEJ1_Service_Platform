@@ -35,8 +35,7 @@ public class SysadminController
   String postService(@RequestBody
   DbProfileData dbProfileData)
   {
-    String result = "SUCCESS";
-    sysadminProcess.updateAggrigator(dbProfileData);
+    String result = sysadminProcess.updateAggrigator(dbProfileData);
     return result;
   }
 
