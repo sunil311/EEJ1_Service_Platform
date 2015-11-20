@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice("com.impetus")
 public class GlobalExceptionHandler {
 
-	private Logger logger = LoggerFactory.getLogger(getClass());
+	private static Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
 	@Autowired
 	SessionFactory sessionFactory;

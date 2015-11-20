@@ -60,7 +60,7 @@ public class TransactionDetailReportController {
 			jsonCartList = getJsonFromList(list);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("error message : "+e.getMessage());
 			throw new ServicePlatformDBException("SQL exception occured: "
 					+ e.getMessage());
 		}
