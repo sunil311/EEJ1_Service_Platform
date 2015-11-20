@@ -36,7 +36,7 @@ public class SpringUserDetailsProcess implements UserDetailsService {
 				user = new User(username, secUser.getPassword(), true, true,
 						true, true, authorities);
 			} catch (Exception e) {
-				e.printStackTrace();
+				System.out.println("error message : "+e.getMessage());
 			}
 		}
 		return user;
