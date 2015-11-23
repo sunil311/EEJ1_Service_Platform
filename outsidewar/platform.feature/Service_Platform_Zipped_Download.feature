@@ -27,4 +27,4 @@ Feature: Service Aggregator Template Download feature
   Scenario: Validate all the functionality should work on server
     Given I am on local machine
     When I uploaded all files,directory structure on server
-    Then I verify all the functionality available should work on serve
+    Then I verify all the functionality available should work on server
