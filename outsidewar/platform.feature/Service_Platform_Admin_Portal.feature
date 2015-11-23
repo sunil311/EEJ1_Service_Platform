@@ -1,6 +1,6 @@
 Feature: Admin Portal features
   As a sysadmin User
-  I want to have an admin portal in which drop down list of deactivate service aggregator should be present
+  I want to have a dashboard pn admin portal in which drop down list of deactivate service aggregator should be present
   So that I can activate service aggregator from drop down list and email should be sent to an activated service aggregator
 
   Background:
