@@ -7,13 +7,13 @@ Feature: Service Aggregator Template Download feature
 #This feature file includes options of downloading the service aggergator template
  
   Scenario: Validate Zipped Download Template Functionality
-    Given Sysadmnin activated service aggregator
+    Given Sysadmnin activated service aggregator from admin dashboard
     And Service aggregator view inbox by using email Id provided by him during registartion
     When I downlaod the template
     Then I verify zipped template is downloaded on my system
 
   Scenario: Verify File format of zipped template(.zip)
-    Given Sysadmnin activated service aggregator
+    Given Sysadmnin activated service aggregator from admin dashboard
     And Service aggregator view inbox by using email Id provided by him during registartion
     When I downlaod the template
     Then I verify file format of downlaoded zip file should be ".zip"
