@@ -36,10 +36,17 @@ Feature: Admin Portal features
     Then I verify correct remembered DatabaseUserName,DatabasePassword,DatabaseURL is listed on the database table
     And I verify service aggregator status to be active in data base table
     
-  Scenario: Email verification for activation of service aggregator and 
-    Given Sysadmnin activated service aggregator
-    When Service aggregator view inbox by using email Id provided by him during registartion
-    Then Service aggregator view an e-mail in which zipped download template is available
+  Scenario: Email verification for activation of service aggregator
+   Given Sysadmnin activated service aggregator from admin dashboard
+    When Service aggregator view an email which will be sent by sysadmin
+    Then Service aggregator verified an e-mail in which zipped download template is available in an attachment
+  
+  Scenario: Zipped Template Download via Email 
+   Given Sysadmnin activated service aggregator from admin dashboard
+    And Service aggregator view an email which will be sent by sysadmin
+    When Service aggregator download the attachment from email
+    Then Zipped Template should be downloaded on respective directory
+  
     
      
 
