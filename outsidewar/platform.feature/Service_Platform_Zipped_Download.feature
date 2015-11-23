@@ -9,13 +9,13 @@ Feature: Service Aggregator Template Download feature
   Scenario: Validate Zipped Download Template Functionality
     Given Sysadmnin activated service aggregator from admin dashboard
     And Service aggregator view inbox by using email Id provided by him during registartion
-    When I downlaod the template
+    When I downlaod the template from attached zip folder
     Then I verify zipped template is downloaded on my system
 
   Scenario: Verify File format of zipped template(.zip)
     Given Sysadmnin activated service aggregator from admin dashboard
     And Service aggregator view inbox by using email Id provided by him during registartion
-    When I downlaod the template
+    When I downlaod the template from attached zip folder
     Then I verify file format of downlaoded zip file should be ".zip"
 
   Scenario: Validate Unzip Functionality
@@ -28,4 +28,3 @@ Feature: Service Aggregator Template Download feature
     Given I am on local machine
     When I uploaded all files,directory structure on server
     Then I verify all the functionality available should work on serve
-     
