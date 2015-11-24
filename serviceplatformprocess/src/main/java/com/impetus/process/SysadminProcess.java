@@ -47,7 +47,7 @@ public class SysadminProcess
 
   @Autowired
   private UserDao userDao;
-  Logger logger = LoggerFactory.getLogger(getClass());
+  private static final Logger logger = LoggerFactory.getLogger(SysadminProcess.class);
 
   public List<UserData> getAllInactiveUsers()
   {
