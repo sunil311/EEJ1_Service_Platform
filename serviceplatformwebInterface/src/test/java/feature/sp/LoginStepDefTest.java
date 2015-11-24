@@ -1,4 +1,6 @@
-package com.impetus.BDD.step;
+package feature.sp;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.impetus.process.dto.LoginData;
 import com.impetus.serviceplatform.web.controller.LoginController;
@@ -11,6 +13,7 @@ import cucumber.api.java.en.When;
 public class LoginStepDefTest {
 	
 	LoginData loginData;
+	@Autowired
 	LoginController loginController;
 	
 	

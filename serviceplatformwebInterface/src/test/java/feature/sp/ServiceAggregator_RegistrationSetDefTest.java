@@ -1,4 +1,4 @@
-package com.impetus.BDD.step;
+package feature.sp;
 
 import java.util.Random;
 
