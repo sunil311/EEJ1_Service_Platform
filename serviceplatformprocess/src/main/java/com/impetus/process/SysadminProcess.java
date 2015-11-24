@@ -52,7 +52,7 @@ public class SysadminProcess
   public List<UserData> getAllInactiveUsers()
   {
     List<SecUser> secUsers = userDao.getAllInactiveUsers();
-    List<UserData> userData = new ArrayList<>();
+    List<UserData> userData = new ArrayList<UserData>();
     if (!secUsers.isEmpty())
     {
       for (SecUser secUser : secUsers)
