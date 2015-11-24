@@ -16,7 +16,7 @@ import com.impetus.process.entities.UserRole;
 import com.impetus.process.enums.Role;
 
 @Configuration
-@PropertySource("classpath:com/impetus/process/package.properties")
+@PropertySource("classpath:package.properties")
 public class LoginProcess
 {
   @Autowired

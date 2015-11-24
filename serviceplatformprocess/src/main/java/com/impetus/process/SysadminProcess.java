@@ -36,7 +36,7 @@ import com.impetus.process.enums.Template;
 import com.impetus.process.utils.ZipDirectory;
 
 @Configuration
-@PropertySource({"classpath:com/impetus/process/package.properties","classpath:config.properties"})
+@PropertySource({"classpath:package.properties","classpath:config.properties"})
 public class SysadminProcess
 {
   public static final String SUCCESS ="SUCCESS";
