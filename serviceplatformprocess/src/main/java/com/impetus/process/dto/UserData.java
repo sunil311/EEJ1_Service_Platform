@@ -22,6 +22,7 @@ public class UserData {
 	private String facebookURL;
 	private String twitterURL;
 	private String domainName;
+	private int template;
 
 	public String getEmail() {
 		return email;
@@ -211,5 +212,15 @@ public class UserData {
   public void setDomainName(String domainName)
   {
     this.domainName = domainName;
+  }
+
+  public int getTemplate()
+  {
+    return template;
+  }
+
+  public void setTemplate(int template)
+  {
+    this.template = template;
   }
 }

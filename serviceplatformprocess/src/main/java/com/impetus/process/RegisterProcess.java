@@ -54,6 +54,7 @@ public class RegisterProcess {
 		secUser.setDomainName(userData.getDomainName());
 		secUser.setTenantId(generateTenantId());
 		secUser.setActivated(false);
+		secUser.setTemplate(userData.getTemplate());
 		
 		if(StringIsEmpty(secUser.getFirstName())){
 			return "First Name is mandatory";

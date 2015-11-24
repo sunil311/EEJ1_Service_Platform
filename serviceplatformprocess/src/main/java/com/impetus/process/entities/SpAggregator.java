@@ -35,6 +35,7 @@ public class SpAggregator implements java.io.Serializable {
 	private String phoneNumExt;
 	private String webSiteAddress;
 	private String logo;
+	private String template;
 	private int addressId;
 
 	public SpAggregator() {
@@ -46,7 +47,7 @@ public class SpAggregator implements java.io.Serializable {
 
 	public SpAggregator(String businessPhoneNum, String businessPhoneNumExt,
 			String businessEmailAddress, String phoneNum, String phoneNumExt,
-			String webSiteAddress, String logo, int addressId) {
+			String webSiteAddress, String logo, int addressId, String template) {
 		this.businessPhoneNum = businessPhoneNum;
 		this.businessPhoneNumExt = businessPhoneNumExt;
 		this.businessEmailAddress = businessEmailAddress;
@@ -55,6 +56,7 @@ public class SpAggregator implements java.io.Serializable {
 		this.webSiteAddress = webSiteAddress;
 		this.logo = logo;
 		this.addressId = addressId;
+		this.template = template;
 	}
 
 	public Integer getAggregatorId() {
@@ -136,5 +138,16 @@ public class SpAggregator implements java.io.Serializable {
 	public void setAddressId(int addressId) {
 		this.addressId = addressId;
 	}
+	
+	@Column(name = "template")
+  public String getTemplate()
+  {
+    return template;
+  }
+
+  public void setTemplate(String template)
+  {
+    this.template = template;
+  }
 
 }

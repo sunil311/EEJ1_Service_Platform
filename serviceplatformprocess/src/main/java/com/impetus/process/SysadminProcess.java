@@ -1,7 +1,6 @@
 package com.impetus.process;
 
 import java.io.File;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -33,9 +32,11 @@ import com.impetus.process.dto.DbProfileData;
 import com.impetus.process.dto.InputData;
 import com.impetus.process.dto.UserData;
 import com.impetus.process.entities.SecUser;
+import com.impetus.process.enums.Template;
+import com.impetus.process.utils.ZipDirectory;
 
 @Configuration
-@PropertySource("classpath:com/impetus/process/package.properties")
+@PropertySource({"classpath:com/impetus/process/package.properties","classpath:config.properties"})
 public class SysadminProcess
 {
   public static final String SUCCESS ="SUCCESS";
@@ -154,8 +155,18 @@ public class SysadminProcess
       MimeBodyPart attachment = new MimeBodyPart();
 
       String fileName = env.getProperty("process.email.attachment.name");
-      DataSource source = new FileDataSource(
-        new File(env.getProperty("process.email.zip.location")));
+
+      // TODO get template which was select at sign up
+      String tenanteTeamplate = Template.getEnum(secUser.getTemplate()).getName();
+      String filestore = env.getProperty("sp.filestore.path");
+      String tempFolder = env.getProperty("sp.temp.path");
+      String teamplate_loc = env.getProperty("process.email.zip.location") + tenanteTeamplate;
+
+      String source_folder = filestore + teamplate_loc;
+      String downloadLink = tempFolder + teamplate_loc + ".zip";
+      ZipDirectory.zipDir(source_folder, downloadLink);
+
+      DataSource source = new FileDataSource(new File(downloadLink));
       attachment.setDataHandler(new DataHandler(source));
       attachment.setFileName(fileName);
       mp.addBodyPart(attachment);
@@ -171,6 +182,12 @@ public class SysadminProcess
       logger.debug(e.getMessage());
     }
     return true;
+  }
+  
+  private String getTemplateLocation(String tenantId) {
+    // TODO: use tenantId to find correct template location
+    String teamplate_loc = "client_templates\\";
+    return teamplate_loc;
   }
 
 }

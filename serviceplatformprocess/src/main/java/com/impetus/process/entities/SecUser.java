@@ -89,6 +89,10 @@ public class SecUser implements java.io.Serializable {
 
 	@Column(name = "activated")
 	private Boolean activated;
+	
+
+  @Column(name = "template")
+  private int template;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<UserRole> roles;
@@ -325,5 +329,15 @@ public class SecUser implements java.io.Serializable {
 	public void setActivated(Boolean activated) {
 		this.activated = activated;
 	}
+
+  public int getTemplate()
+  {
+    return template;
+  }
+
+  public void setTemplate(int template)
+  {
+    this.template = template;
+  }
 
 }

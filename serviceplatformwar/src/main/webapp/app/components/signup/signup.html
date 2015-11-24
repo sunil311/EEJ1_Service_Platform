@@ -87,6 +87,21 @@
 
 									<div class="form-group">
 										<label class="col-sm-12 control-label no-padding-right"
+											for="template">Select Business Type</label>
+										<div class="col-sm-12">
+											<span class="block input-icon input-icon-right"> <select
+												class="form-control" placeholder="Select one" name="template"
+												ng-model="signUpController.signup.template"
+												validator="required" focus>
+													<option value="1">Food</option>
+													<option value="2">Transport</option>
+											</select>
+											</span>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-sm-12 control-label no-padding-right"
 											for="mobile">Mobile Number</label>
 										<div class="col-sm-12">
 											<span class="block input-icon input-icon-right"> <input
