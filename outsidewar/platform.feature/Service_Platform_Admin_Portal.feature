@@ -7,45 +7,46 @@ Feature: Admin Portal features
     Given I am logged on as syadmin with user name:"sysadmin@sp.com",password:"admin"
     And I am on dashboard of Admin Portal
 
-  Scenario: Validate correct data is listed in Deactivate Drop Down list
-    When I view Deactivate Aggregator Drop Down list
-    Then I verify correct data should be listed in Deactivate Drop Down list
+  Scenario: Validate correct data is listed in Deactivate Aggregator list
+    When I want to view Deactivate Aggregator list
+    Then I verify correct data should be listed in Deactivate Aggregator list
 
-  Scenario: Validate correct data is listed in pop up when we select any deactivate service aggregator
-    When I view one deactivated service aggregator from Deactivate Aggregator Drop Down list
-    Then I verify following data should be listed in pop up:DatabaseName,DatabaseUserName,DatabasePassword,DatabaseURL
+  Scenario: Validate correct data is viewed when we select any deactivate service aggregator from list
+    When I view one deactivated service aggregator from Deactivate Aggregator list
+    Then I should see following elements:DatabaseName,DatabaseUserName,DatabasePassword,DatabaseURL
 
   Scenario: Verification of  Deactivate Service Aggregator
-    Given I view one deactivated service aggregator from Deactivate Aggregator Drop Down list
-    And I verify correct DatabaseName,DatabaseUserName,DatabasePassword,DatabaseURL is listed on pop up
-    When I press the submit button
-    Then I verify from the drop down list remembered service aggregator is not available in the list
+    Given I view one deactivated service aggregator from Deactivate Aggregator list
+    And I verify correct DatabaseName,DatabaseUserName,DatabasePassword,DatabaseURL are listed
+    When I activate remembered deactivated service aggregator from Deactivate Aggregator list
+    Then I should not see activated service aggregator is listed in the list
    
   Scenario: Webservice Verification
-    Given I view one deactivated service aggregator from Deactivate Aggregator Drop Down list
-    And I verify correct DatabaseName,DatabaseUserName,DatabasePassword,DatabaseURL is listed on pop up
-    And I press the submit button
-    When I view database by DatabaseName 
-    Then I verify correct remembered DatabaseUserName,DatabasePassword,DatabaseURL is listed on the database table
+    Given I view one deactivated service aggregator from Deactivate Aggregator list
+    And I verify correct DatabaseName,DatabaseUserName,DatabasePassword,DatabaseURL are listed
+    And I activate remembered deactivated service aggregator from Deactivate Aggregator list
+    When I see view database by DatabaseName 
+    Then I verify correct remembered DatabaseUserName,DatabasePassword,DatabaseURL is listed on the database
    
-  Scenario:Activate Service Aggregator from Webservices
-    Given I view one deactivated service aggregator from Deactivate Aggregator Drop Down list
-    And I verify correct DatabaseName,DatabaseUserName,DatabasePassword,DatabaseURL is listed on pop up
-    And I press the submit button
-    When I view database by DatabaseName 
-    Then I verify correct remembered DatabaseUserName,DatabasePassword,DatabaseURL is listed on the database table
-    And I verify service aggregator status to be active in data base table
+  Scenario:Activate Service Aggregator status on database
+    Given I view one deactivated service aggregator from Deactivate Aggregator list
+    And I verify correct DatabaseName,DatabaseUserName,DatabasePassword,DatabaseURL are listed
+    And I activate remembered deactivated service aggregator from Deactivate Aggregator list
+    When I see view database by DatabaseName
+    Then I verify correct remembered DatabaseUserName,DatabasePassword,DatabaseURL is listed on the database
+    And I verify service aggregator status to be active
     
   Scenario: Email verification for activation of service aggregator
    Given Sysadmnin activated service aggregator from admin dashboard
-    When Service aggregator view an email which will be sent by sysadmin
-    Then Service aggregator verified an e-mail in which zipped download template is available in an attachment
+    When Activated Service aggregator view an email which will be sent by sysadmin
+    Then Service aggregator view an e-mail in which zipped download template is available as an attachment
   
   Scenario: Zipped Template Download via Email 
    Given Sysadmnin activated service aggregator from admin dashboard
-    And Service aggregator view an email which will be sent by sysadmin
+    And Activated Service aggregator view an email which will be sent by sysadmin
     When Service aggregator download the attachment from email
     Then Zipped Template should be downloaded on respective directory
+  
   
     
      
