@@ -22,12 +22,12 @@ Feature:
 
   Scenario:Forgot Password link should be present on the form
     When I view forgot password link
-    Then I should be on reset-password page
+    Then I should be on reset-password form
 
-  Scenario:Forgot Password Re-set functionality
-    Given I am on Pasword Re-set form
+  Scenario:Forgot Password Reset functionality
+    Given I am on Reset-Password form
     And I enter valid username or email-id
-    When I submit the password re-set form
+    When I submit the Reset password form
     Then Proper message should be displayed
 
   Scenario: Successful logout from the site
