@@ -11,17 +11,17 @@ and service aggregator profile management
 
    Scenario Outline: Dashboard content display for an admin user
 	   When I am on the dashboard 
-	   Then Dashboard should be displayed with a side menubar with below menu "MenuItem"
+	   Then Dashboard should be displayed with a side menubar with below menu <MenuItem>
 	   
 	   Example:
 	   | MenuItem                                 |       
 	   | Service Aggregators List	              |
-	   | Revenue Details						  |
-	   | Profile Management						  |
-	   | Money Analyser							  |
-	   | Payment Reports						  |
-	   | Activate/Deactivate service aggregator	  |
-	   | Accounting system						  |
+	   | Revenue Details		              |
+	   | Profile Management		              |
+	   | Money Analyser			      |
+	   | Payment Reports			      |
+	   | Activate/Deactivate service aggregator   |
+	   | Accounting system			      |
 	
 Scenario Outline: Verifaction of Pages when we click on Menu Item	
 	   When I am on the dashboard
@@ -29,12 +29,12 @@ Scenario Outline: Verifaction of Pages when we click on Menu Item
 	   Then <Page> should be displayed
 
      Example:
-	|		MenuItem		    |			Page					|
+	|		MenuItem        |			Page		|
 	|	Service Aggregator List |	Service Aggregator List Page	|
-	|	Revenue Details			|	Revenue  Details Page			|
-	|	Profile Management		|	Profile Management Page			|
-	|	Money Analyser			|	Money Analyser Page				|
-	|	Payment Reports			|	Payment Reports Page			|
-	|	Activate/Deactivate SA	| 	Activate/Deactivate SA Page	    |
-	|	Accounting System		|	Accounting System Page			|
+	|	Revenue Details	        |	Revenue  Details Page		|
+	|	Profile Management	|	Profile Management Page		|
+	|	Money Analyser		|	Money Analyser Page		|
+	|	Payment Reports		|	Payment Reports Page		|
+	|	Activate/Deactivate SA	| 	Activate/Deactivate SA Page	|
+	|	Accounting System	|	Accounting System Page		|
 	
