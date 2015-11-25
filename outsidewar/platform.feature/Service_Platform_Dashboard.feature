@@ -13,7 +13,7 @@ and service aggregator profile management
 	   When I am on the dashboard 
 	   Then Dashboard should be displayed with a side menubar with below menu <MenuItem>
 	   
-	   Example:
+	   Examples:
 	   | MenuItem                                 |       
 	   | Service Aggregators List	              |
 	   | Revenue Details		              |
@@ -28,7 +28,7 @@ Scenario Outline: Verifaction of Pages when we click on Menu Item
 	   And User selected <MenuItem> from the side menubar
 	   Then <Page> should be displayed
 
-        Example:
+   Examples:
 	|		MenuItem        |			Page		|
 	|	Service Aggregator List |	Service Aggregator List Page	|
 	|	Revenue Details	        |	Revenue  Details Page		|
@@ -38,3 +38,4 @@ Scenario Outline: Verifaction of Pages when we click on Menu Item
 	|	Activate/Deactivate SA	| 	Activate/Deactivate SA Page	|
 	|	Accounting System	|	Accounting System Page		|
 	
+
