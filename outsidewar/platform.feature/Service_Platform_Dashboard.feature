@@ -28,7 +28,7 @@ Scenario Outline: Verifaction of Pages when we click on Menu Item
 	   And User selected <MenuItem> from the side menubar
 	   Then <Page> should be displayed
 
-     Example:
+        Example:
 	|		MenuItem        |			Page		|
 	|	Service Aggregator List |	Service Aggregator List Page	|
 	|	Revenue Details	        |	Revenue  Details Page		|
