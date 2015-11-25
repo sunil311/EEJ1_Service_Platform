@@ -10,7 +10,7 @@ and service aggregator profile management
     Given I am logged in as Admin User
 
    Scenario: Dasboard content display for an admin user
-	   When Given I click on the dashboard button link
+	   When I click on the dashboard button link
 	   Then Dashboard should be displayed with a side menubar with below menu <MenuItem>
 	   
 	   Example:
@@ -24,7 +24,7 @@ and service aggregator profile management
 	   | Accounting system						            |
 	
 Scenario Outline: Verifaction of Pages when we click on Menu Item	
-	   When Given I click on the dashboard button link
+	   When I click on the dashboard button link
 	   And User selected <MenuItem> from the side menubar
 	   Then <Page> should be displayed
 	
