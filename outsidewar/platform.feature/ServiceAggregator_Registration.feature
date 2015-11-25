@@ -28,7 +28,7 @@ Scenario: Mandatory field password verification in registration page
 		 	
 Scenario: Mandatory field email verification in registration page
           Given I filled all the required fields apart form email
-          When I submit the registration form email
+          When I submit the registration
           Then I should see that I am not able to register as service aggregator with appropriate message
 
 Scenario Outline: Check Service Aggregators login credentials
