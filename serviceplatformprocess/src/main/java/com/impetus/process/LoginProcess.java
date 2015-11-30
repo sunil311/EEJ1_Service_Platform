@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Service;
 
 import com.impetus.process.dao.UserDao;
 import com.impetus.process.dto.LoginData;
@@ -17,6 +18,7 @@ import com.impetus.process.enums.Role;
 
 @Configuration
 @PropertySource("classpath:package.properties")
+@Service("loginProcess")
 public class LoginProcess
 {
   @Autowired
@@ -24,12 +26,18 @@ public class LoginProcess
 
   @Autowired
   private UserDao userDao;
+  
+  String status = "";
 
   Logger logger = LoggerFactory.getLogger(getClass());
 
   public String loginUser(LoginData loginData) throws SQLException
   {
 
+	if (!validate(loginData)) {
+			return status;
+	}
+	  
     String result = env.getProperty("process.result.success");
     logger.info("Cheking user........");
     SecUser user = userDao.findUser(loginData.getEmail(), loginData.getPassword());
@@ -62,4 +70,20 @@ public class LoginProcess
   {
     // TODO Auto-generated method stub
   }
+  
+  private boolean validate(LoginData loginData) {
+
+		if (loginData.getEmail() != null
+				&& loginData.getPassword() != null
+				&& !(loginData.getEmail().length() >= 6 && loginData.getEmail()
+						.length() <= 12)
+				&& !(loginData.getPassword().length() >= 6 && loginData
+						.getPassword().length() <= 12)) {
+			status = "Email and Password should be between 6 and 12.";
+
+		}
+
+		return true;
+
+	}
 }
