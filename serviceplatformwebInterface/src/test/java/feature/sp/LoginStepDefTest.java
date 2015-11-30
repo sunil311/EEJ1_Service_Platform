@@ -1,7 +1,9 @@
-package feature.sp;
+package com.impetus.BDD.step;
 
+import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.impetus.process.LoginProcess;
 import com.impetus.process.dto.LoginData;
 import com.impetus.serviceplatform.web.controller.LoginController;
 
@@ -13,8 +15,11 @@ import cucumber.api.java.en.When;
 public class LoginStepDefTest {
 	
 	LoginData loginData;
-	@Autowired
 	LoginController loginController;
+	@Autowired
+	LoginProcess loginProcess;
+	
+	String statusMessage;
 	
 	
 	@Given("^Existing user is on Login Page$")
@@ -32,17 +37,19 @@ public class LoginStepDefTest {
 
 	@Then("^I should be able to access all access rights assigned$")
 	public void i_should_be_able_to_access_all_access_rights_assigned() throws Throwable {
-		loginController.loginUser(loginData);
+		loginProcess.loginUser(loginData);
 	}
 
 	@Given("^I enter username and password less than (\\d+) or more than (\\d+) alphanumeric value$")
 	public void i_enter_username_and_password_less_than_or_more_than_alphanumeric_value(int arg1, int arg2) throws Throwable {
-
+		loginData.setEmail("hari");
+		loginData.setPassword("hari");
 	}
 
 	@Then("^I should see proper message$")
 	public void i_should_see_proper_message() throws Throwable {
-
+		statusMessage = loginProcess.loginUser(loginData);
+		Assert.assertEquals(statusMessage, "Email and Password should be between 6 and 12.");
 	}
 
 	@When("^I enter password$")
