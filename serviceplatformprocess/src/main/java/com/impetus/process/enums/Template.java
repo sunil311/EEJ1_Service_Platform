@@ -1,19 +1,40 @@
 package com.impetus.process.enums;
 
-import java.util.Iterator;
-
+/**
+ * @author amitb.kumar
+ */
 public enum Template
 {
-  FOOD(1, "FOOD"), TRANSPORT(2, "TRANSPORT");
+  /**
+   * 
+   */
+  FOOD(1, "FOOD"), /**
+   * 
+   */
+  TRANSPORT(2, "TRANSPORT");
+  /**
+   * 
+   */
   private int id;
+  /**
+   * 
+   */
   private String name;
 
+  /**
+   * @param id
+   * @param name
+   */
   Template(int id, String name)
   {
     this.id = id;
     this.name = name;
   }
 
+  /**
+   * @param id
+   * @return
+   */
   public static Template getEnum(int id)
   {
     for (Template template : Template.values())
@@ -29,6 +50,9 @@ public enum Template
   /**
    * @return the id
    */
+  /**
+   * @return
+   */
   public int getId()
   {
     return id;
@@ -36,6 +60,9 @@ public enum Template
 
   /**
    * @param id the id to set
+   */
+  /**
+   * @param id
    */
   public void setId(int id)
   {
@@ -45,6 +72,9 @@ public enum Template
   /**
    * @return the name
    */
+  /**
+   * @return
+   */
   public String getName()
   {
     return name;
@@ -52,6 +82,9 @@ public enum Template
 
   /**
    * @param name the name to set
+   */
+  /**
+   * @param name
    */
   public void setName(String name)
   {

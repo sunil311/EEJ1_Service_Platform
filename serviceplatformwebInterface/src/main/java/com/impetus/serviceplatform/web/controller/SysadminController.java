@@ -15,13 +15,25 @@ import com.impetus.process.SysadminProcess;
 import com.impetus.process.dto.DbProfileData;
 import com.impetus.process.dto.UserData;
 
+/**
+ * @author amitb.kumar
+ */
 @Controller
 public class SysadminController
 {
+  /**
+   * 
+   */
   Logger logger = LoggerFactory.getLogger(getClass());
+  /**
+   * 
+   */
   @Autowired
   private SysadminProcess sysadminProcess;
 
+  /**
+   * @return
+   */
   @RequestMapping(value = "/admin/findInactiveAggrigator", method = RequestMethod.GET)
   @ResponseBody
   public List<UserData> preService()
@@ -30,6 +42,10 @@ public class SysadminController
     return result;
   }
 
+  /**
+   * @param dbProfileData
+   * @return
+   */
   @RequestMapping(value = "/admin/updateAggrigator", method = RequestMethod.POST)
   public @ResponseBody
   String postService(@RequestBody

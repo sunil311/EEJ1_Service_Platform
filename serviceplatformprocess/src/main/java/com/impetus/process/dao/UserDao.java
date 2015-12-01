@@ -13,13 +13,23 @@ import org.springframework.stereotype.Repository;
 import com.impetus.process.entities.SecUser;
 import com.impetus.process.entities.UserRole;
 
+/**
+ * @author amitb.kumar
+ */
 @Repository("userDao")
-public class UserDao 
+public class UserDao
 {
 
+  /**
+   * 
+   */
   @Autowired
   private SessionFactory sessionFactory;
 
+  /**
+   * @param secUser
+   * @return
+   */
   public SecUser save(SecUser secUser)
   {
     // TODO: FOr multi tenancy
@@ -28,10 +38,14 @@ public class UserDao
     Session session = sessionFactory.getCurrentSession();
     session.beginTransaction();
     session.saveOrUpdate(secUser);
-    session.getTransaction().commit();  
+    session.getTransaction().commit();
     return secUser;
   }
 
+  /**
+   * @param email
+   * @return
+   */
   public boolean userExists(String email)
   {
     boolean result = false;
@@ -44,10 +58,15 @@ public class UserDao
     {
       result = true;
     }
-    session.getTransaction().commit();  
+    session.getTransaction().commit();
     return result;
   }
 
+  /**
+   * @param email
+   * @param password
+   * @return
+   */
   public SecUser findUser(String email, String password)
   {
     Session session = sessionFactory.getCurrentSession();
@@ -56,9 +75,14 @@ public class UserDao
     query.setParameter("email", email);
     query.setParameter("password", password);
     SecUser secUser = (SecUser) query.uniqueResult();
-    session.getTransaction().commit();  
+    session.getTransaction().commit();
     return secUser;
   }
+
+  /**
+   * @param userId
+   * @return
+   */
   public SecUser findUserByUserId(int userId)
   {
     Session session = sessionFactory.getCurrentSession();
@@ -68,7 +92,11 @@ public class UserDao
     SecUser secUser = (SecUser) query.uniqueResult();
     return secUser;
   }
-  
+
+  /**
+   * @param email
+   * @return
+   */
   public SecUser findUserByEmailId(String email)
   {
     Session session = sessionFactory.getCurrentSession();
@@ -79,28 +107,36 @@ public class UserDao
     return secUser;
   }
 
+  /**
+   * @param id
+   * @return
+   */
   public UserRole getRoleById(int id)
   {
     Session session = sessionFactory.getCurrentSession();
     session.beginTransaction();
     UserRole userRole = session.load(UserRole.class, id);
-    session.getTransaction().commit();  
-    return userRole;    
+    session.getTransaction().commit();
+    return userRole;
   }
-  
+
+  /**
+   * @return
+   */
   public List<String> getAllTenantIds()
   {
-	    Session session = sessionFactory.getCurrentSession();
-	    session.beginTransaction();
-	    Criteria cr = session.createCriteria(SecUser.class)
-	    	    .setProjection(Projections.projectionList()
-	    	      .add(Projections.property("tenantId"), "tenantId"));
-	    List<String> list = cr.list();
-	    session.getTransaction().commit();    
-    	  return list;
+    Session session = sessionFactory.getCurrentSession();
+    session.beginTransaction();
+    Criteria cr = session.createCriteria(SecUser.class).setProjection(
+      Projections.projectionList().add(Projections.property("tenantId"), "tenantId"));
+    List<String> list = cr.list();
+    session.getTransaction().commit();
+    return list;
   }
-  
 
+  /**
+   * @return
+   */
   public List<SecUser> getAllInactiveUsers()
   {
     Session session = sessionFactory.getCurrentSession();
@@ -109,7 +145,10 @@ public class UserDao
     query.setParameter("activated", false);
     return query.list();
   }
-  
+
+  /**
+   * @return
+   */
   public List<SecUser> updateAggrigator()
   {
     Session session = sessionFactory.getCurrentSession();
@@ -118,10 +157,12 @@ public class UserDao
     query.setParameter("activated", false);
     return query.list();
   }
-  
 
   /**
    * @return the sessionFactory
+   */
+  /**
+   * @return
    */
   public SessionFactory getSessionFactory()
   {
@@ -130,6 +171,9 @@ public class UserDao
 
   /**
    * @param sessionFactory the sessionFactory to set
+   */
+  /**
+   * @param sessionFactory
    */
   public void setSessionFactory(SessionFactory sessionFactory)
   {

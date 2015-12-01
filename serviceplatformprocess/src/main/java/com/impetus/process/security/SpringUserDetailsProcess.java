@@ -18,57 +18,88 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import com.impetus.process.entities.SecUser;
 import com.impetus.process.entities.UserRole;
 
-public class SpringUserDetailsProcess implements UserDetailsService {
-	SessionFactory sessionFactory;
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(SpringUserDetailsProcess.class);
-	@Override
-	public UserDetails loadUserByUsername(String username) {
-		SecUser secUser = findUserByUsername(username);
-		User user = null;
-
-		if (secUser != null) {
-			try {
-				List<UserRole> roles = secUser.getRoles();
-				String[] rolesArray = new String[roles.size()];
-				for (int i = 0; i < rolesArray.length; i++) {
-					rolesArray[i] = roles.get(i).getRoleName();
-				}
-				List<GrantedAuthority> authorities = AuthorityUtils
-						.createAuthorityList(rolesArray);
-				user = new User(username, secUser.getPassword(), true, true,
-						true, true, authorities);
-			} catch (Exception e) {
-				LOGGER.error("error message : "+e.getMessage());
-			}
-		}
-		return user;
-	}
-
-	private SecUser findUserByUsername(String username) {
-		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-		Criteria criteria = session.createCriteria(SecUser.class);
-		criteria.add(Restrictions.eq("username", username));
-		SecUser secUser = (SecUser) criteria.uniqueResult();
-		Hibernate.initialize(secUser.getRoles());
-		session.getTransaction().commit();
-		return secUser;
-	}
-
-	/**
-	 * @return the sessionFactory
+/**
+ * @author amitb.kumar
+ */
+public class SpringUserDetailsProcess implements UserDetailsService
+{
+  /**
+	 * 
 	 */
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	/**
-	 * @param sessionFactory
-	 *            the sessionFactory to set
+  SessionFactory sessionFactory;
+  /**
+	 * 
 	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+  private static final Logger LOGGER = LoggerFactory.getLogger(SpringUserDetailsProcess.class);
+
+  /*
+   * (non-Javadoc)
+   * @see org.springframework.security.core.userdetails.UserDetailsService#
+   * loadUserByUsername(java.lang.String)
+   */
+  @Override
+  public UserDetails loadUserByUsername(String username)
+  {
+    SecUser secUser = findUserByUsername(username);
+    User user = null;
+
+    if (secUser != null)
+    {
+      try
+      {
+        List<UserRole> roles = secUser.getRoles();
+        String[] rolesArray = new String[roles.size()];
+        for (int i = 0; i < rolesArray.length; i++)
+        {
+          rolesArray[i] = roles.get(i).getRoleName();
+        }
+        List<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(rolesArray);
+        user = new User(username, secUser.getPassword(), true, true, true, true, authorities);
+      }
+      catch (Exception e)
+      {
+        LOGGER.error("error message : " + e.getMessage());
+      }
+    }
+    return user;
+  }
+
+  /**
+   * @param username
+   * @return
+   */
+  private SecUser findUserByUsername(String username)
+  {
+    Session session = sessionFactory.getCurrentSession();
+    session.beginTransaction();
+    Criteria criteria = session.createCriteria(SecUser.class);
+    criteria.add(Restrictions.eq("username", username));
+    SecUser secUser = (SecUser) criteria.uniqueResult();
+    Hibernate.initialize(secUser.getRoles());
+    session.getTransaction().commit();
+    return secUser;
+  }
+
+  /**
+   * @return the sessionFactory
+   */
+  /**
+   * @return
+   */
+  public SessionFactory getSessionFactory()
+  {
+    return sessionFactory;
+  }
+
+  /**
+   * @param sessionFactory the sessionFactory to set
+   */
+  /**
+   * @param sessionFactory
+   */
+  public void setSessionFactory(SessionFactory sessionFactory)
+  {
+    this.sessionFactory = sessionFactory;
+  }
 
 }

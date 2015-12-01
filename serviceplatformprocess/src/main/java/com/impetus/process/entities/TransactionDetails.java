@@ -6,86 +6,166 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * @author amitb.kumar
+ */
 @Entity
 @Table(name = "transaction_details")
-public class TransactionDetails {
+public class TransactionDetails
+{
 
-	@Column(name = "TRANSACTION_ID")
-	private int transactionId;
-	
-	@Column(name = "AGGREGATOR_ID")
-	private String aggregatorId;
-	
-	@Column(name = "PROVIDER_ID")
-	private String providerId;
+  /**
+	 * 
+	 */
+  @Column(name = "TRANSACTION_ID")
+  private int transactionId;
 
-	@Column(name = "FIELD_PROFESSIONAL_ID")
-	private String fieldProfessionalId;
+  /**
+	 * 
+	 */
+  @Column(name = "AGGREGATOR_ID")
+  private String aggregatorId;
 
-	@Column(name = "CUSTOMER_ID")
-	private String customerId;
+  /**
+	 * 
+	 */
+  @Column(name = "PROVIDER_ID")
+  private String providerId;
 
-	@Column(name = "AMOUT")
-	private int amout;
+  /**
+	 * 
+	 */
+  @Column(name = "FIELD_PROFESSIONAL_ID")
+  private String fieldProfessionalId;
 
-	@Column(name = "TRASACTION_DATE")
-	private Date trasactionDate;
+  /**
+	 * 
+	 */
+  @Column(name = "CUSTOMER_ID")
+  private String customerId;
 
-	public int getTransactionId() {
-		return transactionId;
-	}
+  /**
+	 * 
+	 */
+  @Column(name = "AMOUT")
+  private int amout;
 
-	public void setTransactionId(int transactionId) {
-		this.transactionId = transactionId;
-	}
+  /**
+	 * 
+	 */
+  @Column(name = "TRASACTION_DATE")
+  private Date trasactionDate;
 
-	public String getAggregatorId() {
-		return aggregatorId;
-	}
+  /**
+   * @return
+   */
+  public int getTransactionId()
+  {
+    return transactionId;
+  }
 
-	public void setAggregatorId(String aggregatorId) {
-		this.aggregatorId = aggregatorId;
-	}
+  /**
+   * @param transactionId
+   */
+  public void setTransactionId(int transactionId)
+  {
+    this.transactionId = transactionId;
+  }
 
-	public String getProviderId() {
-		return providerId;
-	}
+  /**
+   * @return
+   */
+  public String getAggregatorId()
+  {
+    return aggregatorId;
+  }
 
-	public void setProviderId(String providerId) {
-		this.providerId = providerId;
-	}
+  /**
+   * @param aggregatorId
+   */
+  public void setAggregatorId(String aggregatorId)
+  {
+    this.aggregatorId = aggregatorId;
+  }
 
-	public String getFieldProfessionalId() {
-		return fieldProfessionalId;
-	}
+  /**
+   * @return
+   */
+  public String getProviderId()
+  {
+    return providerId;
+  }
 
-	public void setFieldProfessionalId(String fieldProfessionalId) {
-		this.fieldProfessionalId = fieldProfessionalId;
-	}
+  /**
+   * @param providerId
+   */
+  public void setProviderId(String providerId)
+  {
+    this.providerId = providerId;
+  }
 
-	public String getCustomerId() {
-		return customerId;
-	}
+  /**
+   * @return
+   */
+  public String getFieldProfessionalId()
+  {
+    return fieldProfessionalId;
+  }
 
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
-	}
+  /**
+   * @param fieldProfessionalId
+   */
+  public void setFieldProfessionalId(String fieldProfessionalId)
+  {
+    this.fieldProfessionalId = fieldProfessionalId;
+  }
 
-	public int getAmout() {
-		return amout;
-	}
+  /**
+   * @return
+   */
+  public String getCustomerId()
+  {
+    return customerId;
+  }
 
-	public void setAmout(int amout) {
-		this.amout = amout;
-	}
+  /**
+   * @param customerId
+   */
+  public void setCustomerId(String customerId)
+  {
+    this.customerId = customerId;
+  }
 
-	public Date getTrasactionDate() {
-		return trasactionDate;
-	}
+  /**
+   * @return
+   */
+  public int getAmout()
+  {
+    return amout;
+  }
 
-	public void setTrasactionDate(Date trasactionDate) {
-		this.trasactionDate = trasactionDate;
-	}
-	
-	
+  /**
+   * @param amout
+   */
+  public void setAmout(int amout)
+  {
+    this.amout = amout;
+  }
+
+  /**
+   * @return
+   */
+  public Date getTrasactionDate()
+  {
+    return trasactionDate;
+  }
+
+  /**
+   * @param trasactionDate
+   */
+  public void setTrasactionDate(Date trasactionDate)
+  {
+    this.trasactionDate = trasactionDate;
+  }
+
 }

@@ -35,20 +35,44 @@ import com.impetus.process.entities.SecUser;
 import com.impetus.process.enums.Template;
 import com.impetus.process.utils.ZipDirectory;
 
+/**
+ * @author amitb.kumar
+ */
 @Configuration
-@PropertySource({"classpath:package.properties","classpath:config.properties"})
+@PropertySource({"classpath:package.properties", "classpath:config.properties"})
 public class SysadminProcess
 {
-  public static final String SUCCESS ="SUCCESS";
-  public static final String INPUT ="INPUT";
-  public static final String DATABASE_SUCCESS="Database created successfully";
+  /**
+   * 
+   */
+  public static final String SUCCESS = "SUCCESS";
+  /**
+   * 
+   */
+  public static final String INPUT = "INPUT";
+  /**
+   * 
+   */
+  public static final String DATABASE_SUCCESS = "Database created successfully";
+  /**
+   * 
+   */
   @Autowired
   Environment env;
 
+  /**
+   * 
+   */
   @Autowired
   private UserDao userDao;
+  /**
+   * 
+   */
   private static final Logger LOGGER = LoggerFactory.getLogger(SysadminProcess.class);
 
+  /**
+   * @return
+   */
   public List<UserData> getAllInactiveUsers()
   {
     List<SecUser> secUsers = userDao.getAllInactiveUsers();
@@ -63,6 +87,10 @@ public class SysadminProcess
     return userData;
   }
 
+  /**
+   * @param secUser
+   * @return
+   */
   public UserData transformSecToUserData(SecUser secUser)
   {
     UserData userData = new UserData();
@@ -89,23 +117,31 @@ public class SysadminProcess
 
   }
 
+  /**
+   * @param dbProfileData
+   * @return
+   */
   public String updateAggrigator(DbProfileData dbProfileData)
   {
     SecUser secUser = userDao.findUserByEmailId(dbProfileData.getEmail());
     String dbResponse = createDataBase(dbProfileData);
     // TODO include zip functionality here
-    if(DATABASE_SUCCESS.equalsIgnoreCase(dbResponse))
+    if (DATABASE_SUCCESS.equalsIgnoreCase(dbResponse))
     {
       if (sendEmail(secUser))
       {
         secUser.setActivated(true);
         userDao.save(secUser);
       }
-      
+
     }
     return dbResponse;
   }
 
+  /**
+   * @param dbProfileData
+   * @return
+   */
   public String createDataBase(DbProfileData dbProfileData)
   {
     RestTemplate rt = new RestTemplate();
@@ -113,8 +149,8 @@ public class SysadminProcess
     String uri = new String(env.getProperty("process.create.db.uri"));
 
     InputData input = new InputData();
-    input.setDbURL(env.getProperty("process.db.sqlserver.url") + dbProfileData.getHostName()
-      +":"+ dbProfileData.getPortNumber());
+    input.setDbURL(env.getProperty("process.db.sqlserver.url") + dbProfileData.getHostName() + ":"
+      + dbProfileData.getPortNumber());
     input.setDbName(dbProfileData.getDbName());
     input.setDbUserName(dbProfileData.getUserName());
     input.setDbPassword(dbProfileData.getPassword());
@@ -125,6 +161,10 @@ public class SysadminProcess
 
   }
 
+  /**
+   * @param secUser
+   * @return
+   */
   public boolean sendEmail(SecUser secUser)
   {
     String to = secUser.getEmail();
@@ -183,8 +223,13 @@ public class SysadminProcess
     }
     return true;
   }
-  
-  private String getTemplateLocation(String tenantId) {
+
+  /**
+   * @param tenantId
+   * @return
+   */
+  private String getTemplateLocation(String tenantId)
+  {
     // TODO: use tenantId to find correct template location
     String teamplate_loc = "client_templates\\";
     return teamplate_loc;

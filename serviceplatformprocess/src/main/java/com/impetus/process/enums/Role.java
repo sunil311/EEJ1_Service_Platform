@@ -1,42 +1,77 @@
 package com.impetus.process.enums;
 
-public enum Role {
-	USER(1, "USER"), ADMIN(2, "ADMIN");
-	private int id;
-	private String name;
-
-	Role(int id, String name) {
-		this.id = id;
-		this.name = name;
-	}
-
-	/**
-	 * @return the id
+/**
+ * @author amitb.kumar
+ */
+public enum Role
+{
+  /**
+	 * 
 	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * @param id
-	 *            the id to set
+  USER(1, "USER"), /**
+	 * 
 	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
-	 * @return the name
+  ADMIN(2, "ADMIN");
+  /**
+	 * 
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name
-	 *            the name to set
+  private int id;
+  /**
+	 * 
 	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+  private String name;
+
+  /**
+   * @param id
+   * @param name
+   */
+  Role(int id, String name)
+  {
+    this.id = id;
+    this.name = name;
+  }
+
+  /**
+   * @return the id
+   */
+  /**
+   * @return
+   */
+  public int getId()
+  {
+    return id;
+  }
+
+  /**
+   * @param id the id to set
+   */
+  /**
+   * @param id
+   */
+  public void setId(int id)
+  {
+    this.id = id;
+  }
+
+  /**
+   * @return the name
+   */
+  /**
+   * @return
+   */
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * @param name the name to set
+   */
+  /**
+   * @param name
+   */
+  public void setName(String name)
+  {
+    this.name = name;
+  }
 }

@@ -14,54 +14,83 @@ import com.impetus.process.dao.TransactionDetailReportDao;
 import com.impetus.process.entities.TransactionDetails;
 import com.impetus.process.exception.ServicePlatformDBException;
 
+/**
+ * @author amitb.kumar
+ */
 @Repository("transactionDetailReportDao")
-public class TransactionDetailReportDaoImpl implements TransactionDetailReportDao {
+public class TransactionDetailReportDaoImpl implements TransactionDetailReportDao
+{
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(TransactionDetailReportDaoImpl.class);
-	
-	@Override
-	public List<TransactionDetails> getTransationDetalsById(String providerId)
-			throws ServicePlatformDBException {
-		Session session = sessionFactory.getCurrentSession();
-		SQLQuery query = session.createSQLQuery("select * from TRANSACTION_DETAILS where provider_Id="+providerId);
-		@SuppressWarnings("unchecked")
-		List<TransactionDetails> list = (List<TransactionDetails>)query.list();
-		
-		return list;
-	}
-
-	@Override
-	public List<TransactionDetails> getTransationDetals()
-			throws ServicePlatformDBException {
-		Session session = sessionFactory.getCurrentSession();
-		LOGGER.info("Called DAO");
-		SQLQuery query = session.createSQLQuery("select * from TRANSACTION_DETAILS");
-		
-		LOGGER.debug("list :"+query.list());
-		
-		@SuppressWarnings("unchecked")
-		List<TransactionDetails> list = (List<TransactionDetails>)query.list();
-		
-		return list;
-	}
-
-	/**
-	 * @return the sessionFactory
+  /**
+	 * 
 	 */
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-
-	/**
-	 * @param sessionFactory
-	 *            the sessionFactory to set
+  @Autowired
+  private SessionFactory sessionFactory;
+  /**
+	 * 
 	 */
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+  private static final Logger LOGGER = LoggerFactory
+    .getLogger(TransactionDetailReportDaoImpl.class);
 
+  /*
+   * (non-Javadoc)
+   * @see
+   * com.impetus.process.dao.TransactionDetailReportDao#getTransationDetalsById
+   * (java.lang.String)
+   */
+  @Override
+  public List<TransactionDetails> getTransationDetalsById(String providerId)
+    throws ServicePlatformDBException
+  {
+    Session session = sessionFactory.getCurrentSession();
+    SQLQuery query = session.createSQLQuery("select * from TRANSACTION_DETAILS where provider_Id="
+      + providerId);
+    @SuppressWarnings("unchecked")
+    List<TransactionDetails> list = (List<TransactionDetails>) query.list();
+
+    return list;
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see
+   * com.impetus.process.dao.TransactionDetailReportDao#getTransationDetals()
+   */
+  @Override
+  public List<TransactionDetails> getTransationDetals() throws ServicePlatformDBException
+  {
+    Session session = sessionFactory.getCurrentSession();
+    LOGGER.info("Called DAO");
+    SQLQuery query = session.createSQLQuery("select * from TRANSACTION_DETAILS");
+
+    LOGGER.debug("list :" + query.list());
+
+    @SuppressWarnings("unchecked")
+    List<TransactionDetails> list = (List<TransactionDetails>) query.list();
+
+    return list;
+  }
+
+  /**
+   * @return the sessionFactory
+   */
+  /**
+   * @return
+   */
+  public SessionFactory getSessionFactory()
+  {
+    return sessionFactory;
+  }
+
+  /**
+   * @param sessionFactory the sessionFactory to set
+   */
+  /**
+   * @param sessionFactory
+   */
+  public void setSessionFactory(SessionFactory sessionFactory)
+  {
+    this.sessionFactory = sessionFactory;
+  }
 
 }

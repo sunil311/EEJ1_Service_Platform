@@ -9,14 +9,27 @@ import org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProvid
 import org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl;
 import org.hibernate.engine.jdbc.connections.spi.ConnectionProvider;
 
+/**
+ * @author amitb.kumar
+ */
 public class ConnectionProviderUtils implements ConnectionProvider
 {
   /**
    * 
    */
+  /**
+   * 
+   */
   private static final long serialVersionUID = 1L;
+  /**
+   * 
+   */
   private final DatasourceConnectionProviderImpl defaultProvider = new DatasourceConnectionProviderImpl();
 
+  /**
+   * @param database
+   * @return
+   */
   public static ConnectionProvider getDataBaseConnection(String database)
   {
     Properties properties = getConnectionProperties(database);
@@ -25,6 +38,10 @@ public class ConnectionProviderUtils implements ConnectionProvider
     return (ConnectionProvider) defaultProvider;
   }
 
+  /**
+   * @param database
+   * @return
+   */
   private static Properties getConnectionProperties(String database)
   {
 
@@ -39,6 +56,10 @@ public class ConnectionProviderUtils implements ConnectionProvider
 
   }
 
+  /*
+   * (non-Javadoc)
+   * @see org.hibernate.service.spi.Wrapped#isUnwrappableAs(java.lang.Class)
+   */
   @SuppressWarnings("rawtypes")
   @Override
   public boolean isUnwrappableAs(Class unwrapType)
@@ -46,24 +67,45 @@ public class ConnectionProviderUtils implements ConnectionProvider
     return false;
   }
 
+  /*
+   * (non-Javadoc)
+   * @see org.hibernate.service.spi.Wrapped#unwrap(java.lang.Class)
+   */
   @Override
   public <T> T unwrap(Class<T> unwrapType)
   {
     return null;
   }
 
+  /*
+   * (non-Javadoc)
+   * @see
+   * org.hibernate.engine.jdbc.connections.spi.ConnectionProvider#getConnection
+   * ()
+   */
   @Override
   public Connection getConnection() throws SQLException
   {
     return defaultProvider.getConnection();
   }
 
+  /*
+   * (non-Javadoc)
+   * @see
+   * org.hibernate.engine.jdbc.connections.spi.ConnectionProvider#closeConnection
+   * (java.sql.Connection)
+   */
   @Override
   public void closeConnection(Connection conn) throws SQLException
   {
     conn.close();
   }
 
+  /*
+   * (non-Javadoc)
+   * @see org.hibernate.engine.jdbc.connections.spi.ConnectionProvider#
+   * supportsAggressiveRelease()
+   */
   @Override
   public boolean supportsAggressiveRelease()
   {

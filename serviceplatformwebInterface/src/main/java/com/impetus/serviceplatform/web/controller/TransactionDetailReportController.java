@@ -20,62 +20,90 @@ import com.impetus.process.entities.TransactionDetails;
 import com.impetus.process.exception.ServicePlatformDBException;
 import com.impetus.process.service.TransactionDetailReportService;
 
+/**
+ * @author amitb.kumar
+ */
 @Controller
-public class TransactionDetailReportController {
+public class TransactionDetailReportController
+{
 
-	Logger logger = LoggerFactory.getLogger(getClass());
+  /**
+	 * 
+	 */
+  Logger logger = LoggerFactory.getLogger(getClass());
 
-	@Autowired
-	private TransactionDetailReportService transactionDetailReportService;
+  /**
+	 * 
+	 */
+  @Autowired
+  private TransactionDetailReportService transactionDetailReportService;
 
-	@RequestMapping(value = "/transactionDetails/{providerId}", method = {
-			RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody
-	String getTransationDetalsById(@PathVariable("providerId") String providerId)
-			throws ServicePlatformDBException {
-		String jsonCartList = "{\"status\":\"" + 200 + "\"}";
+  /**
+   * @param providerId
+   * @return
+   * @throws ServicePlatformDBException
+   */
+  @RequestMapping(value = "/transactionDetails/{providerId}", method = {
+      RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody
+  String getTransationDetalsById(@PathVariable("providerId")
+  String providerId) throws ServicePlatformDBException
+  {
+    String jsonCartList = "{\"status\":\"" + 200 + "\"}";
 
-		try {
-			List<TransactionDetails> list = transactionDetailReportService
-					.getTransationDetalsById(providerId);
-			jsonCartList = getJsonFromList(list);
+    try
+    {
+      List<TransactionDetails> list = transactionDetailReportService
+        .getTransationDetalsById(providerId);
+      jsonCartList = getJsonFromList(list);
 
-		} catch (Exception e) {
-			throw new ServicePlatformDBException("SQL exception occured: "
-					+ e.getMessage());
-		}
-		return jsonCartList;
-	}
+    }
+    catch (Exception e)
+    {
+      throw new ServicePlatformDBException("SQL exception occured: " + e.getMessage());
+    }
+    return jsonCartList;
+  }
 
-	@RequestMapping(value = "/transactionDetails", method = {
-			RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody
-	String getTransationDetals() throws ServicePlatformDBException {
-		String jsonCartList = "{\"status\":\"" + 200 + "\"}";
-		try {
-			System.out.println("called 1");
+  /**
+   * @return
+   * @throws ServicePlatformDBException
+   */
+  @RequestMapping(value = "/transactionDetails", method = {RequestMethod.GET, RequestMethod.POST})
+  public @ResponseBody
+  String getTransationDetals() throws ServicePlatformDBException
+  {
+    String jsonCartList = "{\"status\":\"" + 200 + "\"}";
+    try
+    {
+      System.out.println("called 1");
 
-			List<TransactionDetails> list = transactionDetailReportService
-					.getTransationDetals();
-			jsonCartList = getJsonFromList(list);
+      List<TransactionDetails> list = transactionDetailReportService.getTransationDetals();
+      jsonCartList = getJsonFromList(list);
 
-		} catch (Exception e) {
-			System.out.println("error message : "+e.getMessage());
-			throw new ServicePlatformDBException("SQL exception occured: "
-					+ e.getMessage());
-		}
-		return "{\"jsonCartList\":\"" + jsonCartList + "\"}";
-	}
+    }
+    catch (Exception e)
+    {
+      System.out.println("error message : " + e.getMessage());
+      throw new ServicePlatformDBException("SQL exception occured: " + e.getMessage());
+    }
+    return "{\"jsonCartList\":\"" + jsonCartList + "\"}";
+  }
 
-	private String getJsonFromList(List<TransactionDetails> list) {
-		String jsonCartList;
-		// create a new Gson instance
-		Gson gson = new Gson();
-		// convert your list to json
-		jsonCartList = gson.toJson(list);
-		// print your generated json
-		System.out.println("jsonCartList: " + jsonCartList);
-		return jsonCartList;
-	}
+  /**
+   * @param list
+   * @return
+   */
+  private String getJsonFromList(List<TransactionDetails> list)
+  {
+    String jsonCartList;
+    // create a new Gson instance
+    Gson gson = new Gson();
+    // convert your list to json
+    jsonCartList = gson.toJson(list);
+    // print your generated json
+    System.out.println("jsonCartList: " + jsonCartList);
+    return jsonCartList;
+  }
 
 }

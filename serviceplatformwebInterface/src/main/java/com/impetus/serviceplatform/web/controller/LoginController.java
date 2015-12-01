@@ -20,17 +20,54 @@ import com.impetus.process.SysadminProcess;
 import com.impetus.process.dto.LoginData;
 import com.impetus.process.exception.ServicePlatformDBException;
 
+/**
+ * @author amitb.kumar
+ */
 @Controller
 @SessionAttributes("LoggedInUser")
 public class LoginController
 {
+  /**
+	 * 
+	 */
+  /**
+   * 
+   */
   Logger logger = LoggerFactory.getLogger(getClass());
+  /**
+	 * 
+	 */
+  /**
+   * 
+   */
   @Autowired
   private LoginProcess loginProcess;
+  /**
+	 * 
+	 */
+  /**
+   * 
+   */
   @Autowired
   private SysadminProcess sysadminProcess;
+  /**
+	 * 
+ 	*/
+  /**
+   * 
+   */
   private String status;
 
+  /**
+   * @param loginData
+   * @return
+   * @throws ServicePlatformDBException
+   */
+  /**
+   * @param loginData
+   * @return
+   * @throws ServicePlatformDBException
+   */
   @RequestMapping(value = "/RegisterUser/doLogin", method = RequestMethod.POST)
   public @ResponseBody
   String loginUser(@RequestBody
@@ -47,8 +84,5 @@ public class LoginController
     }
     return "{\"status\":\"" + status + "\"}";
   }
-  
-  
-  
 
 }

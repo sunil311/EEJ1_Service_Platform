@@ -4,39 +4,76 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+/**
+ * @author amitb.kumar
+ */
 @Entity
 @Table(name = "SUBSCRIPTION")
-public class Subscription {
+public class Subscription
+{
 
-	public int getSubscriptionID() {
-		return subscriptionID;
-	}
+  /**
+   * @return
+   */
+  public int getSubscriptionID()
+  {
+    return subscriptionID;
+  }
 
-	public void setSubscriptionID(int subscriptionID) {
-		this.subscriptionID = subscriptionID;
-	}
+  /**
+   * @param subscriptionID
+   */
+  public void setSubscriptionID(int subscriptionID)
+  {
+    this.subscriptionID = subscriptionID;
+  }
 
-	public String getSubscriptionType() {
-		return subscriptionType;
-	}
+  /**
+   * @return
+   */
+  public String getSubscriptionType()
+  {
+    return subscriptionType;
+  }
 
-	public void setSubscriptionType(String subscriptionType) {
-		this.subscriptionType = subscriptionType;
-	}
+  /**
+   * @param subscriptionType
+   */
+  public void setSubscriptionType(String subscriptionType)
+  {
+    this.subscriptionType = subscriptionType;
+  }
 
-	public String getSubscriptionDesc() {
-		return subscriptionDesc;
-	}
+  /**
+   * @return
+   */
+  public String getSubscriptionDesc()
+  {
+    return subscriptionDesc;
+  }
 
-	public void setSubscriptionDesc(String subscriptionDesc) {
-		this.subscriptionDesc = subscriptionDesc;
-	}
+  /**
+   * @param subscriptionDesc
+   */
+  public void setSubscriptionDesc(String subscriptionDesc)
+  {
+    this.subscriptionDesc = subscriptionDesc;
+  }
 
-	@Column(name = "SUBSCRIPTION_ID")
-	private int subscriptionID;
-	@Column(name = "SUBSCRIPTION_TYPE")
-	private String subscriptionType;
-	@Column(name = "SUBSCRIPTION_DESCRIPTION")
-	private String subscriptionDesc;
+  /**
+	 * 
+	 */
+  @Column(name = "SUBSCRIPTION_ID")
+  private int subscriptionID;
+  /**
+	 * 
+	 */
+  @Column(name = "SUBSCRIPTION_TYPE")
+  private String subscriptionType;
+  /**
+	 * 
+	 */
+  @Column(name = "SUBSCRIPTION_DESCRIPTION")
+  private String subscriptionDesc;
 
 }

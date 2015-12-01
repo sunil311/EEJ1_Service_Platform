@@ -16,28 +16,49 @@ import com.impetus.process.entities.SecUser;
 import com.impetus.process.entities.UserRole;
 import com.impetus.process.enums.Role;
 
+/**
+ * @author amitb.kumar
+ */
 @Configuration
 @PropertySource("classpath:package.properties")
 @Service("loginProcess")
 public class LoginProcess
 {
+  /**
+   * 
+   */
   @Autowired
   Environment env;
 
+  /**
+   * 
+   */
   @Autowired
   private UserDao userDao;
-  
+
+  /**
+   * 
+   */
   String status = "";
 
+  /**
+   * 
+   */
   private static final Logger LOGGER = LoggerFactory.getLogger(LoginProcess.class);
 
+  /**
+   * @param loginData
+   * @return
+   * @throws SQLException
+   */
   public String loginUser(LoginData loginData) throws SQLException
   {
 
-	if (!validate(loginData)) {
-			return status;
-	}
-	  
+    if (!validate(loginData))
+    {
+      return status;
+    }
+
     String result = env.getProperty("process.result.success");
     LOGGER.info("Cheking user........");
     SecUser user = userDao.findUser(loginData.getEmail(), loginData.getPassword());
@@ -66,22 +87,29 @@ public class LoginProcess
     return result;
   }
 
+  /**
+   * 
+   */
   private void updateUserSessionData()
   {
     // TODO Auto-generated method stub
   }
-  
-  private boolean validate(LoginData loginData) {
-	  	boolean passwordStatus = true;
-		if (loginData.getEmail() != null
-				&& loginData.getPassword() != null
-				&& !(loginData.getPassword().length() >= 6 && loginData
-						.getPassword().length() <= 12)) {
-			status = "Email and Password should be between 6 and 12.";
-			passwordStatus = false;
-		}
 
-		return passwordStatus;
+  /**
+   * @param loginData
+   * @return
+   */
+  private boolean validate(LoginData loginData)
+  {
+    boolean passwordStatus = true;
+    if (loginData.getEmail() != null && loginData.getPassword() != null
+      && !(loginData.getPassword().length() >= 6 && loginData.getPassword().length() <= 12))
+    {
+      status = "Email and Password should be between 6 and 12.";
+      passwordStatus = false;
+    }
 
-	}
+    return passwordStatus;
+
+  }
 }

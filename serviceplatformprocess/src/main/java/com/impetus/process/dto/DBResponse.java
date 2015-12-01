@@ -1,22 +1,45 @@
 package com.impetus.process.dto;
 
-public class DBResponse {
+/**
+ * @author amitb.kumar
+ */
+public class DBResponse
+{
 
-	private String result;
+  /**
+	 * 
+	 */
+  private String result;
 
-	public DBResponse() {
-	}
+  /**
+	 * 
+	 */
+  public DBResponse()
+  {
+  }
 
-	public DBResponse(String result) {
-		this.result = result;
-	}
+  /**
+   * @param result
+   */
+  public DBResponse(String result)
+  {
+    this.result = result;
+  }
 
-	public String getResult() {
-		return result;
-	}
+  /**
+   * @return
+   */
+  public String getResult()
+  {
+    return result;
+  }
 
-	public void setResult(String result) {
-		this.result = result;
-	}
+  /**
+   * @param result
+   */
+  public void setResult(String result)
+  {
+    this.result = result;
+  }
 
 }

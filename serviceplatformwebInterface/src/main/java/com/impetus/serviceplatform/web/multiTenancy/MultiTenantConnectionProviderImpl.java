@@ -12,27 +12,55 @@ import org.hibernate.service.spi.Stoppable;
  * Simplisitc implementation for illustration purposes showing a single
  * connection pool used to serve multiple schemas using "connection altering".
  */
+/**
+ * @author amitb.kumar
+ */
 public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionProvider, Stoppable
 {
 
   /**
 	 * 
 	 */
+  /**
+   * 
+   */
   private static final long serialVersionUID = 1L;
-  private final ConnectionProvider connectionProvider =  ConnectionProviderUtils.getDataBaseConnection(CurrentTenantIdentifierResolver.DEFAULT_TENANT_ID);
+  /**
+   * 
+   */
+  private final ConnectionProvider connectionProvider = ConnectionProviderUtils
+    .getDataBaseConnection(CurrentTenantIdentifierResolver.DEFAULT_TENANT_ID);
 
+  /*
+   * (non-Javadoc)
+   * @see
+   * org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider
+   * #getAnyConnection()
+   */
   @Override
   public Connection getAnyConnection() throws SQLException
   {
     return connectionProvider.getConnection();
   }
 
+  /*
+   * (non-Javadoc)
+   * @see
+   * org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider
+   * #releaseAnyConnection(java.sql.Connection)
+   */
   @Override
   public void releaseAnyConnection(Connection connection) throws SQLException
   {
     connectionProvider.closeConnection(connection);
   }
 
+  /*
+   * (non-Javadoc)
+   * @see
+   * org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider
+   * #getConnection(java.lang.String)
+   */
   @Override
   public Connection getConnection(String tenantIdentifier) throws SQLException
   {
@@ -49,6 +77,12 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
     return connection;
   }
 
+  /*
+   * (non-Javadoc)
+   * @see
+   * org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider
+   * #releaseConnection(java.lang.String, java.sql.Connection)
+   */
   @Override
   public void releaseConnection(String tenantIdentifier, Connection connection) throws SQLException
   {
@@ -67,6 +101,10 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
     connectionProvider.closeConnection(connection);
   }
 
+  /*
+   * (non-Javadoc)
+   * @see org.hibernate.service.spi.Wrapped#isUnwrappableAs(java.lang.Class)
+   */
   @Override
   public boolean isUnwrappableAs(@SuppressWarnings("rawtypes")
   Class unwrapType)
@@ -74,17 +112,31 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
     return false;
   }
 
+  /*
+   * (non-Javadoc)
+   * @see org.hibernate.service.spi.Wrapped#unwrap(java.lang.Class)
+   */
   @Override
   public <T> T unwrap(Class<T> unwrapType)
   {
     return null;
   }
 
+  /*
+   * (non-Javadoc)
+   * @see org.hibernate.service.spi.Stoppable#stop()
+   */
   @Override
   public void stop()
   {
   }
 
+  /*
+   * (non-Javadoc)
+   * @see
+   * org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider
+   * #supportsAggressiveRelease()
+   */
   @Override
   public boolean supportsAggressiveRelease()
   {

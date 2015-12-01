@@ -15,14 +15,28 @@ import com.impetus.process.RegisterProcess;
 import com.impetus.process.dto.UserData;
 import com.impetus.process.exception.ServicePlatformDBException;
 
+/**
+ * @author amitb.kumar
+ */
 @Controller
 public class RegistrationController
 {
 
+  /**
+   * 
+   */
   @Autowired
   private RegisterProcess registerProcess;
+  /**
+   * 
+   */
   private String status;
 
+  /**
+   * @param userData
+   * @return
+   * @throws ServicePlatformDBException
+   */
   @RequestMapping(value = "/RegisterUser/signUp", method = RequestMethod.POST)
   @ResponseStatus(HttpStatus.OK)
   public @ResponseBody
@@ -40,7 +54,12 @@ public class RegistrationController
     }
     return "{\"status\":\"" + status + "\"}";
   }
-  
+
+  /**
+   * @param userData
+   * @return
+   * @throws ServicePlatformDBException
+   */
   @RequestMapping(value = "/RegisterUser/checkEmail", method = RequestMethod.POST)
   @ResponseStatus(HttpStatus.OK)
   public @ResponseBody
@@ -54,6 +73,5 @@ public class RegistrationController
     else
       return "{\"status\":\"" + "EMAIL ALREADY IN USE" + "\"}";
   }
-  
-  
+
 }
