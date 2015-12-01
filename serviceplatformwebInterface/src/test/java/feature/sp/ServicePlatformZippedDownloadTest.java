@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 import com.impetus.serviceplatform.web.controller.DownloadController;
 
@@ -21,9 +22,9 @@ import cucumber.api.java.en.When;
 
 public class ServicePlatformZippedDownloadTest {
 
-	//TODO Need From the Team tenantId
+	// TODO Need From the Team tenantId
 	String tenantId = "tenantA";
-	
+
 	HttpServletResponse response;
 	int BUFFER = 2048;
 
@@ -32,6 +33,9 @@ public class ServicePlatformZippedDownloadTest {
 
 	@Autowired
 	DownloadController downloadController;
+
+	@Autowired
+	private Environment env;
 
 	String downloadPath;
 
@@ -43,19 +47,17 @@ public class ServicePlatformZippedDownloadTest {
 
 	@Given("^I on service aggregator details page$")
 	public void i_on_service_aggregator_details_page() throws Throwable {
-		// Need Input provide by the team.
-	
-		//tenantId = "41";
-		downloadPath = "E:\\engineeringexcellence\\EEJ1_Service_Platform\\outsidewar\\client_templates\\Template A.zip";
+
+		downloadPath = getDownloadPath("tenantA");
 	}
 
 	@When("^I click on Download Template Button$")
 	public void i_click_on_Download_Template_Button() throws Throwable {
-		
+
 		Assert.assertNotNull(tenantId);
-		try{
-		downloadController.loginUser(tenantId, response);
-		}catch(Exception e){
+		try {
+			downloadController.loginUser(tenantId, response);
+		} catch (Exception e) {
 			functionalityFlag = true;
 		}
 	}
@@ -64,7 +66,7 @@ public class ServicePlatformZippedDownloadTest {
 	public void i_verify_zipped_template_is_downloaded_on_my_system()
 			throws Throwable {
 
-		File file = new File(downloadPath);
+		File file = new File(getDownloadPath("tenantA"));
 		Assert.assertTrue(file.exists());
 
 	}
@@ -72,7 +74,7 @@ public class ServicePlatformZippedDownloadTest {
 	@Then("^I verify file format of downlaoded zip file should be \"([^\"]*)\"$")
 	public void i_verify_file_format_of_downlaoded_zip_file_should_be(
 			String arg1) throws Throwable {
-		FileInputStream fis = new FileInputStream(downloadPath);
+		FileInputStream fis = new FileInputStream(getDownloadPath("tenantA"));
 		ZipInputStream zin = new ZipInputStream(new BufferedInputStream(fis));
 		ZipEntry entry = zin.getNextEntry();
 		Assert.assertNotNull(entry);
@@ -117,10 +119,8 @@ public class ServicePlatformZippedDownloadTest {
 	private void readWritefileInServer() {
 		try {
 			BufferedOutputStream dest = null;
-			if(downloadPath==null){
-				downloadPath = "E:\\engineeringexcellence\\EEJ1_Service_Platform\\outsidewar\\client_templates\\Template A.zip";
-			}
-			FileInputStream fis = new FileInputStream(downloadPath);
+			FileInputStream fis = new FileInputStream(
+					getDownloadPath("tenantA"));
 			ZipInputStream zis = new ZipInputStream(
 					new BufferedInputStream(fis));
 			ZipEntry entry;
@@ -149,10 +149,9 @@ public class ServicePlatformZippedDownloadTest {
 	private void unZipfile() {
 		try {
 			BufferedOutputStream dest = null;
-			if(downloadPath==null){
-				downloadPath = "E:\\engineeringexcellence\\EEJ1_Service_Platform\\outsidewar\\client_templates\\Template A.zip";
-			}
-			FileInputStream fis = new FileInputStream(downloadPath);
+
+			FileInputStream fis = new FileInputStream(
+					getDownloadPath("tenantA"));
 			ZipInputStream zis = new ZipInputStream(
 					new BufferedInputStream(fis));
 			ZipEntry entry;
@@ -176,5 +175,16 @@ public class ServicePlatformZippedDownloadTest {
 		}
 		// Data Contains/not contains in the Zip file and correct format.
 		unzipFlag = true;
+	}
+
+	private String getDownloadPath(String tenantId) {
+		// TODO: use tenantId to find correct template location
+		String teamplate_loc = "client_templates\\Template A";
+
+		String tempFolder = env.getProperty("sp.temp.path");
+
+		// String source_folder = filestore + teamplate_loc;
+		String downloadPath = tempFolder + teamplate_loc + ".zip";
+		return downloadPath;
 	}
 }
