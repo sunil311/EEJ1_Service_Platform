@@ -1,4 +1,4 @@
-package com.impetus.BDD.step;
+package feature.sp;
 
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;

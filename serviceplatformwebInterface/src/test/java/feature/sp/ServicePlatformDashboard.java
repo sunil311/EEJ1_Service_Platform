@@ -1,4 +1,4 @@
-package com.impetus.BDD.step;
+package feature.sp;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
