@@ -47,7 +47,7 @@ public class SysadminProcess
 
   @Autowired
   private UserDao userDao;
-  private static final Logger logger = LoggerFactory.getLogger(SysadminProcess.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(SysadminProcess.class);
 
   public List<UserData> getAllInactiveUsers()
   {
@@ -175,11 +175,11 @@ public class SysadminProcess
 
       // Send message
       Transport.send(message);
-      logger.info("message sent successfully....");
+      LOGGER.info("message sent successfully....");
     }
     catch (Exception e)
     {
-      logger.debug(e.getMessage());
+      LOGGER.debug(e.getMessage());
     }
     return true;
   }

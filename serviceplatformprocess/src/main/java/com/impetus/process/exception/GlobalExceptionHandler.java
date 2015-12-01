@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice("com.impetus")
 public class GlobalExceptionHandler {
 
-	private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
 	@Autowired
 	SessionFactory sessionFactory;
@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleError(HttpServletRequest req, Exception exception) {
 		sessionFactory.getCurrentSession().getTransaction().rollback();
-		logger.error("Request: " + req.getRequestURL() + " raised " + exception);
+		LOGGER.error("Request: " + req.getRequestURL() + " raised " + exception);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("exception", exception);
 		mav.addObject("url", req.getRequestURL());
@@ -35,8 +35,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler({ SQLException.class, DataAccessException.class })
 	public String databaseError(Exception exception) {
 		sessionFactory.getCurrentSession().getTransaction().rollback();
-		exception.printStackTrace();
-		logger.info(exception.getMessage());
+		LOGGER.info(exception.getMessage());
 		return "databaseError";
 	}
 }

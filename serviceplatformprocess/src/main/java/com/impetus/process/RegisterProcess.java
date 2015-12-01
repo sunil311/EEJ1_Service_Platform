@@ -25,12 +25,12 @@ public class RegisterProcess {
 	@Autowired
 	public UserDao userDao;
 
-	Logger logger = LoggerFactory.getLogger(getClass());
+	private static final Logger LOGGER = LoggerFactory.getLogger(RegisterProcess.class);
 
 	public String registerUser(UserData userData) throws SQLException {
 
 		String result = "SUCCESS";
-		logger.info("Regestring user........");
+		LOGGER.info("Regestring user........");
 		SecUser secUser = new SecUser();
 		secUser.setEmail(userData.getEmail());
 		secUser.setFirstName(userData.getFirstName());
@@ -82,7 +82,7 @@ public class RegisterProcess {
 		if (!userDao.userExists(userData.getEmail())) {
 			userDao.save(secUser);
 		} else {
-			logger.info("Regestring user........EMAIL ALREADY IN USE");
+			LOGGER.info("Regestring user........EMAIL ALREADY IN USE");
 			result = "EMAIL ALREADY IN USE";
 		}
 		return result;

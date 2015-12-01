@@ -29,7 +29,7 @@ public class LoginProcess
   
   String status = "";
 
-  Logger logger = LoggerFactory.getLogger(getClass());
+  private static final Logger LOGGER = LoggerFactory.getLogger(LoginProcess.class);
 
   public String loginUser(LoginData loginData) throws SQLException
   {
@@ -39,7 +39,7 @@ public class LoginProcess
 	}
 	  
     String result = env.getProperty("process.result.success");
-    logger.info("Cheking user........");
+    LOGGER.info("Cheking user........");
     SecUser user = userDao.findUser(loginData.getEmail(), loginData.getPassword());
     boolean hasAdminRole = false;
     if (user != null && user.getRoles() != null)
@@ -60,7 +60,7 @@ public class LoginProcess
     }
     else
     {
-      logger.info("Login user........USER DO NOT EXISTS");
+      LOGGER.info("Login user........USER DO NOT EXISTS");
       result = env.getProperty("process.login.user.not.exist");
     }
     return result;

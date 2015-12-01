@@ -2,10 +2,11 @@ package com.impetus.process.dao.impl;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +19,8 @@ public class TransactionDetailReportDaoImpl implements TransactionDetailReportDa
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(TransactionDetailReportDaoImpl.class);
 	
 	@Override
 	public List<TransactionDetails> getTransationDetalsById(String providerId)
@@ -34,10 +37,10 @@ public class TransactionDetailReportDaoImpl implements TransactionDetailReportDa
 	public List<TransactionDetails> getTransationDetals()
 			throws ServicePlatformDBException {
 		Session session = sessionFactory.getCurrentSession();
-		System.out.println("Called DAO");
+		LOGGER.info("Called DAO");
 		SQLQuery query = session.createSQLQuery("select * from TRANSACTION_DETAILS");
 		
-		System.out.println(query.list());
+		LOGGER.debug("list :"+query.list());
 		
 		@SuppressWarnings("unchecked")
 		List<TransactionDetails> list = (List<TransactionDetails>)query.list();

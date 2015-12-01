@@ -7,6 +7,8 @@ import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -18,7 +20,8 @@ import com.impetus.process.entities.UserRole;
 
 public class SpringUserDetailsProcess implements UserDetailsService {
 	SessionFactory sessionFactory;
-
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(SpringUserDetailsProcess.class);
 	@Override
 	public UserDetails loadUserByUsername(String username) {
 		SecUser secUser = findUserByUsername(username);
@@ -36,7 +39,7 @@ public class SpringUserDetailsProcess implements UserDetailsService {
 				user = new User(username, secUser.getPassword(), true, true,
 						true, true, authorities);
 			} catch (Exception e) {
-				System.out.println("error message : "+e.getMessage());
+				LOGGER.error("error message : "+e.getMessage());
 			}
 		}
 		return user;
