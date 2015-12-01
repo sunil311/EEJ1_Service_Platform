@@ -1,4 +1,4 @@
-Feature:
+Feature: Login Feature
   As a existing User
   I want to log in to the site
   So that I can access all rights which are assigned

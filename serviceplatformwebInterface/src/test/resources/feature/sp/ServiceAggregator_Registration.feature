@@ -1,4 +1,4 @@
-Feature: 
+Feature: Registration Feature
   As a new User 
   I want to create a new user type as Service Aggregator to the site
   So that I can share my profile with other Service Aggregator's
