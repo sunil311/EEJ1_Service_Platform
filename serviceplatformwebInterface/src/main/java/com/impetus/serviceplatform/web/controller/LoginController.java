@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.impetus.serviceplatform.web.controller;
 
 import java.sql.SQLException;
@@ -25,64 +22,36 @@ import com.impetus.process.exception.ServicePlatformDBException;
  */
 @Controller
 @SessionAttributes("LoggedInUser")
-public class LoginController
-{
-  /**
-	 * 
-	 */
-  /**
-   * 
-   */
-  Logger logger = LoggerFactory.getLogger(getClass());
-  /**
-	 * 
-	 */
-  /**
-   * 
-   */
-  @Autowired
-  private LoginProcess loginProcess;
-  /**
-	 * 
-	 */
-  /**
-   * 
-   */
-  @Autowired
-  private SysadminProcess sysadminProcess;
-  /**
-	 * 
- 	*/
-  /**
-   * 
-   */
-  private String status;
+public class LoginController {
 
-  /**
-   * @param loginData
-   * @return
-   * @throws ServicePlatformDBException
-   */
-  /**
-   * @param loginData
-   * @return
-   * @throws ServicePlatformDBException
-   */
-  @RequestMapping(value = "/RegisterUser/doLogin", method = RequestMethod.POST)
-  public @ResponseBody
-  String loginUser(@RequestBody
-  LoginData loginData) throws ServicePlatformDBException
-  {
-    try
-    {
-      status = loginProcess.loginUser(loginData);
-    }
-    catch (SQLException e)
-    {
-      if (e instanceof SQLException)
-        throw new ServicePlatformDBException("SQL exception occured: " + e.getMessage());
-    }
-    return "{\"status\":\"" + status + "\"}";
-  }
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(LoginController.class);
+
+	@Autowired
+	private LoginProcess loginProcess;
+
+	@Autowired
+	private SysadminProcess sysadminProcess;
+
+	private String status;
+
+	/**
+	 * @param loginData
+	 * @return
+	 * @throws ServicePlatformDBException
+	 */
+	@RequestMapping(value = "/RegisterUser/doLogin", method = RequestMethod.POST)
+	public @ResponseBody String loginUser(@RequestBody LoginData loginData)
+			throws ServicePlatformDBException {
+		try {
+			status = loginProcess.loginUser(loginData);
+		} catch (SQLException e) {
+			if (e instanceof SQLException)
+				throw new ServicePlatformDBException("SQL exception occured: "
+						+ e.getMessage());
+		}
+		LOGGER.info("user status :"+status);
+		return "{\"status\":\"" + status + "\"}";
+	}
 
 }
