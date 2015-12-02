@@ -24,6 +24,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 
 import com.impetus.process.dao.UserDao;
@@ -143,7 +144,7 @@ public class SysadminProcess
    * @param dbProfileData
    * @return
    */
-  public String createDataBase(DbProfileData dbProfileData)
+  public String createDataBase(DbProfileData dbProfileData) throws ServicePlatformException
   {
     RestTemplate rt = new RestTemplate();
     rt.getMessageConverters().add(new StringHttpMessageConverter());
@@ -155,9 +156,15 @@ public class SysadminProcess
     input.setDbName(dbProfileData.getDbName());
     input.setDbUserName(dbProfileData.getUserName());
     input.setDbPassword(dbProfileData.getPassword());
-
-    DBResponse response = rt.postForObject(uri, input, DBResponse.class);
-
+    DBResponse response = null;
+    try
+    {
+      response = rt.postForObject(uri, input, DBResponse.class);
+    }
+    catch(ResourceAccessException e)
+    {
+      throw new ServicePlatformException("Exception occured in creating database: ", e);
+    }
     return response.getResult();
 
   }
