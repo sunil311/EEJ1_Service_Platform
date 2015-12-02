@@ -47,6 +47,7 @@ public class LoginProcess
   private static final Logger LOGGER = LoggerFactory.getLogger(LoginProcess.class);
 
   /**
+   * find our logged in user on basis of roles
    * @param loginData
    * @return
    * @throws SQLException
@@ -95,6 +96,7 @@ public class LoginProcess
   }
 
   /**
+   * validating login data
    * @param loginData
    * @return
    */

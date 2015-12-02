@@ -73,6 +73,7 @@ public class SysadminProcess
   private static final Logger LOGGER = LoggerFactory.getLogger(SysadminProcess.class);
 
   /**
+   * find out all inactive users 
    * @return
    */
   public List<UserData> getAllInactiveUsers()
@@ -90,6 +91,7 @@ public class SysadminProcess
   }
 
   /**
+   * Convert UI secuser bean to userdata
    * @param secUser
    * @return
    */
@@ -120,6 +122,7 @@ public class SysadminProcess
   }
 
   /**
+   * update aggregator details and send email
    * @param dbProfileData
    * @return
    * @throws ServicePlatformException 

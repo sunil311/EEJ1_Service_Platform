@@ -34,6 +34,7 @@ public class RegisterProcess
   private static final Logger LOGGER = LoggerFactory.getLogger(RegisterProcess.class);
 
   /**
+   * Creating bean of registration to insert in DB
    * @param userData
    * @return
    */
@@ -116,6 +117,7 @@ public class RegisterProcess
   }
 
   /**
+   * Check existing user 
    * @param userData
    * @return
    */
@@ -126,10 +128,8 @@ public class RegisterProcess
   }
 
   /**
+   * Generate a randon tenant id for the user which is a unique identifier
    * @return tenant Id
-   */
-  /**
-   * @return
    */
   private String generateTenantId()
   {
@@ -143,11 +143,7 @@ public class RegisterProcess
   }
 
   /**
-   * @param existingTenantIds
-   * @param generatedTenantId
-   * @return
-   */
-  /**
+   * check if tenant id already exists
    * @param existingTenantIds
    * @param generatedTenantId
    * @return
