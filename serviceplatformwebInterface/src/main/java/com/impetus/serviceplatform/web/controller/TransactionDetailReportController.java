@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.impetus.process.entities.TransactionDetails;
-import com.impetus.process.exception.ServicePlatformDBException;
+import com.impetus.process.exception.ServicePlatformException;
 import com.impetus.process.service.TransactionDetailReportService;
 
 /**
@@ -26,6 +26,11 @@ import com.impetus.process.service.TransactionDetailReportService;
 @Controller
 public class TransactionDetailReportController
 {
+
+  /**
+   * 
+   */
+  private static final String SOMETHING_WENT_WRONG = "Something went wrong!";
 
   /**
 	 * 
@@ -47,21 +52,22 @@ public class TransactionDetailReportController
       RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody
   String getTransationDetalsById(@PathVariable("providerId")
-  String providerId) throws ServicePlatformDBException
+  String providerId)
   {
     String jsonCartList = "{\"status\":\"" + 200 + "\"}";
 
+    List<TransactionDetails> list = null;
     try
     {
-      List<TransactionDetails> list = transactionDetailReportService
-        .getTransationDetalsById(providerId);
-      jsonCartList = getJsonFromList(list);
-
+      list = transactionDetailReportService.getTransationDetalsById(providerId);
     }
-    catch (Exception e)
+    catch (ServicePlatformException e)
     {
-      throw new ServicePlatformDBException("SQL exception occured: " + e.getMessage());
+      logger.error("Exception occured while updating aggregator : ", e);
+      return SOMETHING_WENT_WRONG;
     }
+    jsonCartList = getJsonFromList(list);
+
     return jsonCartList;
   }
 
@@ -71,22 +77,20 @@ public class TransactionDetailReportController
    */
   @RequestMapping(value = "/transactionDetails", method = {RequestMethod.GET, RequestMethod.POST})
   public @ResponseBody
-  String getTransationDetals() throws ServicePlatformDBException
+  String getTransationDetals()
   {
     String jsonCartList = "{\"status\":\"" + 200 + "\"}";
+    List<TransactionDetails> list;
     try
     {
-      System.out.println("called 1");
-
-      List<TransactionDetails> list = transactionDetailReportService.getTransationDetals();
-      jsonCartList = getJsonFromList(list);
-
+      list = transactionDetailReportService.getTransationDetals();
     }
-    catch (Exception e)
+    catch (ServicePlatformException e)
     {
-      System.out.println("error message : " + e.getMessage());
-      throw new ServicePlatformDBException("SQL exception occured: " + e.getMessage());
+      logger.error("Exception occured while updating aggregator : ", e);
+      return SOMETHING_WENT_WRONG;
     }
+    jsonCartList = getJsonFromList(list);
     return "{\"jsonCartList\":\"" + jsonCartList + "\"}";
   }
 

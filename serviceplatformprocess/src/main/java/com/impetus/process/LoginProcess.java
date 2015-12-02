@@ -51,9 +51,8 @@ public class LoginProcess
    * @return
    * @throws SQLException
    */
-  public String loginUser(LoginData loginData) throws SQLException
+  public String loginUser(LoginData loginData)
   {
-
     if (!validate(loginData))
     {
       return status;

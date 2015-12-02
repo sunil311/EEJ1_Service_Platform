@@ -1,6 +1,5 @@
 package com.impetus.process;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -16,9 +15,6 @@ import com.impetus.process.entities.SecUser;
 import com.impetus.process.entities.UserRole;
 import com.impetus.process.enums.Role;
 
-/**
- * @author rakesh.singhania
- */
 /**
  * @author amitb.kumar
  */
@@ -40,11 +36,9 @@ public class RegisterProcess
   /**
    * @param userData
    * @return
-   * @throws SQLException
    */
-  public String registerUser(UserData userData) throws SQLException
+  public String registerUser(UserData userData)
   {
-
     String result = "SUCCESS";
     LOGGER.info("Regestring user........");
     SecUser secUser = new SecUser();

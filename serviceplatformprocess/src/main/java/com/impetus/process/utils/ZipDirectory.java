@@ -13,6 +13,8 @@ import java.util.LinkedList;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import com.impetus.process.exception.ServicePlatformException;
+
 /**
  * @author amitb.kumar
  */
@@ -102,12 +104,20 @@ public class ZipDirectory
   /**
    * @param inputFile
    * @param outputFile
+   * @throws ServicePlatformException
    * @throws Exception
    */
-  public static void zipDir(String inputFile, String outputFile) throws Exception
+  public static void zipDir(String inputFile, String outputFile) throws ServicePlatformException
   {
     File inpFile = new File(inputFile);
     File outFile = new File(outputFile);
-    zip(inpFile, outFile);
+    try
+    {
+      zip(inpFile, outFile);
+    }
+    catch (Exception e)
+    {
+      throw new ServicePlatformException("Exception occured while zipping in zipDir:", e);
+    }
   }
 }

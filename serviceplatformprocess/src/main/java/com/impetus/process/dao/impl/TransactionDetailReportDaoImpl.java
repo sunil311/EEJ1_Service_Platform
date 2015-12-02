@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.impetus.process.dao.TransactionDetailReportDao;
 import com.impetus.process.entities.TransactionDetails;
-import com.impetus.process.exception.ServicePlatformDBException;
+import com.impetus.process.exception.ServicePlatformException;
 
 /**
  * @author amitb.kumar
@@ -40,7 +40,7 @@ public class TransactionDetailReportDaoImpl implements TransactionDetailReportDa
    */
   @Override
   public List<TransactionDetails> getTransationDetalsById(String providerId)
-    throws ServicePlatformDBException
+    throws ServicePlatformException
   {
     Session session = sessionFactory.getCurrentSession();
     SQLQuery query = session.createSQLQuery("select * from TRANSACTION_DETAILS where provider_Id="
@@ -57,7 +57,7 @@ public class TransactionDetailReportDaoImpl implements TransactionDetailReportDa
    * com.impetus.process.dao.TransactionDetailReportDao#getTransationDetals()
    */
   @Override
-  public List<TransactionDetails> getTransationDetals() throws ServicePlatformDBException
+  public List<TransactionDetails> getTransationDetals() throws ServicePlatformException
   {
     Session session = sessionFactory.getCurrentSession();
     LOGGER.info("Called DAO");

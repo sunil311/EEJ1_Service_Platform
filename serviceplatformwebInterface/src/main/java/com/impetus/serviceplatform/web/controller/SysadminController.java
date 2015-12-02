@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.impetus.process.SysadminProcess;
 import com.impetus.process.dto.DbProfileData;
 import com.impetus.process.dto.UserData;
+import com.impetus.process.exception.ServicePlatformException;
 
 /**
  * @author amitb.kumar
@@ -21,6 +22,10 @@ import com.impetus.process.dto.UserData;
 @Controller
 public class SysadminController
 {
+  /**
+   * 
+   */
+  private static final String SOMETHING_WENT_WRONG = "Something went wrong!";
   /**
    * 
    */
@@ -51,7 +56,16 @@ public class SysadminController
   String postService(@RequestBody
   DbProfileData dbProfileData)
   {
-    String result = sysadminProcess.updateAggrigator(dbProfileData);
+    String result;
+    try
+    {
+      result = sysadminProcess.updateAggrigator(dbProfileData);
+    }
+    catch (ServicePlatformException e)
+    {
+      logger.error("Exception occured while updating aggregator : ", e);
+      return SOMETHING_WENT_WRONG;
+    }
     return result;
   }
 

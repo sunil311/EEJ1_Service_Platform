@@ -33,6 +33,7 @@ import com.impetus.process.dto.InputData;
 import com.impetus.process.dto.UserData;
 import com.impetus.process.entities.SecUser;
 import com.impetus.process.enums.Template;
+import com.impetus.process.exception.ServicePlatformException;
 import com.impetus.process.utils.ZipDirectory;
 
 /**
@@ -120,8 +121,9 @@ public class SysadminProcess
   /**
    * @param dbProfileData
    * @return
+   * @throws ServicePlatformException 
    */
-  public String updateAggrigator(DbProfileData dbProfileData)
+  public String updateAggrigator(DbProfileData dbProfileData) throws ServicePlatformException
   {
     SecUser secUser = userDao.findUserByEmailId(dbProfileData.getEmail());
     String dbResponse = createDataBase(dbProfileData);
@@ -133,7 +135,6 @@ public class SysadminProcess
         secUser.setActivated(true);
         userDao.save(secUser);
       }
-
     }
     return dbResponse;
   }
@@ -164,8 +165,9 @@ public class SysadminProcess
   /**
    * @param secUser
    * @return
+   * @throws ServicePlatformException
    */
-  public boolean sendEmail(SecUser secUser)
+  public boolean sendEmail(SecUser secUser) throws ServicePlatformException
   {
     String to = secUser.getEmail();
     String from = env.getProperty("process.email.from");
@@ -219,7 +221,7 @@ public class SysadminProcess
     }
     catch (Exception e)
     {
-      LOGGER.debug(e.getMessage());
+      throw new ServicePlatformException("Exception occured in sendEmail: ", e);
     }
     return true;
   }
