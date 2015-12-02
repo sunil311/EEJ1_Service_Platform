@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.impetus.process.exception.ServicePlatformException;
 import com.impetus.process.utils.ZipDirectory;
 
 /**
@@ -39,7 +40,7 @@ public class DownloadController
    */
   @RequestMapping(value = "/DownloadTemplate/download/{tenantId}", method = RequestMethod.GET)
   public void loginUser(@PathVariable
-  String tenantId, HttpServletResponse response) throws Exception
+  String tenantId, HttpServletResponse response) throws ServicePlatformException
   {
 
     String filestore = env.getProperty("sp.filestore.path");
@@ -62,29 +63,40 @@ public class DownloadController
    * @throws IOException
    */
   private void processDownload(HttpServletResponse response, String downloadLink)
-    throws FileNotFoundException, IOException
-  {
-    File downloadFile = new File(downloadLink);
-    FileInputStream inputStream = new FileInputStream(downloadFile);
-    // set content attributes for the response
-    response.setContentType("application/octet-stream");
-    response.setContentLength((int) downloadFile.length());
-    // set headers for the response
-    String headerKey = "Content-Disposition";
-    String headerValue = String.format("attachment; filename=\"%s\"", downloadFile.getName());
-    response.setHeader(headerKey, headerValue);
-    // get output stream of the response
-    OutputStream outStream = response.getOutputStream();
-    byte[] buffer = new byte[4096];
-    int bytesRead = -1;
-    // write bytes read from the input stream into the output stream
-    while ((bytesRead = inputStream.read(buffer)) != -1)
-    {
-      outStream.write(buffer, 0, bytesRead);
-    }
-    inputStream.close();
-    outStream.close();
-  }
+    throws ServicePlatformException
+ {
+		try 
+		{
+			File downloadFile = new File(downloadLink);
+			FileInputStream inputStream = new FileInputStream(downloadFile);
+			// set content attributes for the response
+			response.setContentType("application/octet-stream");
+			response.setContentLength((int) downloadFile.length());
+			// set headers for the response
+			String headerKey = "Content-Disposition";
+			String headerValue = String.format("attachment; filename=\"%s\"",
+					downloadFile.getName());
+			response.setHeader(headerKey, headerValue);
+			// get output stream of the response
+			OutputStream outStream = response.getOutputStream();
+			byte[] buffer = new byte[4096];
+			int bytesRead = -1;
+			// write bytes read from the input stream into the output stream
+			while ((bytesRead = inputStream.read(buffer)) != -1) {
+				outStream.write(buffer, 0, bytesRead);
+			}
+			inputStream.close();
+			outStream.close();
+		} 
+		catch (FileNotFoundException e) 
+		{
+			throw new ServicePlatformException(e.getMessage());
+		} 
+		catch (IOException e) 
+		{
+			throw new ServicePlatformException(e.getMessage());
+		}
+	}
 
   /**
    * @param tenantId
