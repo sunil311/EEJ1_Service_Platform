@@ -171,6 +171,35 @@ public class SysadminProcess
     return response.getResult();
 
   }
+  
+  /**
+   * @param dbProfileData
+   * @return
+   */
+  public String createEntryforTenantInPropertyFile(DbProfileData dbProfileData) throws ServicePlatformException
+  {
+    RestTemplate rt = new RestTemplate();
+    rt.getMessageConverters().add(new StringHttpMessageConverter());
+    String uri = new String(env.getProperty("process.create.db.uri"));
+
+    InputData input = new InputData();
+    input.setDbName(dbProfileData.getDbName());
+    input.setDbUserName(dbProfileData.getUserName());
+    input.setDbPassword(dbProfileData.getPassword());
+    input.setDbHostName(dbProfileData.getHostName());
+    input.setDbPort(dbProfileData.getPortNumber());
+    DBResponse response = null;
+    try
+    {
+      response = rt.postForObject(uri, input, DBResponse.class);
+    }
+    catch(ResourceAccessException e)
+    {
+      throw new ServicePlatformException("Exception occured in creating database: ", e);
+    }
+    return response.getResult();
+
+  }
 
   /**
    * @param secUser
