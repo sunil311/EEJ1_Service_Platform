@@ -87,9 +87,9 @@ public class LoginProcess {
 		boolean passwordStatus = true;
 		if (loginData.getEmail() != null
 				&& loginData.getPassword() != null
-				&& !(loginData.getPassword().length() >= 2 && loginData
+				&& !(loginData.getPassword().length() >= 6 && loginData
 						.getPassword().length() <= 12)) {
-			status = "Email and Password should be between 2 and 12.";
+			status = "Email and Password should be between 6 and 12.";
 			passwordStatus = false;
 		}
 
