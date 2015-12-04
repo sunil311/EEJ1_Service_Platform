@@ -22,95 +22,78 @@ import com.impetus.process.enums.Role;
 @Configuration
 @PropertySource("classpath:package.properties")
 @Service("loginProcess")
-public class LoginProcess
-{
-  /**
+public class LoginProcess {
+
+	@Autowired
+	Environment env;
+
+	@Autowired
+	private UserDao userDao;
+
+	String status = "";
+
+	private static final Logger LOGGER = LoggerFactory
+			.getLogger(LoginProcess.class);
+
+	/**
+	 * find our logged in user on basis of roles
+	 * 
+	 * @param loginData
+	 * @return
+	 * @throws SQLException
+	 */
+	public String loginUser(LoginData loginData) {
+		if (!validate(loginData)) {
+			return status;
+		}
+
+		String result = env.getProperty("process.result.success");
+		LOGGER.info("Cheking user........");
+		SecUser user = userDao.findUser(loginData.getEmail(),
+				loginData.getPassword());
+		boolean hasAdminRole = false;
+		if (user != null && user.getRoles() != null) {
+			for (UserRole role : user.getRoles()) {
+				if (role.getRoleId() == Role.ADMIN.getId()) {
+					hasAdminRole = true;
+				}
+				break;
+			}
+
+		}
+		if (user != null && user.getRoles() != null && hasAdminRole) {
+			updateUserSessionData();
+		} else {
+			LOGGER.info("Login user........USER DO NOT EXISTS");
+			result = env.getProperty("process.login.user.not.exist");
+		}
+		return result;
+	}
+
+	/**
    * 
    */
-  @Autowired
-  Environment env;
+	private void updateUserSessionData() {
+		// TODO Auto-generated method stub
+	}
 
-  /**
-   * 
-   */
-  @Autowired
-  private UserDao userDao;
+	/**
+	 * validating login data
+	 * 
+	 * @param loginData
+	 * @return
+	 */
+	private boolean validate(LoginData loginData) {
+		boolean passwordStatus = true;
+		if (loginData.getEmail() != null
+				&& loginData.getPassword() != null
+				&& !(loginData.getPassword().length() >= 2 && loginData
+						.getPassword().length() <= 12)) {
+			status = "Email and Password should be between 2 and 12.";
+			passwordStatus = false;
+		}
 
-  /**
-   * 
-   */
-  String status = "";
+		return passwordStatus;
 
-  /**
-   * 
-   */
-  private static final Logger LOGGER = LoggerFactory.getLogger(LoginProcess.class);
-
-  /**
-   * find our logged in user on basis of roles
-   * @param loginData
-   * @return
-   * @throws SQLException
-   */
-  public String loginUser(LoginData loginData)
-  {
-    if (!validate(loginData))
-    {
-      return status;
-    }
-
-    String result = env.getProperty("process.result.success");
-    LOGGER.info("Cheking user........");
-    SecUser user = userDao.findUser(loginData.getEmail(), loginData.getPassword());
-    boolean hasAdminRole = false;
-    if (user != null && user.getRoles() != null)
-    {
-      for (UserRole role : user.getRoles())
-      {
-        if (role.getRoleId() == Role.ADMIN.getId())
-        {
-          hasAdminRole = true;
-        }
-        break;
-      }
-
-    }
-    if (user != null && user.getRoles() != null && hasAdminRole)
-    {
-      updateUserSessionData();
-    }
-    else
-    {
-      LOGGER.info("Login user........USER DO NOT EXISTS");
-      result = env.getProperty("process.login.user.not.exist");
-    }
-    return result;
-  }
-
-  /**
-   * 
-   */
-  private void updateUserSessionData()
-  {
-    // TODO Auto-generated method stub
-  }
-
-  /**
-   * validating login data
-   * @param loginData
-   * @return
-   */
-  private boolean validate(LoginData loginData)
-  {
-    boolean passwordStatus = true;
-    if (loginData.getEmail() != null && loginData.getPassword() != null
-      && !(loginData.getPassword().length() >= 2 && loginData.getPassword().length() <= 12))
-    {
-      status = "Email and Password should be between 2 and 12.";
-      passwordStatus = false;
-    }
-
-    return passwordStatus;
-
-  }
+	}
 }

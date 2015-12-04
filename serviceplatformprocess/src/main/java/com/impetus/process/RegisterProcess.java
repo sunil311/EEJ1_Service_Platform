@@ -22,15 +22,9 @@ import com.impetus.process.enums.Role;
 public class RegisterProcess
 {
 
-  /**
-	 * 
-	 */
   @Autowired
   public UserDao userDao;
 
-  /**
-	 * 
-	 */
   private static final Logger LOGGER = LoggerFactory.getLogger(RegisterProcess.class);
 
   /**

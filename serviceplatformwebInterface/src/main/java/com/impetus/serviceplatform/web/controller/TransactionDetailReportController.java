@@ -24,90 +24,71 @@ import com.impetus.process.service.TransactionDetailReportService;
  * @author amitb.kumar
  */
 @Controller
-public class TransactionDetailReportController
-{
+public class TransactionDetailReportController {
 
-  /**
-   * 
-   */
-  private static final String SOMETHING_WENT_WRONG = "Something went wrong!";
+	private static final String SOMETHING_WENT_WRONG = "Something went wrong!";
 
-  /**
-	 * 
+	Logger logger = LoggerFactory.getLogger(getClass());
+
+	@Autowired
+	private TransactionDetailReportService transactionDetailReportService;
+
+	/**
+	 * @param providerId
+	 * @return
+	 * @throws ServicePlatformDBException
 	 */
-  Logger logger = LoggerFactory.getLogger(getClass());
+	@RequestMapping(value = "/transactionDetails/{providerId}", method = {
+			RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody String getTransationDetalsById(
+			@PathVariable("providerId") String providerId) {
+		String jsonCartList = "{\"status\":\"" + 200 + "\"}";
 
-  /**
-	 * 
+		List<TransactionDetails> list = null;
+		try {
+			list = transactionDetailReportService
+					.getTransationDetalsById(providerId);
+		} catch (ServicePlatformException e) {
+			logger.error("Exception occured while updating aggregator : ", e);
+			return SOMETHING_WENT_WRONG;
+		}
+		jsonCartList = getJsonFromList(list);
+
+		return jsonCartList;
+	}
+
+	/**
+	 * @return
+	 * @throws ServicePlatformException
 	 */
-  @Autowired
-  private TransactionDetailReportService transactionDetailReportService;
+	@RequestMapping(value = "/transactionDetails", method = {
+			RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody String getTransationDetals() {
+		String jsonCartList = "{\"status\":\"" + 200 + "\"}";
+		List<TransactionDetails> list;
+		try {
+			list = transactionDetailReportService.getTransationDetals();
+		} catch (ServicePlatformException e) {
+			logger.error("Exception occured while updating aggregator : ", e);
+			return SOMETHING_WENT_WRONG;
+		}
+		jsonCartList = getJsonFromList(list);
+		return "{\"jsonCartList\":\"" + jsonCartList + "\"}";
+	}
 
-  /**
-   * @param providerId
-   * @return
-   * @throws ServicePlatformDBException
-   */
-  @RequestMapping(value = "/transactionDetails/{providerId}", method = {
-      RequestMethod.GET, RequestMethod.POST})
-  public @ResponseBody
-  String getTransationDetalsById(@PathVariable("providerId")
-  String providerId)
-  {
-    String jsonCartList = "{\"status\":\"" + 200 + "\"}";
-
-    List<TransactionDetails> list = null;
-    try
-    {
-      list = transactionDetailReportService.getTransationDetalsById(providerId);
-    }
-    catch (ServicePlatformException e)
-    {
-      logger.error("Exception occured while updating aggregator : ", e);
-      return SOMETHING_WENT_WRONG;
-    }
-    jsonCartList = getJsonFromList(list);
-
-    return jsonCartList;
-  }
-
-  /**
-   * @return
-   * @throws ServicePlatformDBException
-   */
-  @RequestMapping(value = "/transactionDetails", method = {RequestMethod.GET, RequestMethod.POST})
-  public @ResponseBody
-  String getTransationDetals()
-  {
-    String jsonCartList = "{\"status\":\"" + 200 + "\"}";
-    List<TransactionDetails> list;
-    try
-    {
-      list = transactionDetailReportService.getTransationDetals();
-    }
-    catch (ServicePlatformException e)
-    {
-      logger.error("Exception occured while updating aggregator : ", e);
-      return SOMETHING_WENT_WRONG;
-    }
-    jsonCartList = getJsonFromList(list);
-    return "{\"jsonCartList\":\"" + jsonCartList + "\"}";
-  }
-
-  /**
-   * @param list
-   * @return
-   */
-  private String getJsonFromList(List<TransactionDetails> list)
-  {
-    String jsonCartList;
-    // create a new Gson instance
-    Gson gson = new Gson();
-    // convert your list to json
-    jsonCartList = gson.toJson(list);
-    // print your generated json
-    System.out.println("jsonCartList: " + jsonCartList);
-    return jsonCartList;
-  }
+	/**
+	 * @param list
+	 * @return
+	 */
+	private String getJsonFromList(List<TransactionDetails> list) {
+		String jsonCartList;
+		// create a new Gson instance
+		Gson gson = new Gson();
+		// convert your list to json
+		jsonCartList = gson.toJson(list);
+		// print your generated json
+		System.out.println("jsonCartList: " + jsonCartList);
+		return jsonCartList;
+	}
 
 }
