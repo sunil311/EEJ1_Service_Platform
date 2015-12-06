@@ -15,23 +15,20 @@ import org.springframework.web.servlet.ModelAndView;
  */
 public class GateKeeper implements HandlerInterceptor
 {
-  /**
-	 * 
-	 */
+  
   @Autowired
   SessionFactory sessionFactory;
-  /**
-	 * 
-	 */
+  
   Logger logger = LoggerFactory.getLogger(getClass());
 
-  /*
-   * (non-Javadoc)
-   * @see
-   * org.springframework.web.servlet.HandlerInterceptor#afterCompletion(javax
-   * .servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse,
-   * java.lang.Object, java.lang.Exception)
-   */
+  	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * org.springframework.web.servlet.HandlerInterceptor#afterCompletion(javax
+	 * .servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse,
+	 * java.lang.Object, java.lang.Exception)
+	 */
   @Override
   public void afterCompletion(
     HttpServletRequest paramHttpServletRequest,

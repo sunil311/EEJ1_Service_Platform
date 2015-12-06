@@ -18,10 +18,6 @@ import com.impetus.process.dto.UserData;
 @Controller
 public class RegistrationController
 {
-
-  /**
-   * 
-   */
   @Autowired
   private RegisterProcess registerProcess;
   /**

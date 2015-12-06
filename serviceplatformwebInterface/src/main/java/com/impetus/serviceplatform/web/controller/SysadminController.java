@@ -20,53 +20,40 @@ import com.impetus.process.exception.ServicePlatformException;
  * @author amitb.kumar
  */
 @Controller
-public class SysadminController
-{
-  /**
-   * 
-   */
-  private static final String SOMETHING_WENT_WRONG = "Something went wrong!";
-  /**
-   * 
-   */
-  Logger logger = LoggerFactory.getLogger(getClass());
-  /**
-   * 
-   */
-  @Autowired
-  private SysadminProcess sysadminProcess;
+public class SysadminController {
 
-  /**
-   * @return
-   */
-  @RequestMapping(value = "/admin/findInactiveAggrigator", method = RequestMethod.GET)
-  @ResponseBody
-  public List<UserData> preService()
-  {
-    List<UserData> result = sysadminProcess.getAllInactiveUsers();
-    return result;
-  }
+	private static final String SOMETHING_WENT_WRONG = "Something went wrong!";
 
-  /**
-   * @param dbProfileData
-   * @return
-   */
-  @RequestMapping(value = "/admin/updateAggrigator", method = RequestMethod.POST)
-  public @ResponseBody
-  String postService(@RequestBody
-  DbProfileData dbProfileData)
-  {
-    String result;
-    try
-    {
-      result = sysadminProcess.updateAggrigator(dbProfileData);
-    }
-    catch (ServicePlatformException e)
-    {
-      logger.error("Exception occured while updating aggregator : ", e);
-      return SOMETHING_WENT_WRONG;
-    }
-    return result;
-  }
+	Logger logger = LoggerFactory.getLogger(getClass());
+
+	@Autowired
+	private SysadminProcess sysadminProcess;
+
+	/**
+	 * @return
+	 */
+	@RequestMapping(value = "/admin/findInactiveAggrigator", method = RequestMethod.GET)
+	@ResponseBody
+	public List<UserData> preService() {
+		List<UserData> result = sysadminProcess.getAllInactiveUsers();
+		return result;
+	}
+
+	/**
+	 * @param dbProfileData
+	 * @return
+	 */
+	@RequestMapping(value = "/admin/updateAggrigator", method = RequestMethod.POST)
+	public @ResponseBody String postService(
+			@RequestBody DbProfileData dbProfileData) {
+		String result;
+		try {
+			result = sysadminProcess.updateAggrigator(dbProfileData);
+		} catch (ServicePlatformException e) {
+			logger.error("Exception occured while updating aggregator : ", e);
+			return SOMETHING_WENT_WRONG;
+		}
+		return result;
+	}
 
 }

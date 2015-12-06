@@ -2,7 +2,7 @@ package com.impetus.process.dao;
 
 import java.util.List;
 
-import org.hibernate.SQLQuery;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -42,17 +42,12 @@ public class TenantDatabaseMetadataDao {
 	public List<TenantDatabaseMetadata> getTenantDatabaseMetadataDetails()
 			throws ServicePlatformException {
 		Session session = sessionFactory.getCurrentSession();
+		Criteria criteria = session
+				.createCriteria(TenantDatabaseMetadata.class);
 
 		LOGGER.info("Called DAO");
 
-		SQLQuery query = session
-				.createSQLQuery("select * from TENANT_DATABASE_DETAILS");
-
-		LOGGER.debug("list :" + query.list());
-
-		@SuppressWarnings("unchecked")
-		List<TenantDatabaseMetadata> list = (List<TenantDatabaseMetadata>) query
-				.list();
+		List<TenantDatabaseMetadata> list = (List<TenantDatabaseMetadata>) criteria.list();
 
 		return list;
 	}

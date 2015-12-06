@@ -62,8 +62,7 @@ public class WSController {
 	@RequestMapping(value = "tenantDatabaseMetadataDetails", method = {
 			RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
-	public List<DBResponse> getTenantDatabaseMetadatDetails(
-			@RequestBody InputData inputData) {
+	public DBResponse [] getTenantDatabaseMetadatDetails() {
 
 		List<DBResponse> dbResponseList = new ArrayList<DBResponse>();
 		List<TenantDatabaseMetadata> tenantDatabaseMetadataList;
@@ -85,8 +84,8 @@ public class WSController {
 		} catch (ServicePlatformException e) {
 			LOGGER.error("exception :" + e.getMessage());
 		}
-
-		return dbResponseList;
+		DBResponse [] dbResponseArray = dbResponseList.toArray(new DBResponse[dbResponseList.size()]);
+		return dbResponseArray;
 
 	}
 }

@@ -26,10 +26,6 @@ import com.impetus.process.utils.ZipDirectory;
 @PropertySource("classpath:config.properties")
 public class DownloadController
 {
-
-  /**
-	 * 
-	 */
   @Autowired
   private Environment env;
 
