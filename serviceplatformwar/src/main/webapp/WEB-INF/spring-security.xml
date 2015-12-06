@@ -55,9 +55,9 @@ http://www.springframework.org/schema/security/spring-security.xsd">
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:jtds:sqlserver://192.168.219.51:1433;databaseName=ServicePlatform" />
-		<property name="username" value="sp" />
-		<property name="password" value="impetus@123" />
+			value="jdbc:jtds:sqlserver://localhost:1433;databaseName=ServicePlatform" />
+		<property name="username" value="sa" />
+		<property name="password" value="impetus123#" />
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">

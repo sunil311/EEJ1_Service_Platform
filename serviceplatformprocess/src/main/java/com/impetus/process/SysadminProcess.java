@@ -33,8 +33,10 @@ import com.impetus.process.dto.DbProfileData;
 import com.impetus.process.dto.InputData;
 import com.impetus.process.dto.UserData;
 import com.impetus.process.entities.SecUser;
+import com.impetus.process.entities.TenantDatabaseMetadata;
 import com.impetus.process.enums.Template;
 import com.impetus.process.exception.ServicePlatformException;
+import com.impetus.process.service.IManageTenant;
 import com.impetus.process.utils.ZipDirectory;
 
 /**
@@ -55,6 +57,9 @@ public class SysadminProcess {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	IManageTenant iManageTenant;
 
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(SysadminProcess.class);
@@ -117,6 +122,7 @@ public class SysadminProcess {
 			throws ServicePlatformException {
 		SecUser secUser = userDao.findUserByEmailId(dbProfileData.getEmail());
 		String dbResponse = createDataBase(dbProfileData);
+		Integer dbDetailsId = createEntryforTenantDatabaseMetadata(dbProfileData);
 		// TODO include zip functionality here
 		if (DATABASE_SUCCESS.equalsIgnoreCase(dbResponse)) {
 			if (sendEmail(secUser)) {
@@ -159,11 +165,8 @@ public class SysadminProcess {
 	 * @param dbProfileData
 	 * @return
 	 */
-	public String createEntryforTenantInPropertyFile(DbProfileData dbProfileData)
-			throws ServicePlatformException {
-		RestTemplate rt = new RestTemplate();
-		rt.getMessageConverters().add(new StringHttpMessageConverter());
-		String uri = new String(env.getProperty("process.create.db.uri"));
+	public Integer createEntryforTenantDatabaseMetadata(
+			DbProfileData dbProfileData) throws ServicePlatformException {
 
 		InputData input = new InputData();
 		input.setDbName(dbProfileData.getDbName());
@@ -171,15 +174,9 @@ public class SysadminProcess {
 		input.setDbPassword(dbProfileData.getPassword());
 		input.setDbHostName(dbProfileData.getHostName());
 		input.setDbPort(dbProfileData.getPortNumber());
-		DBResponse response = null;
-		try {
-			response = rt.postForObject(uri, input, DBResponse.class);
-		} catch (ResourceAccessException e) {
-			throw new ServicePlatformException(
-					"Exception occured in creating database: ", e);
-		}
-		return response.getResult();
-
+		TenantDatabaseMetadata tenantDatabaseMetadata = iManageTenant
+				.createTenantDatabaseMetadatDetail(input);
+		return tenantDatabaseMetadata.getDbDetailsId();
 	}
 
 	/**
