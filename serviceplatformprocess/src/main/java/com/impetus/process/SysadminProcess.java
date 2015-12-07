@@ -16,8 +16,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import org.apache.log4j.Logger;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -37,7 +37,6 @@ import com.impetus.process.enums.Template;
 import com.impetus.process.exception.ServicePlatformException;
 import com.impetus.process.service.IManageTenant;
 import com.impetus.process.utils.ZipDirectory;
-import com.impetus.serviceplatform.web.controller.SysadminController;
 
 /**
  * @author amitb.kumar
