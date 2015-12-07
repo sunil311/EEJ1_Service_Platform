@@ -1,0 +1,189 @@
+<!-- header-section-starts -->
+<div ng-controller="webController as vm">
+    <div class="header">
+        <div class="container">
+            <div class="top-header">
+                <div class="logo">
+                    <a href="#"><img src="{{vm.webData.logo}}" class="img-responsive" alt="" /></a>
+                </div>
+               
+                <div class="header-right">
+                        <div class="queries">
+                    <p>Questions? Call us Toll-free!<br><span>{{vm.webData.phone}} </span></p>
+                </div>
+                    </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+            <div class="menu-bar">
+            <div class="container">
+                <div class="top-menu">
+                    <ul>
+                        <li class="active"><a href="#Home" class="scroll">Home</a></li>|
+						<li><a href="#">Popular Restaurants</a></li>|
+						<li><a href="#">Order</a></li>|
+						<li><a href="#">contact</a></li>
+                       
+                        <div class="clearfix"></div>
+                    </ul>
+                </div>
+                <div class="login-section">
+                    <ul>
+                        <li><a href="#">Login</a>  </li> |
+                        <li><a href="#">Register</a> </li> |
+                        <li><a href="#">Help</a></li>
+                        <div class="clearfix"></div>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="banner wow fadeInUp" data-wow-delay="0.4s" id="Home">
+            <div class="container">
+                <div class="banner-info">
+                    <div class="banner-info-head text-center wow fadeInLeft" data-wow-delay="0.5s">
+                        <h1>{{vm.webData.headerText.serchHeading}}</h1>
+                        <div class="line">
+                            <h2> {{vm.webData.headerText.serchHeadingSubHeading}}</h2>
+                        </div>
+                    </div>
+                    <div class="form-list wow fadeInRight" data-wow-delay="0.5s">
+                        <form name="loginForm" id="loginForm" class=" loginForm" role="form">
+                          <ul class="navmain">
+                            <li><span>Location Name</span>
+                             <input type="text" class="text" value="Secunderabad" ng-model="vm.city" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Secunderabad';}">
+                            </li>
+                            <li><span>Restaurant Name</span>
+                             <input type="text" class="text" ng-model="vm.restorent" value="Swagath Grand" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Swagath Grand';}">
+                            </li>
+                            <li><span>Cuisine Name</span>
+                             <input type="text" class="text" value="Chicken Biriyani" ng-model="vm.cuisine" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Chicken Biriyani';}">
+                            </li>
+                           
+                          </ul>
+                        </form>
+                        </div>
+                    <!-- start search-->
+        <div class="srch"><button type="submit" ></button></div>
+        
+       
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- header-section-ends -->
+       <div class="content">
+        <div class="ordering-section" id="Order">
+            <div class="container">
+                <div class="ordering-section-head text-center wow bounceInRight" data-wow-delay="0.4s">
+                    <h3>{{vm.webData.OrderText.OrderTextHeading}}</h3>
+                   
+                </div>
+                <div class="ordering-section-grids">
+                    <div class="col-md-3 ordering-section-grid">
+                        <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+                            <i class="one"></i><br>
+                            <i class="one-icon"></i>
+                            <p> {{vm.webData.OrderText.ordeSteps.step1}}</p>
+                            <label></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 ordering-section-grid">
+                        <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+                            <i class="two"></i><br>
+                            <i class="two-icon"></i>
+                            <p> {{vm.webData.OrderText.ordeSteps.step2}}</p>
+                            <label></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 ordering-section-grid">
+                        <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+                            <i class="three"></i><br>
+                            <i class="three-icon"></i>
+                            <p>  {{vm.webData.OrderText.ordeSteps.step3}}</p>
+                            <label></label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 ordering-section-grid">
+                        <div class="ordering-section-grid-process wow fadeInRight" data-wow-delay="0.4s">
+                            <i class="four"></i><br>
+                            <i class="four-icon"></i>
+                            <p> {{vm.webData.OrderText.ordeSteps.step4}}</p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="popular-restaurents" id="Popular-Restaurants">
+            <div class="container">
+                <div class="col-md-12 top-restaurents">
+                    
+                    <div class="ordering-section-head text-center wow bounceInRight" data-wow-delay="0.4s">
+                     <h3 class="Popular-Restaurants-heading">{{vm.webData.topRestorent.topRestorentHeading}}</h3>
+                   </div>
+                    <div class="top-restaurent-grids">
+                        <div class="top-restaurent-logos">
+                            <div class="col-md-3 restaurent-logos wow bounceIn" data-wow-delay="0.4s"
+                             ng-repeat="imageUrl in vm.webData.topRestorent.imageUrl">
+                                <img src="{{imageUrl}}" class="img-responsive" alt="" />
+                            </div>
+                           
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="service-section">
+            
+            <div class="service-section-bottom-row">
+                <div class="container">
+                    <div class="col-md-4 service-section-bottom-grid wow bounceIn "data-wow-delay="0.2s">
+                        <div class="icon">
+                            <img src="images/icon1.jpg" class="img-responsive" alt="" />
+                        </div>
+                        <div class="icon-data">
+                            <h4>{{vm.webData.Service_Guarantee.heading}}</h4>
+                            <p>{{vm.webData.Service_Guarantee.description}} </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-md-4 service-section-bottom-grid wow bounceIn "data-wow-delay="0.2s">
+                        <div class="icon">
+                            <img src="images/icon2.jpg" class="img-responsive" alt="" />
+                        </div>
+                        <div class="icon-data">
+                            <h4>{{vm.webData.securePayment.heading}}</h4>
+                            <p>{{vm.webData.securePayment.description}} </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-md-4 service-section-bottom-grid wow bounceIn "data-wow-delay="0.2s">
+                        <div class="icon">
+                            <img src="images/icon3.jpg" class="img-responsive" alt="" />
+                        </div>
+                        <div class="icon-data">
+                            <h4>{{vm.webData.trackOrder.heading}}</h4>
+                            <p>{{vm.webData.trackOrder.description}} </p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+        <div class="container">
+            <p class="wow fadeInLeft" data-wow-delay="0.4s">&copy; 2014  All rights  Reserved</p>
+        </div>
+        </div>
+       </div> 
+
+</div>
