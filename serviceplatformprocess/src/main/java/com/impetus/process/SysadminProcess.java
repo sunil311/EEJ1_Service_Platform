@@ -16,9 +16,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+import org.apache.log4j.Logger;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -38,6 +37,7 @@ import com.impetus.process.enums.Template;
 import com.impetus.process.exception.ServicePlatformException;
 import com.impetus.process.service.IManageTenant;
 import com.impetus.process.utils.ZipDirectory;
+import com.impetus.serviceplatform.web.controller.SysadminController;
 
 /**
  * @author amitb.kumar
@@ -51,18 +51,17 @@ public class SysadminProcess {
 	public static final String INPUT = "INPUT";
 
 	public static final String DATABASE_SUCCESS = "Database created successfully";
+	
+	private static final Logger LOGGER = Logger.getLogger(SysadminProcess.class);
 
 	@Autowired
 	Environment env;
 
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Autowired
 	IManageTenant iManageTenant;
-
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(SysadminProcess.class);
 
 	/**
 	 * find out all inactive users
@@ -123,6 +122,7 @@ public class SysadminProcess {
 		SecUser secUser = userDao.findUserByEmailId(dbProfileData.getEmail());
 		String dbResponse = createDataBase(dbProfileData);
 		Integer dbDetailsId = createEntryforTenantDatabaseMetadata(dbProfileData);
+		updateDataSourceMapAtAggregatorSite(dbProfileData);
 		// TODO include zip functionality here
 		if (DATABASE_SUCCESS.equalsIgnoreCase(dbResponse)) {
 			if (sendEmail(secUser)) {
@@ -134,6 +134,9 @@ public class SysadminProcess {
 	}
 
 	/**
+	 * This method is used to create database for a Tenant which is going to
+	 * register with fecilitator
+	 * 
 	 * @param dbProfileData
 	 * @return
 	 */
@@ -153,6 +156,34 @@ public class SysadminProcess {
 		DBResponse response = null;
 		try {
 			response = rt.postForObject(uri, input, DBResponse.class);
+		} catch (ResourceAccessException e) {
+			throw new ServicePlatformException(
+					"Exception occured in creating database: ", e);
+		}
+		return response.getResult();
+
+	}
+	
+	/**
+	 * This method is used to update datasource map for a Tenant which is going to
+	 * register with fecilitator
+	 * 
+	 * @param dbProfileData
+	 * @return
+	 */
+	public String updateDataSourceMapAtAggregatorSite(DbProfileData dbProfileData)
+			throws ServicePlatformException {
+		RestTemplate rt = new RestTemplate();
+		rt.getMessageConverters().add(new StringHttpMessageConverter());
+		String uri = new String(env.getProperty("process.update.datasource.map"));
+
+		InputData input = new InputData();
+		input.setDbName(dbProfileData.getDbName());
+		
+		DBResponse response = null;
+		try {
+			response = rt.postForObject(uri, input, DBResponse.class);
+			LOGGER.debug(response.getResult());
 		} catch (ResourceAccessException e) {
 			throw new ServicePlatformException(
 					"Exception occured in creating database: ", e);

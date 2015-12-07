@@ -2,8 +2,7 @@ package com.impetus.serviceplatform.web.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +23,7 @@ public class SysadminController {
 
 	private static final String SOMETHING_WENT_WRONG = "Something went wrong!";
 
-	Logger logger = LoggerFactory.getLogger(getClass());
+	private static final Logger LOGGER = Logger.getLogger(SysadminController.class);
 
 	@Autowired
 	private SysadminProcess sysadminProcess;
@@ -50,7 +49,7 @@ public class SysadminController {
 		try {
 			result = sysadminProcess.updateAggrigator(dbProfileData);
 		} catch (ServicePlatformException e) {
-			logger.error("Exception occured while updating aggregator : ", e);
+			LOGGER.error("Exception occured while updating aggregator : ", e);
 			return SOMETHING_WENT_WRONG;
 		}
 		return result;
