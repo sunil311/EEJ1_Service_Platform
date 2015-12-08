@@ -12,6 +12,7 @@
 		<!-- <mapping class="com.impetus.process.entities.SpAggregator" /> -->
 		<mapping class="com.impetus.process.entities.UserRole" />
 		<mapping class="com.impetus.process.entities.UserType" />
+		<mapping class="com.impetus.process.entities.TenantDatabaseMetadata" />
 	</session-factory>
 	
 	<!-- <property name="hibernate.multiTenancy">DATABASE</property>
