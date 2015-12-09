@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.impetus.process.LoginProcess;
-import com.impetus.process.SysadminProcess;
+import com.impetus.process.AdminProcess;
 import com.impetus.process.dto.LoginData;
 
 /**
@@ -28,7 +28,7 @@ public class LoginController
   private LoginProcess loginProcess;
 
   @Autowired
-  private SysadminProcess sysadminProcess;
+  private AdminProcess adminProcess;
 
   private String status;
 

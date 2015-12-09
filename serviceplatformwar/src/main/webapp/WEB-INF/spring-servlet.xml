@@ -33,7 +33,7 @@
 	<bean id="userDao" class="com.impetus.process.dao.UserDao">
 	</bean>
 	
-	<bean id="sysadminProcess" class="com.impetus.process.SysadminProcess"></bean>
-	<bean id="sysadminDao" class="com.impetus.process.dao.SysadminDao">	</bean>
+	<bean id="sysadminProcess" class="com.impetus.process.AdminProcess"></bean>
+	<bean id="sysadminDao" class="com.impetus.process.dao.AdminDao">	</bean>
 	
 </beans>

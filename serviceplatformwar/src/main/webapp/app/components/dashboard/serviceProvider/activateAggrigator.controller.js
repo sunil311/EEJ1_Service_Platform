@@ -15,14 +15,17 @@
 			vm.aggregatorsList=results;
     });
 		vm.activate = function(user) {
+			
             console.log(user);
             $scope.alert = true;
+            $('#submit_button_id').attr('disabled',true);
             AggrigatorData.post('updateAggrigator', user).then(function(results) {
                 if (results == "Database created successfully") {
                     alert(results+". USER is now activated and email has been sent.")
                     $location.path('dashboard');
                 } else {
                 	alert(results+" Please try again.")
+                	$('#submit_button_id').attr('disabled', false);
                     vm.alert=false;
                 }
             });

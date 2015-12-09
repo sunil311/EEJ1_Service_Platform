@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * @author amitb.kumar
  */
-public class SysadminDao
+public class AdminDao
 {
   /**
    * 
