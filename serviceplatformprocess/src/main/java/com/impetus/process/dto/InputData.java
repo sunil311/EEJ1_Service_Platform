@@ -11,6 +11,21 @@ public class InputData {
 	private String dbPassword;
 	private String dbHostName;
 	private String dbPort;
+	private String tenantId;
+
+	/**
+	 * @return the tenantId
+	 */
+	public String getTenantId() {
+		return tenantId;
+	}
+
+	/**
+	 * @param tenantId the tenantId to set
+	 */
+	public void setTenantId(String tenantId) {
+		this.tenantId = tenantId;
+	}
 
 	public String getDbHostName() {
 		return dbHostName;

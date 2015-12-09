@@ -38,7 +38,7 @@ public class ManageTenantImpl implements IManageTenant {
 		tenantDatabaseMetadata.setDbName(inputData.getDbName());
 		tenantDatabaseMetadata.setDbUserName(inputData.getDbUserName());
 		tenantDatabaseMetadata.setDbPassword(inputData.getDbPassword());
-		tenantDatabaseMetadata.setTenantId(inputData.getDbName());
+		tenantDatabaseMetadata.setTenantId(inputData.getTenantId());
 		tenantDatabaseMetadataDao.save(tenantDatabaseMetadata);
 
 		return tenantDatabaseMetadata;
