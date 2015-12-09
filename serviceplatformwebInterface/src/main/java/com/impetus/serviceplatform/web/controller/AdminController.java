@@ -22,17 +22,10 @@ import com.impetus.process.exception.ServicePlatformException;
 @Controller
 public class AdminController
 {
-  /**
-   * 
-   */
   private static final String SOMETHING_WENT_WRONG = "Something went wrong!";
-  /**
-   * 
-   */
-  Logger logger = LoggerFactory.getLogger(getClass());
-  /**
-   * 
-   */
+  
+  private static final Logger LOGGER = LoggerFactory.getLogger(AdminController.class);
+  
   @Autowired
   private AdminProcess sysadminProcess;
 
@@ -63,7 +56,7 @@ public class AdminController
     }
     catch (ServicePlatformException e)
     {
-      logger.error("Exception occured while updating aggregator : ", e);
+    	LOGGER.error("Exception occured while updating aggregator : ", e);
       return SOMETHING_WENT_WRONG;
     }
     return result;
