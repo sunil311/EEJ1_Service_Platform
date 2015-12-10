@@ -118,6 +118,7 @@ public class AdminProcess {
 		updateDbprofileData(dbProfileData, secUser);
 		String dbResponse = createDataBase(dbProfileData);
 		Integer dbDetailsId = createEntryforTenantDatabaseMetadata(dbProfileData);
+		LOGGER.debug("database details Id :"+dbDetailsId);
 		updateDataSourceMapAtAggregatorSite(dbProfileData);
 		if (DATABASE_SUCCESS.equalsIgnoreCase(dbResponse)) {
 			if (sendEmail(secUser)) {
@@ -169,12 +170,9 @@ public class AdminProcess {
 		rt.getMessageConverters().add(new StringHttpMessageConverter());
 		String uri = new String(env.getProperty("process.update.datasource.map"));
 
-		InputData input = new InputData();
-		input.setDbName(dbProfileData.getDbName());
-		
 		DBResponse response = null;
 		try {
-			response = rt.postForObject(uri, input, DBResponse.class);
+			response = rt.postForObject(uri, dbProfileData.getTenantId(), DBResponse.class);
 			LOGGER.debug(response.getResult());
 		} catch (ResourceAccessException e) {
 			throw new ServicePlatformException(
