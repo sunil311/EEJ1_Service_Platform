@@ -1,5 +1,5 @@
 <!-- header-section-starts -->
-<div ng-controller="registerController as vm">
+<div ng-controller="registerProviderController as vm">
 <div class="main">
  <div class="header">
         <div class="container">
@@ -31,7 +31,7 @@
                 <div class="login-section">
                     <ul>
                         <li><a href="#">Login</a>  </li> |
-                        <li><a href="#/register">Register</a> </li> |
+                        <li><a href="#/register-provider">Register Provider</a> </li> |
                         <li><a href="#">Help</a></li>
                         <div class="clearfix"></div>
                     </ul>
@@ -99,7 +99,7 @@
                      
                      <div class="wow fadeInRight" data-wow-delay="0.4s">
                          <span>Contact Number</span>
-                         <input type="text" ng-model="vm.registerData.phone" validator="mobile"> 
+                         <input type="text" ng-model="vm.registerData.phone" validator="mobile"  maxlength="10"> 
                      </div>
                      
                      

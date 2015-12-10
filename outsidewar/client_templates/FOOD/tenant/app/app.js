@@ -85,9 +85,9 @@ app.config(['$routeProvider','$stateProvider', '$urlRouterProvider','$validation
 	                controller: 'webController'
 	              })
                 .state('register', {
-                    url:'/register',
-                    templateUrl: 'partials/register.html',
-                    controller: 'registerController'
+                    url:'/register-provider',
+                    templateUrl: 'partials/register-provider.html',
+                    controller: 'registerProviderController'
                   });
             
   }])

@@ -1434,7 +1434,11 @@ ul.women_pagenation li a:hover{
 	margin:  0;
 	    min-height: 90px;
 }
-.validation-valid,.validation-invalid{
+.validation-valid{
+	color: green;
+	font-size: 10px;
+}
+.validation-invalid{
 	color: red;
 	font-size: 10px;
 }

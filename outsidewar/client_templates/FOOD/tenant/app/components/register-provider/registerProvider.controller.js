@@ -1,8 +1,8 @@
 (function() {
     "use strict";
-    app.controller('registerController', registerController);
-    registerController.$inject = [ '$scope', '$rootScope', '$routeParams', '$location', '$http', 'Data', '$injector' ];
-    function registerController($scope, $rootScope, $routeParams, $location, $http, Data, $injector) {
+    app.controller('registerProviderController', registerProviderController);
+    registerProviderController.$inject = [ '$scope', '$rootScope', '$routeParams', '$location', '$http', 'Data', 'RegisterProvider','$injector' ];
+    function registerProviderController($scope, $rootScope, $routeParams, $location, $http, Data,RegisterProvider, $injector) {
         var vm = this;
         vm.webData={};
         vm.city="";
@@ -16,7 +16,8 @@
                
             });
         vm.setRegister = function(user) {
-            Data.post('signUp', user).then(function(results) {
+            
+            RegisterProvider.post('addProvider',user).then(function(results) {
              if (results.status == "success" || results.status == "SUCCESS") {
                   vm.alert=true;
                   vm.error = false;
