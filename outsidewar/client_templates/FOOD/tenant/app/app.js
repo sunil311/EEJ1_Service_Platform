@@ -83,7 +83,12 @@ app.config(['$routeProvider','$stateProvider', '$urlRouterProvider','$validation
                     url:'',
 	                templateUrl: 'partials/main-container.html',
 	                controller: 'webController'
-	              });
+	              })
+                .state('register', {
+                    url:'/register',
+                    templateUrl: 'partials/register.html',
+                    controller: 'registerController'
+                  });
             
   }])
     .run(function ($rootScope, $location, Data) {

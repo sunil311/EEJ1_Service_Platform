@@ -1,95 +1,268 @@
-
 <div>
-	<div class="row" ng-controller="signUpController as signUpController">
+    <div class="row" ng-controller="signUpController as signUpController">
 
-		<div class="container login-box ">
-			<div>
-				<div class="login-heading">
-					<h1>Signup From</h1>
-				</div>
+        <div class="container login-box ">
+            <div>
+                <div class="login-heading">
+                    <h1>Signup From</h1>
+                </div>
 
-				<div>
-					<div id="login-box">
-						<div class="widget-body">
-							<div class="widget-main">
-								<form name="signupForm" id="loginForm" class="" role="form">
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="name">First Name</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control" placeholder="Name"
-												ng-model="signUpController.signup.firstName" focus
-												validator="required" />
-											</span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="name">Last Name</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control" placeholder="Name"
-												ng-model="signUpController.signup.lastName"
-												validator="required" />
-											</span>
-										</div>
-									</div>
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="email">Email</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control" placeholder="Email"
-												name="email" ng-model="signUpController.signup.email"
-												validator="email" ng-blur="signUpController.checkEmail(signUpController.signup)" />
+                <div>
+                    <div id="login-box">
+                        <div class="widget-body">
 
-											</span>
-											
-											 <div class="alert alert-danger fade in panel-shadow" ng-hide="signUpController.alert">
-								                <a ng-click="loginController.hideAlertMessage()" class="close" data-dismiss="alert">&times;</a>
-								                <strong>Error! </strong> Email Already in use
-								            </div>
-								           
-											
-											
-										</div>
-										
-										
-										
-									</div>
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="password">Password</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
+                            <div class="col-md-12 col-xl-12  margin-top-30">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <button data-target="#sectionA" role="tab" data-toggle="tab" angular-ripple>General </button>
+                                    </li>
+                                    <li ng-class="{active: signUpController.activeTab == 'editprofile'}">
+                                        <button data-ng-disabled="genralForm.$invalid" data-target="#sectionB" role="tab" data-toggle="tab" angular-ripple>Address </button>
+                                    </li>
+                                    <li>
+                                        <button data-target="#sectionC" role="tab" data-toggle="tab" data-ng-disabled="addressForm.$invalid" angular-ripple>Bank </button>
+                                    </li>
+                                    <li>
+                                        <button data-target="#sectionD" role="tab" data-toggle="tab" data-ng-disabled="bankDetailForm.$invalid" angular-ripple>URL</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div id="sectionA" class="tab-pane fade in active">
+
+                                        <div class="widget-main hide" ng-class="{'active': true}">
+                                            <fieldset>
+                                                <form name="genralForm" class="" role="form">
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12 control-label no-padding-right" for="name">Display Name</label>
+                                                        <div class="col-sm-12">
+                                                            <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Name" ng-model="signUpController.signup.firstName" focus validator="required"/>
+                                    </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12 control-label no-padding-right" for="name">First Name</label>
+                                                        <div class="col-sm-12">
+                                                            <span class="block input-icon input-icon-right">
+                                     <input type="text" class="form-control" placeholder="Name" ng-model="signUpController.signup.lastName" focus validator="required"/>
+                                    </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12 control-label no-padding-right" for="email">Email</label>
+                                                        <div class="col-sm-12">
+                                                            <span class="block input-icon input-icon-right">
+                                        <input type="text" class="form-control" placeholder="Email" name="email" ng-model="signUpController.signup.email"  validator="email"/>
+                                        
+                                    </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12 control-label no-padding-right" for="password">Password</label>
+                                                        <div class="col-sm-12">
+                                                            <span class="block input-icon input-icon-right"> <input
 												type="password" class="form-control" name="password"
 												placeholder="Password"
 												ng-model="signUpController.signup.password"
-												validator="required" />
+												validator="password" />
 											</span>
-										</div>
-									</div>
+                                                        </div>
+                                                    </div>
 
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="password">Confirm Password</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
+
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12 control-label no-padding-right" for="password">Confirm Password</label>
+                                                        <div class="col-sm-12">
+                                                            <span class="block input-icon input-icon-right"> <input
 												type="password" class="form-control" name="confirmPassword"
 												placeholder="Confirm Password"
 												ng-model="signUpController.signup.confirmPassword"
 												validator="match=password" />
 
 											</span>
-										</div>
-									</div>
+                                                        </div>
+                                                    </div>
 
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="template">Select Business Type</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <select
+                                                    <div class="form-group">
+                                                        <label class="col-sm-12 control-label no-padding-right" for="displayName">Display Name</label>
+                                                        <div class="col-sm-12">
+                                                            <span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control" placeholder="Display Name"
+												name="displayName"
+												ng-model="signUpController.signup.displayName" />
+
+											</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+
+                                                        <div class="col-md-12">
+
+                                                            <button type="submit" class="width-35 pull-right btn btn-sm custom-button" angular-ripple data-ng-disabled="genralForm.$invalid" data-target="#sectionB" role="tab" data-toggle="tab">
+                                                                Next
+                                                            </button>
+
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </form>
+
+                                            </fieldset>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div id="sectionB" class="tab-pane fade">
+                                        <div class="widget-main">
+                                            <form name="addressForm" class="" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="mobile">Mobile Number</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control" placeholder="Mobile Number"
+												name="mobile" ng-model="signUpController.signup.mobile"
+												validator="mobile" />
+
+											</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="companyName">Company Name</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control" placeholder="Company Name"
+												name="companyName"
+												ng-model="signUpController.signup.companyName" />
+
+											</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="houseNo">House/Street Number</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control"
+												placeholder="House/Street Number" name="houseNo"
+												ng-model="signUpController.signup.houseNo">
+
+											</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="locality">Locality</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control" placeholder="Locality"
+												name="locality" ng-model="signUpController.signup.locality">
+
+											</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="state">State</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control" placeholder="State"
+												name="state" ng-model="signUpController.signup.state">
+											</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="postCode">Post Code</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control" placeholder="Post Code"
+												name="postCode" ng-model="signUpController.signup.postCode"
+												validator="number">
+
+											</span>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+
+                                                        <button type="submit" class="width-35 pull-right btn btn-sm custom-button" data-ng-disabled="addressForm.$invalid" data-target="#sectionC" role="tab" data-toggle="tab" angular-ripple>
+                                                            Next
+                                                        </button>
+
+                                                    </div>
+
+                                                </div>
+
+
+                                            </form>
+
+                                            </fieldset>
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <div id="sectionC" class="tab-pane fade">
+                                        <div class="widget-main">
+                                            <form name="bankDetailForm" class="" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="bankAccountHolder">Bank Account Holder</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control"
+												placeholder="Bank Account Holder" name="bankAccountHolder"
+												ng-model="signUpController.signup.bankAccountHolder">
+
+											</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="bankName">Bank Name</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control" placeholder="Bank Name"
+												name="bankName" ng-model="signUpController.signup.bankName">
+											</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="branchAddress">Branch Address</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control"
+												placeholder="Branch Address" name="branchAddress"
+												ng-model="signUpController.signup.branchAddress">
+											</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="accountNumber">Account Number</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control"
+												placeholder="Account Number" name="accountNumber"
+												ng-model="signUpController.signup.accountNumber"
+												validator="number">
+											</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="ifscCode">IFSC Code</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
+												type="text" class="form-control" placeholder="IFSC Code"
+												name="ifscCode" ng-model="signUpController.signup.ifscCode">
+											</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="template">Select Business Type</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <select
 												class="form-control" placeholder="Select one" name="template"
 												ng-model="signUpController.signup.template"
 												validator="required" focus>
@@ -97,235 +270,100 @@
 													<option value="2">Transport</option>
 											</select>
 											</span>
-										</div>
-									</div>
+                                                    </div>
+                                                </div>
 
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="mobile">Mobile Number</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control" placeholder="Mobile Number"
-												name="mobile" ng-model="signUpController.signup.mobile"
-												validator="number" />
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
 
-											</span>
-										</div>
-									</div>
+                                                        <button type="submit" class="width-35 pull-right btn btn-sm custom-button" data-ng-disabled="bankDetailForm.$invalid" data-target="#sectionD" role="tab" data-toggle="tab" angular-ripple>
+                                                            Next
+                                                        </button>
+
+                                                    </div>
+
+                                                </div>
 
 
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="displayName">Display Name</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control" placeholder="Display Name"
-												name="displayName"
-												ng-model="signUpController.signup.displayName" />
+                                            </form>
 
-											</span>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="companyName">Company Name</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control" placeholder="Company Name"
-												name="companyName"
-												ng-model="signUpController.signup.companyName" />
-
-											</span>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="houseNo">House/Street Number</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control"
-												placeholder="House/Street Number" name="houseNo"
-												ng-model="signUpController.signup.houseNo">
-
-											</span>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="locality">Locality</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control" placeholder="Locality"
-												name="locality" ng-model="signUpController.signup.locality">
-
-											</span>
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="state">State</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control" placeholder="State"
-												name="state" ng-model="signUpController.signup.state">
-											</span>
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="postCode">Post Code</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control" placeholder="Post Code"
-												name="postCode" ng-model="signUpController.signup.postCode"
-												validator="number">
-
-											</span>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="bankAccountHolder">Bank Account Holder</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control"
-												placeholder="Bank Account Holder" name="bankAccountHolder"
-												ng-model="signUpController.signup.bankAccountHolder">
-
-											</span>
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="bankName">Bank Name</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control" placeholder="Bank Name"
-												name="bankName" ng-model="signUpController.signup.bankName">
-											</span>
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="branchAddress">Branch Address</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control"
-												placeholder="Branch Address" name="branchAddress"
-												ng-model="signUpController.signup.branchAddress">
-											</span>
-										</div>
-									</div>
-
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="accountNumber">Account Number</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control"
-												placeholder="Account Number" name="accountNumber"
-												ng-model="signUpController.signup.accountNumber"
-												validator="number">
-											</span>
-										</div>
-									</div>
+                                            </fieldset>
 
 
 
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="ifscCode">IFSC Code</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
-												type="text" class="form-control" placeholder="IFSC Code"
-												name="ifscCode" ng-model="signUpController.signup.ifscCode">
-											</span>
-										</div>
-									</div>
+                                        </div>
 
-
-
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="facebookURL">Facebook URL</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
+                                    </div>
+                                    <div id="sectionD" class="tab-pane fade">
+                                        <div class="widget-main">
+                                            <form name="urlForm" class="" role="form">
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="facebookURL">Facebook URL</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
 												type="text" class="form-control" placeholder="Facebook URL"
 												name="facebookURL"
 												ng-model="signUpController.signup.facebookURL"
 												validator="url">
 											</span>
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="twitterURL">Twitter URL</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="twitterURL">Twitter URL</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
 												type="text" class="form-control" placeholder="Twitter URL"
 												name="twitterURL"
 												ng-model="signUpController.signup.twitterURL"
 												validator="url">
 											</span>
-										</div>
-									</div>
-
-
-									<div class="form-group">
-										<label class="col-sm-12 control-label no-padding-right"
-											for="domainName">Domain Name</label>
-										<div class="col-sm-12">
-											<span class="block input-icon input-icon-right"> <input
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-12 control-label no-padding-right" for="domainName">Domain Name</label>
+                                                    <div class="col-sm-12">
+                                                        <span class="block input-icon input-icon-right"> <input
 												type="text" class="form-control" placeholder="Domain Name"
 												name="domainName"
 												ng-model="signUpController.signup.domainName">
 											</span>
-										</div>
-									</div>
+                                                    </div>
+                                                </div>
 
 
 
-									<div class="form-group">
-										<div class="col-md-12">
-											<div class="col-sm-8 col-sm-offset-2">
-												<button type="submit"
-													class="width-35 pull-right btn btn-sm custom-button"
-													ng-click="signUpController.signUp(signUpController.signup)"
-													data-ng-disabled="signupForm.$invalid" angular-ripple>
-													Sign Up</button>
-											</div>
-										</div>
-									</div>
-									<div class="form-group ">
-										<div class="col-md-12 signup-link">
-											Already have an account? <a href="#/signup">Sign in</a>
-										</div>
-									</div>
 
-								</form>
 
-							</div>
-						</div>
-					</div>
-				</div>
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
 
-			</div>
+                                                        <button type="submit" class="width-35 pull-right btn btn-sm custom-button" ng-click="signUpController.signUp(signUpController.signup)" data-ng-disabled="urlForm.$invalid" angular-ripple>
+                                                            Save
+                                                        </button>
 
-		</div>
-	</div>
+                                                    </div>
+
+                                                </div>
+
+
+                                            </form>
+
+                                            </fieldset>
+
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
 </div>
 <!-- /.page-content -->

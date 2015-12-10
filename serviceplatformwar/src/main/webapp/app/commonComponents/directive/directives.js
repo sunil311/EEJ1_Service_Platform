@@ -30,15 +30,12 @@ app.directive('passwordMatch', [ function() {
 	};
 } ]);
 
-app.directive('abc', function() {
+app.directive('sideBarToggle', function() {
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
-                
                 element.bind('click', function(event) {
-                	console.log('heheh');
-                	$("#wrapper").toggleClass("toggled");
-                   
+                	$("#wrapper").toggleClass("toggled");    
                     return false;
                 });
             }

@@ -5,9 +5,8 @@
     function loginController($scope, $rootScope, $routeParams, $location, $http, Data, $injector) {
         var vm = this;
         vm.alert = true;
-
+        vm.userLogin={};
         vm.doLogin = function(user) {
-            console.log(user);
             $scope.alert = true;
             Data.post('doLogin', user).then(function(results) {
                 if (results.status == "SUCCESS") {
