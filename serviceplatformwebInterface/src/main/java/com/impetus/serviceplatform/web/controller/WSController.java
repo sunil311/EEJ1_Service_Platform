@@ -79,6 +79,7 @@ public class WSController {
 				dbResponse.setHostName(tenantDatabaseMetadata.getDbHostName());
 				dbResponse
 						.setPortNumber(tenantDatabaseMetadata.getDbHostPort());
+				dbResponse.setTenantId(tenantDatabaseMetadata.getTenantId());
 				dbResponseList.add(dbResponse);
 			}
 		} catch (ServicePlatformException e) {

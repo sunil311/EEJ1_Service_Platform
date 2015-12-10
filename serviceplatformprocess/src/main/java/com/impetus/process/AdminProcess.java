@@ -33,8 +33,10 @@ import com.impetus.process.dto.DbProfileData;
 import com.impetus.process.dto.InputData;
 import com.impetus.process.dto.UserData;
 import com.impetus.process.entities.SecUser;
+import com.impetus.process.entities.TenantDatabaseMetadata;
 import com.impetus.process.enums.Template;
 import com.impetus.process.exception.ServicePlatformException;
+import com.impetus.process.service.IManageTenant;
 import com.impetus.process.utils.ZipDirectory;
 
 /**
@@ -55,6 +57,9 @@ public class AdminProcess {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+	IManageTenant iManageTenant;
 
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(AdminProcess.class);
@@ -112,6 +117,8 @@ public class AdminProcess {
 		SecUser secUser = userDao.findUserByEmailId(dbProfileData.getEmail());
 		updateDbprofileData(dbProfileData, secUser);
 		String dbResponse = createDataBase(dbProfileData);
+		Integer dbDetailsId = createEntryforTenantDatabaseMetadata(dbProfileData);
+		updateDataSourceMapAtAggregatorSite(dbProfileData);
 		if (DATABASE_SUCCESS.equalsIgnoreCase(dbResponse)) {
 			if (sendEmail(secUser)) {
 				secUser.setActivated(true);
@@ -149,6 +156,52 @@ public class AdminProcess {
 
 	}
 
+	/**
+	 * This method is used to update datasource map for a Tenant which is going to
+	 * register with fecilitator
+	 * 
+	 * @param dbProfileData
+	 * @return
+	 */
+	public String updateDataSourceMapAtAggregatorSite(DbProfileData dbProfileData)
+			throws ServicePlatformException {
+		RestTemplate rt = new RestTemplate();
+		rt.getMessageConverters().add(new StringHttpMessageConverter());
+		String uri = new String(env.getProperty("process.update.datasource.map"));
+
+		InputData input = new InputData();
+		input.setDbName(dbProfileData.getDbName());
+		
+		DBResponse response = null;
+		try {
+			response = rt.postForObject(uri, input, DBResponse.class);
+			LOGGER.debug(response.getResult());
+		} catch (ResourceAccessException e) {
+			throw new ServicePlatformException(
+					"Exception occured in creating database: ", e);
+		}
+		return response.getResult();
+
+	}
+
+	/**
+	 * @param dbProfileData
+	 * @return
+	 */
+	public Integer createEntryforTenantDatabaseMetadata(
+			DbProfileData dbProfileData) throws ServicePlatformException {
+
+		InputData input = new InputData();
+		input.setDbName(dbProfileData.getDbName());
+		input.setDbUserName(dbProfileData.getUserName());
+		input.setDbPassword(dbProfileData.getPassword());
+		input.setDbHostName(dbProfileData.getHostName());
+		input.setDbPort(dbProfileData.getPortNumber());
+		input.setTenantId(dbProfileData.getTenantId());
+		TenantDatabaseMetadata tenantDatabaseMetadata = iManageTenant
+				.createTenantDatabaseMetadatDetail(input);
+		return tenantDatabaseMetadata.getDbDetailsId();
+	}
 	/**
 	 * @param secUser
 	 * @return
