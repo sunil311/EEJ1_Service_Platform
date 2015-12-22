@@ -5,6 +5,7 @@
     function loginController($scope, $rootScope, $routeParams, $location, $http, Data, $injector) {
         var vm = this;
         vm.alert = true;
+        vm.alertUser = true;
         vm.userLogin={};
         vm.doLogin = function(user) {
             $scope.alert = true;
@@ -13,15 +14,18 @@
                     Data.toast(results);
                     $location.path('dashboard/service-provider');
                 } else if (results.status == "USER DO NOT EXISTS") {
-                    vm.alert=false;
+                	vm.alertUser = false;
                 } else {
                     vm.alert=false;
                 }
-            });
+            },function(e){
+            	 vm.alert=false;
+            	});
 
         };
         vm.hideAlertMessage = function () {
             vm.alert=true;
+            vm.alertUser = true;
         };
     }
 

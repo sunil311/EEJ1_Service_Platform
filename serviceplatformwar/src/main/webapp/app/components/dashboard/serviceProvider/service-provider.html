@@ -1,4 +1,13 @@
 <div class=" profile-template container" ng-controller="activateAggrigatorController as activateAggrigatorController">
+ <div class="alert alert-danger fade in panel-shadow" ng-hide="activateAggrigatorController.alertFailed">
+                <a ng-click="activateAggrigatorController.hideAlertMessage()" class="close">&times;</a>
+                <strong>Error! </strong> Database not created  try again
+            </div>
+            
+            <div class="alert alert-success fade in" ng-hide="activateAggrigatorController.alertSuccess">
+        <a ng-click="activateAggrigatorController.hideAlertMessage()"class="close" >&times;</a>
+        <strong>Success!</strong>  Database created successfully, USER is now activated and email has been sent.
+   	 </div>
 <div  ><h1 class="dashboard-heading ">Service Aggrigator</</h1></div>
 <div class="col-md-12 col-xl-12 card  ">
 <form name="dbprofileForm" id="dbprofileForm"

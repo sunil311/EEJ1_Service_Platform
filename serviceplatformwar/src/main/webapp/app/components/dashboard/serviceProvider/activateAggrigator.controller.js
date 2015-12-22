@@ -10,25 +10,37 @@
 		vm.dbprofile = {};
 		var dirty = false;
 		var result = [];
+		vm.alertSuccess = true;
+        vm.alertFailed = true;
 			
 		AggrigatorData.get('findInactiveAggrigator ').then(function (results) {
 			vm.aggregatorsList=results;
     });
+		
+		 vm.hideAlertMessage = function () {
+	        	vm.alertSuccess = true;
+	            vm.alertFailed = true;
+	         
+	        };
+	        
 		vm.activate = function(user) {
-			
-            console.log(user);
-            $scope.alert = true;
+			vm.alertSuccess = true;
+	        vm.alertFailed = true;
             $('#submit_button_id').attr('disabled',true);
             AggrigatorData.post('updateAggrigator', user).then(function(results) {
-                if (results == "Database created successfully") {
-                    alert(results+". USER is now activated and email has been sent.")
-                    $location.path('dashboard');
+            	$('#submit_button_id').attr('disabled', false);
+                if (results == "Database created successfully") {                 
+                    vm.alertSuccess = false;
+                    vm.dbprofile = {};
                 } else {
-                	alert(results+" Please try again.")
                 	$('#submit_button_id').attr('disabled', false);
-                    vm.alert=false;
+                	vm.alertFailed = false;
+                	
                 }
-            });
+            },function(e){
+            	$('#submit_button_id').attr('disabled', false);
+            	vm.alertFailed = false;
+            	});
 
         };
 		}

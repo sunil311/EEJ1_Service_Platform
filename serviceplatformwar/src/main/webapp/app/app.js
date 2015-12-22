@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute','ui.router', 'ngAnimate','ngResource','ui.grid', 'toaster','validation', 'validation.rule','EE.login','EE.signUp','EE.dashboard.module','angularRipple']);
+var app = angular.module('myApp', ['ngRoute','ui.router', 'ngAnimate','ngResource', 'toaster','validation', 'validation.rule','EE.login','EE.signUp','EE.dashboard.module','angularRipple']);
 
 app.config(['$routeProvider','$stateProvider', '$urlRouterProvider','$validationProvider',
   function ($routeProvider,$stateProvider, $urlRouterProvider,$validationProvider) {

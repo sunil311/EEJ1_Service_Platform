@@ -2,6 +2,20 @@
     <div class="row" ng-controller="signUpController as signUpController">
 
         <div class="container login-box ">
+         <div class="alert alert-danger fade in panel-shadow" ng-hide="signUpController.alertFailed">
+                <a ng-click="signUpController.hideAlertMessage()" class="close" >&times;</a>
+                <strong>Error! </strong> From Submit not submitted try Again
+            </div>
+            
+            <div class="alert alert-success fade in" ng-hide="signUpController.alertSuccess">
+        <a ng-click="signUpController.hideAlertMessage()"class="close" >&times;</a>
+        <strong>Success!</strong> From Submit successfully.
+   	 </div>
+   	 
+   	 		<div class="alert alert-danger fade in panel-shadow" ng-hide="signUpController.alertEmail">
+                <a ng-click="signUpController.hideAlertMessage()" class="close" >&times;</a>
+                <strong>Error! </strong> Email is already in use, try Login button.
+            </div>
             <div>
                 <div class="login-heading">
                     <h1>Signup From</h1>
@@ -13,16 +27,16 @@
 
                             <div class="col-md-12 col-xl-12  margin-top-30">
                                 <ul class="nav nav-tabs">
-                                    <li class="active">
+                                    <li class="next">
                                         <button data-target="#sectionA" role="tab" data-toggle="tab" angular-ripple>General </button>
                                     </li>
-                                    <li ng-class="{active: signUpController.activeTab == 'editprofile'}">
+                                    <li ng-class="{next: !genralForm.$invalid}">
                                         <button data-ng-disabled="genralForm.$invalid" data-target="#sectionB" role="tab" data-toggle="tab" angular-ripple>Address </button>
                                     </li>
-                                    <li>
+                                    <li ng-class="{next: !addressForm.$invalid}">
                                         <button data-target="#sectionC" role="tab" data-toggle="tab" data-ng-disabled="addressForm.$invalid" angular-ripple>Bank </button>
                                     </li>
-                                    <li>
+                                    <li ng-class="{next: !bankDetailForm.$invalid">
                                         <button data-target="#sectionD" role="tab" data-toggle="tab" data-ng-disabled="bankDetailForm.$invalid" angular-ripple>URL</button>
                                     </li>
                                 </ul>

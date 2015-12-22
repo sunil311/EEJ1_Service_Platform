@@ -4,7 +4,9 @@
     signUpController.$inject = [ '$scope', '$rootScope', '$routeParams', '$location', '$http', 'Data', '$injector' ];
     function signUpController($scope, $rootScope, $routeParams, $location, $http, Data, $injector) {
         var vm = this;
-        vm.alert = true;
+        vm.alertSuccess = true;
+        vm.alertFailed = true;
+        vm.alertEmail = true;
         vm.signup = {
             email : '',
             password : '',
@@ -13,27 +15,34 @@
         };
         vm.signUp = function(user) {
             Data.post('signUp', user).then(function(results) {
-                if (results.status == "success" || results.status == "SUCCESS") {
-                    Data.toast(results);
-                    //alert("Thanks for registring. Your signup is completed however you will be able to login in to your porstal once our representative will verify the details.");
-                    $location.path('confirmation');
-                } else if (results.status == "EMAIL ALREADY IN USE") {
-                    alert("Email is already in use, try Login button.");
-                } else {
-                    alert("Some thing went wrong!");
+                if (results.status == "success" || results.status == "SUCCESS") {     
+                    vm.alertSuccess = false;
+                    vm.signup={};
+                } else if (results.status == "EMAIL ALREADY IN USE") {            
+                    vm.alertEmail = false;
+                } else {                   
+                    vm.alertFailed = false;
                 }
-            });
+            },function(e){
+            	vm.alertFailed = false;
+            	});
         };
 
         vm.checkEmail = function(user) {
             Data.post('checkEmail', user).then(function(results) {
                 vm.alert = true;
                 if (results.status == "SUCCESS") {
-                    Data.toast(results);
+                	vm.alertSuccess = false;
                 } else if (results.status == "EMAIL ALREADY IN USE") {
-                    vm.alert = false;
+                	vm.alertEmail = false;
                 }
             });
+        };
+        
+        vm.hideAlertMessage = function () {
+        	vm.alertSuccess = true;
+            vm.alertFailed = true;
+            vm.alertEmail = true;
         };
 
     }
