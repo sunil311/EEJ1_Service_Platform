@@ -17,6 +17,7 @@
             Data.post('signUp', user).then(function(results) {
                 if (results.status == "success" || results.status == "SUCCESS") {     
                     vm.alertSuccess = false;
+                    $location.path('/confirmation');
                     vm.signup={};
                 } else if (results.status == "EMAIL ALREADY IN USE") {            
                     vm.alertEmail = false;
